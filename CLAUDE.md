@@ -114,12 +114,12 @@ VIP Services uses **Deltaplano** (not helicopter) for vehicle rentals.
 
 ## Villa Collections (index.html)
 
-Three tiers displayed in the "Our Collections" section:
-- **Essential**: from 4.000€/week (0–15k range)
-- **Selected**: from 15.000€/week (15k–60k range)
-- **Private**: from 60.000€/week (60k–80k range)
+Three tiers displayed in the "Our Collections" section — no prices shown, names only:
+- **Essential**
+- **Selected**
+- **Private**
 
-Do not show villa prices in intro copy or service card descriptions — only in the Collections section.
+Do not show villa prices anywhere on the site.
 
 ---
 
