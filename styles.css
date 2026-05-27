@@ -505,7 +505,7 @@ h1, h2, h3, h4, h5 {
   position: relative;
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   overflow: hidden;
   color: var(--color-cream);
 }
@@ -544,7 +544,7 @@ h1, h2, h3, h4, h5 {
   position: relative;
   z-index: 2;
   width: 100%;
-  padding-top: 6rem;
+  padding-top: 11rem;
   padding-bottom: 4rem;
 }
 
@@ -558,6 +558,7 @@ h1, h2, h3, h4, h5 {
   color: var(--color-cream);
   margin: 1.5rem 0 1.5rem;
   max-width: 18ch;
+  font-size: clamp(2.4rem, 6vw, 5.5rem);
 }
 
 @keyframes heroLineIn {
