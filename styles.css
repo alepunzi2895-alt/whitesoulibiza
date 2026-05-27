@@ -200,6 +200,45 @@ h1, h2, h3, h4, h5 {
   border-bottom: 1px solid rgba(184, 148, 95, 0.15);
 }
 
+/* White text when header is transparent (over hero images) */
+.site-header:not(.scrolled):not(.solid) .brand-name {
+  color: var(--color-white);
+}
+.site-header:not(.scrolled):not(.solid) .brand-tag {
+  color: rgba(245, 241, 234, 0.75);
+}
+.site-header:not(.scrolled):not(.solid) .nav-links a {
+  color: rgba(245, 241, 234, 0.9);
+}
+.site-header:not(.scrolled):not(.solid) .nav-links a:hover,
+.site-header:not(.scrolled):not(.solid) .nav-links a.active {
+  color: var(--color-gold-light);
+}
+.site-header:not(.scrolled):not(.solid) .lang-switcher button {
+  color: rgba(245, 241, 234, 0.65);
+}
+.site-header:not(.scrolled):not(.solid) .lang-switcher button:hover,
+.site-header:not(.scrolled):not(.solid) .lang-switcher button.active {
+  color: var(--color-gold-light);
+}
+.site-header:not(.scrolled):not(.solid) .lang-divider {
+  color: rgba(245, 241, 234, 0.35);
+}
+.site-header:not(.scrolled):not(.solid) .menu-toggle span {
+  background: var(--color-white);
+}
+
+/* Restore dark text when mobile menu is open (cream background) */
+@media (max-width: 980px) {
+  .site-header:not(.scrolled):not(.solid) .nav-links.open a {
+    color: var(--color-ink-soft);
+  }
+  .site-header:not(.scrolled):not(.solid) .nav-links.open a:hover,
+  .site-header:not(.scrolled):not(.solid) .nav-links.open a.active {
+    color: var(--color-gold-dark);
+  }
+}
+
 .nav-inner {
   display: flex;
   align-items: center;
