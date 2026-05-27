@@ -244,3 +244,5 @@ All current images are **Unsplash placeholders**. Replace with real White Soul I
 - Do not re-add removed event types (weddings, corporate, private milestones)
 - Do not use the read-write Turso token in any public-facing context beyond the current static setup
 - Do not commit `seed-db.js` with active tokens to a public repository
+
+xxx
