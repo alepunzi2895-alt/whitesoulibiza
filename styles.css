@@ -571,9 +571,8 @@ h1, h2, h3, h4, h5 {
   animation: heroLineIn 1s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.hero-line:nth-child(1) { animation-delay: 0.2s; }
-.hero-line:nth-child(2) { animation-delay: 0.55s; }
-.hero-line:nth-child(3) { animation-delay: 0.9s; }
+.hero-line:nth-child(1) { animation-delay: 0s; }
+.hero-line:nth-child(2) { animation-delay: 1s; }
 
 .hero .eyebrow {
   color: var(--color-gold-light);
