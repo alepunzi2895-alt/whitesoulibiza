@@ -60,7 +60,7 @@
   <div class="container hero-content">
     <div class="reveal in-view">
       <span class="eyebrow" data-t="home.hero.eyebrow">White Soul Ibiza · Est. 2018</span>
-      <h1 class="display-xl">Your <span style="color:var(--color-gold-light);">Ibiza</span>,<br>designed<br><span class="italic" style="color:var(--color-white);">around you.</span></h1>
+      <h1 class="display-xl" data-t="home.hero.h1">Your <span style="color:var(--color-gold-light);">Ibiza</span>,<br>designed<br><span class="italic" style="color:var(--color-white);">around you.</span></h1>
       <p class="hero-sub" data-t="home.hero.sub">Luxury villas, private yachts and bespoke experiences curated entirely for you. Privacy, exclusivity, and the unforgettable.</p>
       <div class="hero-cta">
         <a href="contact.html" class="btn btn-gold btn-arrow" data-t="cta.plan">Plan Your Experience</a>
@@ -79,9 +79,9 @@
   <div class="container">
     <div class="two-col">
       <div class="two-col-text reveal">
-        <span class="eyebrow" data-t="home.intro.eyebrow">Welcome to White Soul Ibiza</span>
+        <span class="eyebrow" data-t="home.intro.eyebrow" style="font-size:0.85rem;">Welcome to White Soul Ibiza</span>
         <h2 class="display-md">We create experiences,<br><span class="italic">not just holidays.</span></h2>
-        <p data-t="home.intro.p1">We create tailor-made luxury experiences on the island, combining exclusive villas, private yachts and a full concierge service. Villas from 4.000€ to over 100.000€ per week — every one selected for design, privacy and location.</p>
+        <p data-t="home.intro.p1">We create tailor-made luxury experiences on the island, combining exclusive villas, private yachts and a full concierge service. Every villa selected for design, privacy and the finest locations on the island.</p>
         <p data-t="home.intro.p2">From the moment you arrive, every detail is handled for you. You don't just visit Ibiza — you live it.</p>
         <div style="margin-top:2rem;">
           <a href="about.html" class="btn-text" data-t="cta.story">Our Story</a>
@@ -114,21 +114,9 @@
           </svg>
         </div>
         <h3 data-t="home.services.villa.name">Luxury Villas</h3>
-        <p data-t="home.services.villa.desc">A curated selection of exclusive villas from 4.000€ to over 100.000€ per week — chosen for design, privacy and the finest locations on the island.</p>
+        <p data-t="home.services.villa.desc">A curated selection of exclusive villas chosen for design, privacy and the finest locations on the island.</p>
       </div>
       <div class="service-card reveal reveal-delay-1">
-        <div class="service-icon">
-          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor">
-            <path d="M8 38 Q30 22 52 38"/>
-            <path d="M14 38 L14 48 L46 48 L46 38"/>
-            <path d="M30 22 L30 12"/>
-            <path d="M24 12 L36 12"/>
-          </svg>
-        </div>
-        <h3 data-t="home.services.yacht.name">Yacht & Boats</h3>
-        <p data-t="home.services.yacht.desc">Private yachts and boats for day charters, sunset cruises and exclusive events across the Balearics. From around 10.000€ per day.</p>
-      </div>
-      <div class="service-card reveal reveal-delay-2">
         <div class="service-icon">
           <svg viewBox="0 0 60 60" fill="none" stroke="currentColor">
             <path d="M20 14 L20 22 Q20 28 26 28 L34 28 Q40 28 40 22 L40 14"/>
@@ -139,6 +127,18 @@
         </div>
         <h3 data-t="home.services.chef.name">Private Chef</h3>
         <p data-t="home.services.chef.desc">Sushi, Italian, French, paella — private chefs of every cuisine, creating bespoke menus in your villa for any occasion.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">
+          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor">
+            <path d="M8 38 Q30 22 52 38"/>
+            <path d="M14 38 L14 48 L46 48 L46 38"/>
+            <path d="M30 22 L30 12"/>
+            <path d="M24 12 L36 12"/>
+          </svg>
+        </div>
+        <h3 data-t="home.services.yacht.name">Yacht & Boats</h3>
+        <p data-t="home.services.yacht.desc">Private yachts and boats for day charters, sunset cruises and exclusive events across the Balearics.</p>
       </div>
       <div class="service-card reveal reveal-delay-3">
         <div class="service-icon">
@@ -152,15 +152,39 @@
       <div class="service-card reveal">
         <div class="service-icon">
           <svg viewBox="0 0 60 60" fill="none" stroke="currentColor">
-            <circle cx="30" cy="30" r="20"/>
-            <path d="M30 14 Q40 22 40 30 Q40 38 30 46 Q20 38 20 30 Q20 22 30 14"/>
-            <line x1="20" y1="30" x2="40" y2="30"/>
+            <circle cx="30" cy="22" r="8"/>
+            <path d="M10 50 Q10 36 30 36 Q50 36 50 50"/>
+            <path d="M42 14 Q50 18 48 28"/>
+            <path d="M18 14 Q10 18 12 28"/>
           </svg>
         </div>
-        <h3 data-t="home.services.wellness.name">Entertainment</h3>
-        <p data-t="home.services.wellness.desc">Dancers, singers, performers and private shows — bespoke entertainment for villa parties, yacht events and exclusive celebrations.</p>
+        <h3 data-t="home.services.wellness.name">Beauty & Wellness</h3>
+        <p data-t="home.services.wellness.desc">Yoga, massage, personal training, hairdresser, barber, beautician and make-up artist — all delivered to your villa.</p>
       </div>
       <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">
+          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor">
+            <rect x="8" y="28" width="44" height="18" rx="4"/>
+            <circle cx="18" cy="46" r="5"/>
+            <circle cx="42" cy="46" r="5"/>
+            <path d="M8 36 L52 36"/>
+            <path d="M32 28 L28 18 L44 18 L48 28"/>
+          </svg>
+        </div>
+        <h3 data-t="home.services.cars.name">Luxury Cars & Transfer</h3>
+        <p data-t="home.services.cars.desc">Airport transfers, supercars, convertibles and private drivers — every journey on the island, arranged.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">
+          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor">
+            <path d="M30 8 L48 18 L48 34 Q48 46 30 52 Q12 46 12 34 L12 18 Z"/>
+            <polyline points="22,30 28,36 38,24"/>
+          </svg>
+        </div>
+        <h3 data-t="home.services.security.name">Security & Staff</h3>
+        <p data-t="home.services.security.desc">Private security, professional bartenders, wine curation, cleaning and housekeeping — every detail in hand.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
         <div class="service-icon">
           <svg viewBox="0 0 60 60" fill="none" stroke="currentColor">
             <path d="M15 20 L45 20 L42 50 L18 50 Z"/>
@@ -179,35 +203,35 @@
   </div>
 </section>
 
-<!-- =============== FEATURED VILLAS =============== -->
+<!-- =============== OUR COLLECTIONS =============== -->
 <section class="section">
   <div class="container">
     <div class="intro-block reveal">
-      <span class="eyebrow center">Featured Villas</span>
-      <h2 class="display-md">Residences <span class="italic">of distinction</span></h2>
-      <p>A handpicked portfolio of the island's most remarkable homes — cliffside, hidden valleys, sea-facing terraces.</p>
+      <span class="eyebrow center">Our Collections</span>
+      <h2 class="display-md">A villa for <span class="italic">every vision.</span></h2>
+      <p>Three curated collections — every villa selected for design, privacy and location.</p>
     </div>
 
     <div class="villas-grid">
       <div class="villa-card reveal">
-        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=900&q=85" alt="Villa Es Vedra">
+        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=900&q=85" alt="Essential Collection">
         <div class="villa-card-overlay">
-          <span class="villa-meta">Cala Carbó · 8 Bedrooms</span>
-          <h3>Casa Es Vedrà</h3>
+          <span class="villa-meta">Essential · from 4.000€/week</span>
+          <h3>Essential Collection</h3>
         </div>
       </div>
       <div class="villa-card reveal reveal-delay-1">
-        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=900&q=85" alt="Villa Talamanca">
+        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=900&q=85" alt="Selected Collection">
         <div class="villa-card-overlay">
-          <span class="villa-meta">Talamanca · 6 Bedrooms</span>
-          <h3>Villa Aurora</h3>
+          <span class="villa-meta">Selected · from 15.000€/week</span>
+          <h3>Selected Collection</h3>
         </div>
       </div>
       <div class="villa-card reveal reveal-delay-2">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=85" alt="Villa Cala Jondal">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=85" alt="Private Collection">
         <div class="villa-card-overlay">
-          <span class="villa-meta">Cala Jondal · 10 Bedrooms</span>
-          <h3>Finca Blanca</h3>
+          <span class="villa-meta">Private · from 60.000€/week</span>
+          <h3>Private Collection</h3>
         </div>
       </div>
     </div>

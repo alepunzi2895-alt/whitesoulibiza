@@ -90,36 +90,47 @@ This order must be maintained in all 7 HTML files in the `.nav-links` `<ul>`.
 
 ## Services (services.html)
 
-Six services in order, numbered 01–06:
+Seven services in order, numbered 01–07:
 
 | # | Name | Eyebrow key |
 |---|---|---|
 | 01 | Villa Concierge | `services.villa.*` |
 | 02 | Private Chef in Villa | `services.chef.*` |
 | 03 | Yacht & Boat Experiences | `services.yacht.*` |
-| 04 | VIP Services & Reservations | `services.vip.*` |
-| 05 | Wellness & Experiences | `services.wellness.*` |
-| 06 | Fotografia per Eventi | `services.photo.*` |
+| 04 | VIP Access & Entertainment | `services.vip.*` |
+| 05 | Beauty & Wellness | `services.wellness.*` |
+| 06 | Luxury Cars & Private Transfer | `services.cars.*` |
+| 07 | Security, Bartender & Staff | `services.security.*` |
+
+Photography & Videography is a note in the #events section (not a standalone service row).
 
 **Removed services** (do not re-add):
-- Childcare / pet care (was in Villa Concierge)
-- Private yoga / pilates / breath-work
+- Photography as a standalone service row (now a note in Events section)
+- Childcare / pet care
 - Sound baths / ceremony / ritual experiences
-- Personal trainers / padel coaches
 - Nutritionists / IV therapy / doctors on call
 
 VIP Services uses **Deltaplano** (not helicopter) for vehicle rentals.
 
+## Villa Collections (index.html)
+
+Three tiers displayed in the "Our Collections" section:
+- **Essential**: from 4.000€/week (0–15k range)
+- **Selected**: from 15.000€/week (15k–60k range)
+- **Private**: from 60.000€/week (60k–80k range)
+
+Do not show villa prices in intro copy or service card descriptions — only in the Collections section.
+
 ---
 
-## Events (events.html)
+## Events (services.html#events)
 
-Only two event types — keep it focused:
+Events live inside services.html as the `#events` anchor section (bone background). Only two event types — keep it focused:
 
 1. **Addio al Celibato & Nubilato** (bachelor/bachelorette)
 2. **Pacchetti & Tavoli per le Serate** (VIP packages & table reservations)
 
-Do not re-add weddings, corporate events, or private milestone birthdays.
+All nav links point to `services.html#events`. Do not re-add weddings, corporate events, or private milestone birthdays.
 
 ---
 
