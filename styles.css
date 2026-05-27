@@ -566,15 +566,20 @@ h1, h2, h3, h4, h5 {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.hero-line {
-  display: block;
+.hero-word {
+  display: inline-block;
   opacity: 0;
   animation: heroLineIn 1s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.hero-line:nth-child(1) { animation-delay: 0s; }
-.hero-line:nth-child(2) { animation-delay: 1s; }
-.hero-line:nth-child(3) { animation-delay: 2s; }
+.hero-word:nth-child(1) { animation-delay: 0s; }
+.hero-word:nth-child(2) { animation-delay: 1s; }
+
+.hero-line {
+  display: block;
+  opacity: 0;
+  animation: heroLineIn 1s cubic-bezier(0.16, 1, 0.3, 1) 2s both;
+}
 
 .hero .eyebrow {
   color: var(--color-gold-light);
