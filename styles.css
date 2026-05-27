@@ -544,7 +544,7 @@ h1, h2, h3, h4, h5 {
   position: relative;
   z-index: 2;
   width: 100%;
-  padding-top: 7rem;
+  padding-top: 5.5rem;
   padding-bottom: 4rem;
 }
 
@@ -574,6 +574,7 @@ h1, h2, h3, h4, h5 {
 
 .hero-line:nth-child(1) { animation-delay: 0s; }
 .hero-line:nth-child(2) { animation-delay: 1s; }
+.hero-line:nth-child(3) { animation-delay: 2s; }
 
 .hero .eyebrow {
   color: var(--color-gold-light);
