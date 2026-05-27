@@ -44,10 +44,10 @@ whitesoulibiza/
 ## Navigation Order (strict — do not change)
 
 ```
-Home → Services → Events → Experiences → Testimonials → About → Contact
+Home → Services → Experiences → About → Contact
 ```
 
-This order must be maintained in all 7 HTML files in the `.nav-links` `<ul>`.
+This order must be maintained in all 5 HTML files in the `.nav-links` `<ul>`. Events and Testimonials have been removed from navigation (Events is inside services.html#events; Testimonials content moved to about.html).
 
 ---
 
