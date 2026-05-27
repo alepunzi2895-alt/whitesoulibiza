@@ -141,6 +141,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Testimonial carousel ---
   initCarousel();
 
+  // --- Villa collection sliders ---
+  initCollectionSliders();
+
   // --- Experience builder ---
   initBuilder();
 
@@ -196,6 +199,46 @@ function initCarousel() {
   };
 
   setInterval(() => goTo((current + 1) % slides.length), 6500);
+}
+
+// =====================================
+// VILLA COLLECTION SLIDERS
+// =====================================
+function initCollectionSliders() {
+  document.querySelectorAll('[data-coll]').forEach(block => {
+    const track = block.querySelector('.coll-track');
+    const prevBtn = block.querySelector('.coll-prev');
+    const nextBtn = block.querySelector('.coll-next');
+    const cards = Array.from(track.querySelectorAll('.coll-villa'));
+    if (!track || cards.length === 0) return;
+
+    let current = 0;
+
+    const gap = () => parseFloat(getComputedStyle(track).gap) || 24;
+
+    const perView = () => {
+      const w = window.innerWidth;
+      if (w <= 580) return 1;
+      if (w <= 900) return 2;
+      return 3;
+    };
+
+    const maxIndex = () => Math.max(0, cards.length - perView());
+
+    const update = () => {
+      current = Math.min(current, maxIndex());
+      const cardW = cards[0].offsetWidth;
+      track.style.transform = `translateX(-${current * (cardW + gap())}px)`;
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current >= maxIndex();
+    };
+
+    prevBtn.addEventListener('click', () => { if (current > 0) { current--; update(); } });
+    nextBtn.addEventListener('click', () => { if (current < maxIndex()) { current++; update(); } });
+    window.addEventListener('resize', update, { passive: true });
+
+    requestAnimationFrame(update);
+  });
 }
 
 // =====================================
