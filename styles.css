@@ -1223,7 +1223,16 @@ h1, h2, h3, h4, h5 {
 .villa-modal-close svg { width: 1rem; height: 1rem; }
 
 .villa-modal-media {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #111;
+}
+
+.villa-modal-hero {
   position: relative;
+  flex: 0 0 auto;
+  aspect-ratio: 4/3;
   overflow: hidden;
 }
 
@@ -1232,8 +1241,66 @@ h1, h2, h3, h4, h5 {
   height: 100%;
   object-fit: cover;
   display: block;
-  min-height: 300px;
 }
+
+.villa-modal-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.4rem;
+  height: 2.4rem;
+  background: rgba(26,26,26,0.55);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  z-index: 2;
+}
+.villa-modal-nav:hover { background: rgba(26,26,26,0.85); }
+.villa-modal-nav svg { width: 1.1rem; height: 1.1rem; }
+.villa-modal-prev { left: 0.5rem; }
+.villa-modal-next { right: 0.5rem; }
+.villa-modal-nav[disabled] { opacity: 0.25; pointer-events: none; }
+
+.villa-modal-counter {
+  position: absolute;
+  bottom: 0.6rem;
+  right: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.75);
+  background: rgba(0,0,0,0.35);
+  padding: 0.15rem 0.5rem;
+}
+
+.villa-modal-thumbs {
+  display: flex;
+  gap: 3px;
+  overflow-x: auto;
+  padding: 3px;
+  flex: 0 0 auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-sand-dark) transparent;
+}
+
+.villa-modal-thumbs::-webkit-scrollbar { height: 4px; }
+.villa-modal-thumbs::-webkit-scrollbar-thumb { background: var(--color-sand-dark); }
+
+.villa-modal-thumb {
+  flex: 0 0 64px;
+  height: 48px;
+  object-fit: cover;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+  border: 2px solid transparent;
+}
+.villa-modal-thumb:hover { opacity: 0.9; }
+.villa-modal-thumb.active { opacity: 1; border-color: var(--color-gold); }
 
 .villa-modal-content {
   padding: 2.5rem 2rem 2rem;
@@ -1345,8 +1412,8 @@ h1, h2, h3, h4, h5 {
 .villa-modal-wa svg { width: 1.1rem; height: 1.1rem; fill: currentColor; }
 
 @media (max-width: 700px) {
-  .villa-modal-inner { grid-template-columns: 1fr; max-height: 92vh; }
-  .villa-modal-media { max-height: 45vw; }
+  .villa-modal-inner { grid-template-columns: 1fr; max-height: 92vh; overflow-y: auto; }
+  .villa-modal-hero { aspect-ratio: 16/9; }
   .villa-modal-content { padding: 1.5rem 1.25rem; }
   .coll-filters { gap: 1rem; }
 }

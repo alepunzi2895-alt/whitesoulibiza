@@ -338,16 +338,57 @@ function openVillaModal(slug) {
   modal.querySelector('.villa-modal-price').textContent =
     `From €${v.min.toLocaleString('it-IT')} — €${v.max.toLocaleString('it-IT')} / week`;
 
-  const img = modal.querySelector('.villa-modal-img');
-  img.src = `assets/villas/${slug}.jpg`;
-  img.alt = v.name;
-
   const ctaLink = modal.querySelector('.villa-modal-cta');
   ctaLink.href = `contact.html?villa=${encodeURIComponent(v.name)}`;
 
   const waLink = modal.querySelector('.villa-modal-wa');
   const waMsg = encodeURIComponent(`Hello, I'm interested in ${v.name} (${v.tier} collection) — could you let me know availability?`);
   waLink.href = `https://wa.me/34617010756?text=${waMsg}`;
+
+  // Build photo gallery
+  const photos = (window.villaPhotos && window.villaPhotos[slug]) || [];
+  const allPhotos = photos.length > 0 ? photos : [`assets/villas/${slug}.jpg`];
+  let currentPhoto = 0;
+
+  const heroImg = modal.querySelector('.villa-modal-img');
+  const thumbsEl = modal.querySelector('#villaModalThumbs');
+  const counter = modal.querySelector('.villa-modal-counter');
+  const prevBtn = modal.querySelector('.villa-modal-prev');
+  const nextBtn = modal.querySelector('.villa-modal-next');
+
+  const showPhoto = (idx) => {
+    currentPhoto = Math.max(0, Math.min(idx, allPhotos.length - 1));
+    heroImg.src = allPhotos[currentPhoto];
+    heroImg.alt = v.name;
+    counter.textContent = `${currentPhoto + 1} / ${allPhotos.length}`;
+    prevBtn.disabled = currentPhoto === 0;
+    nextBtn.disabled = currentPhoto === allPhotos.length - 1;
+    // Update active thumb
+    thumbsEl.querySelectorAll('.villa-modal-thumb').forEach((t, i) => {
+      t.classList.toggle('active', i === currentPhoto);
+    });
+    // Scroll thumb into view
+    const activThumb = thumbsEl.children[currentPhoto];
+    if (activThumb) activThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  };
+
+  // Populate thumbnails (lazy load)
+  thumbsEl.innerHTML = '';
+  allPhotos.forEach((src, idx) => {
+    const img = document.createElement('img');
+    img.src = src;
+    img.loading = 'lazy';
+    img.className = 'villa-modal-thumb' + (idx === 0 ? ' active' : '');
+    img.addEventListener('click', () => showPhoto(idx));
+    thumbsEl.appendChild(img);
+  });
+
+  modal._prevHandler = () => showPhoto(currentPhoto - 1);
+  modal._nextHandler = () => showPhoto(currentPhoto + 1);
+  prevBtn.onclick = modal._prevHandler;
+  nextBtn.onclick = modal._nextHandler;
+
+  showPhoto(0);
 
   modal.setAttribute('aria-hidden', 'false');
   modal.classList.add('is-open');
@@ -360,6 +401,8 @@ function closeVillaModal() {
   modal.classList.remove('is-open');
   modal.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
+  const thumbsEl = modal.querySelector('#villaModalThumbs');
+  if (thumbsEl) thumbsEl.innerHTML = '';
 }
 
 function initVillaModal() {
@@ -367,7 +410,9 @@ function initVillaModal() {
   if (!modal) return;
   modal.querySelector('.villa-modal-overlay').addEventListener('click', closeVillaModal);
   modal.querySelector('.villa-modal-close').addEventListener('click', closeVillaModal);
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVillaModal(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeVillaModal();
+  });
 }
 
 // =====================================

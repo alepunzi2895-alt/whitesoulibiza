@@ -448,7 +448,17 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
     <div class="villa-modal-media">
-      <img src="" alt="" class="villa-modal-img">
+      <div class="villa-modal-hero">
+        <img src="" alt="" class="villa-modal-img">
+        <button class="villa-modal-nav villa-modal-prev" aria-label="Previous photo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15,18 9,12 15,6"/></svg>
+        </button>
+        <button class="villa-modal-nav villa-modal-next" aria-label="Next photo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9,18 15,12 9,6"/></svg>
+        </button>
+        <span class="villa-modal-counter"></span>
+      </div>
+      <div class="villa-modal-thumbs" id="villaModalThumbs"></div>
     </div>
     <div class="villa-modal-content">
       <span class="villa-modal-tier eyebrow"></span>
@@ -482,6 +492,7 @@
   </div>
 </div>
 
+<script src="villa-photos.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
