@@ -590,20 +590,30 @@ h1, h2, h3, h4, h5 {
 }
 
 .hero-sub {
-  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  position: absolute;
+  z-index: 2;
+  top: 68%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
   font-weight: 300;
-  color: rgba(245, 241, 234, 0.92);
-  max-width: 46ch;
+  color: rgba(255, 255, 255, 0.96);
   line-height: 1.7;
-  margin-top: 2rem;
-  margin-bottom: 0;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+  letter-spacing: 0.03em;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
+  padding: 0 2rem;
+  margin: 0;
 }
 
 .hero-cta {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+}
+
+.hero-cta--low {
+  margin-top: 4.5rem;
 }
 
 .hero-meta {
