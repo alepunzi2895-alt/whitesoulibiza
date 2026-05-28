@@ -243,6 +243,7 @@ function initVillaCollection() {
   const noResults = document.getElementById('vcNoResults');
   const guestsSel = document.getElementById('vcGuests');
   const minNightsSel = document.getElementById('vcMinNights');
+  const budgetSel = document.getElementById('vcBudget');
   const flexCheck = document.getElementById('vcFlexible');
   const viewBtns = document.querySelectorAll('.vc-view-btn');
   if (!grid) return;
@@ -253,18 +254,21 @@ function initVillaCollection() {
   const applyFilters = () => {
     const guestMin = guestsSel ? parseInt(guestsSel.value) : 0;
     const maxNights = minNightsSel ? parseInt(minNightsSel.value) : 0;
+    const maxBudget = budgetSel ? parseInt(budgetSel.value) : 0;
     const flexOnly = flexCheck ? flexCheck.checked : false;
 
     let visible = 0;
     allCards.forEach(card => {
       const sleeps = parseInt(card.dataset.sleeps) || 0;
       const minN = parseInt(card.dataset.minnights) || 7;
+      const minPrice = parseInt(card.dataset.min) || 0;
       const flex = card.dataset.flexible === '1';
 
       const guestOk = guestMin === 0 || sleeps >= guestMin;
       const nightsOk = maxNights === 0 || minN <= maxNights;
+      const budgetOk = maxBudget === 0 || minPrice <= maxBudget;
       const flexOk = !flexOnly || flex;
-      const show = guestOk && nightsOk && flexOk;
+      const show = guestOk && nightsOk && budgetOk && flexOk;
 
       card.classList.toggle('coll-villa--hidden', !show);
       if (show) visible++;
@@ -278,6 +282,7 @@ function initVillaCollection() {
 
   if (guestsSel) guestsSel.addEventListener('change', applyFilters);
   if (minNightsSel) minNightsSel.addEventListener('change', applyFilters);
+  if (budgetSel) budgetSel.addEventListener('change', applyFilters);
   if (flexCheck) flexCheck.addEventListener('change', applyFilters);
 
   // --- Villa card click → modal ---
@@ -358,6 +363,7 @@ function initVillaCollection() {
     if (!window._vcMarkers) return;
     const guestMin = guestsSel ? parseInt(guestsSel.value) : 0;
     const maxNights = minNightsSel ? parseInt(minNightsSel.value) : 0;
+    const maxBudget = budgetSel ? parseInt(budgetSel.value) : 0;
     const flexOnly = flexCheck ? flexCheck.checked : false;
 
     window._vcMarkers.forEach(marker => {
@@ -365,8 +371,9 @@ function initVillaCollection() {
       if (!v) return;
       const guestOk = guestMin === 0 || v.sleeps >= guestMin;
       const nightsOk = maxNights === 0 || v.min_nights <= maxNights;
+      const budgetOk = maxBudget === 0 || v.min <= maxBudget;
       const flexOk = !flexOnly || v.flexible;
-      const show = guestOk && nightsOk && flexOk;
+      const show = guestOk && nightsOk && budgetOk && flexOk;
 
       if (show) {
         if (!window._vcMap.hasLayer(marker)) marker.addTo(window._vcMap);
