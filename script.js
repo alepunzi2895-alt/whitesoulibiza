@@ -252,7 +252,7 @@ function initVillaCollection() {
   if (!grid) return;
 
   const allCards = Array.from(grid.querySelectorAll('.coll-villa'));
-  const PER_PAGE = 9;
+  const PER_PAGE = 12;
   let currentPage = 0;
 
   // --- Pagination ---
