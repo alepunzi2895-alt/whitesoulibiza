@@ -589,31 +589,35 @@ h1, h2, h3, h4, h5 {
   background: var(--color-gold-light);
 }
 
-.hero-sub {
+.hero-pool-block {
   position: absolute;
   z-index: 2;
-  top: 68%;
+  top: 58%;
   left: 0;
   right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 1.5rem;
   text-align: center;
-  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+}
+
+.hero-sub {
+  font-size: clamp(1rem, 1.3vw, 1.1rem);
   font-weight: 300;
   color: rgba(255, 255, 255, 0.96);
-  line-height: 1.7;
+  line-height: 1.75;
   letter-spacing: 0.03em;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
-  padding: 0 2rem;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
   margin: 0;
 }
 
 .hero-cta {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
-}
-
-.hero-cta--low {
-  margin-top: 4.5rem;
 }
 
 .hero-meta {
