@@ -135,6 +135,8 @@
             <option value="20000">Up to €20,000</option>
             <option value="35000">Up to €35,000</option>
             <option value="60000">Up to €60,000</option>
+            <option value="80000">Up to €80,000</option>
+            <option value="100000">Up to €100,000</option>
           </select>
         </div>
         <label class="vc-flex-label">
@@ -154,10 +156,14 @@
       </div>
     </div>
 
-    <p class="vc-note reveal">Over 50% of our villas require a minimum stay of 7 nights. <a href="contact.html">Ask our concierge about shorter stays →</a></p>
+    <p class="vc-note reveal">Over 50% of our villas require a minimum stay of 7 nights.</p>
 
     <!-- Grid view -->
-    <div class="vc-grid" id="vcGrid">
+    <div class="vc-grid-nav">
+      <button class="vc-nav-btn" id="vcNavPrev" aria-label="Previous page" disabled>
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="13,4 6,10 13,16"/></svg>
+      </button>
+      <div class="vc-grid" id="vcGrid">
       <div class="coll-villa" data-villa="villa-eliana"  data-sleeps="12" data-min="4043"  data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-eliana.jpg"  alt="Villa Eliana"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Agustín</span><span class="coll-villa-name">Villa Eliana</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
       <div class="coll-villa" data-villa="can-nora"      data-sleeps="12" data-min="4851"  data-minnights="3" data-flexible="1"><div class="coll-villa-img"><img src="assets/villas/can-nora.jpg"      alt="Can Nora"></div><div class="coll-villa-info"><span class="coll-villa-loc">Santa Gertrudis</span><span class="coll-villa-name">Can Nora</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
       <div class="coll-villa" data-villa="can-octavia"   data-sleeps="12" data-min="12980" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/can-octavia.jpg"   alt="Can Octavia"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Lorenzo</span><span class="coll-villa-name">Can Octavia</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
@@ -180,6 +186,10 @@
       <div class="coll-villa" data-villa="villa-judith"  data-sleeps="8"  data-min="47300" data-minnights="7" data-flexible="1"><div class="coll-villa-img"><img src="assets/villas/villa-judith.jpg"  alt="Villa Judith"></div><div class="coll-villa-info"><span class="coll-villa-loc">Cala Llonga</span><span class="coll-villa-name">Villa Judith</span><span class="coll-villa-beds">4 bedrooms · sleeps 8</span></div></div>
       <div class="coll-villa" data-villa="can-xarraca"   data-sleeps="12" data-min="15125" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/can-xarraca.jpg"   alt="Can Xarraca"></div><div class="coll-villa-info"><span class="coll-villa-loc">Portinatx</span><span class="coll-villa-name">Can Xarraca</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
       <div class="coll-villa" data-villa="can-nuri"      data-sleeps="12" data-min="27500" data-minnights="3" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/can-nuri.jpg"      alt="Can Nuri"></div><div class="coll-villa-info"><span class="coll-villa-loc">Sa Caleta</span><span class="coll-villa-name">Can Nuri</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+      </div>
+      <button class="vc-nav-btn" id="vcNavNext" aria-label="Next page">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="7,4 14,10 7,16"/></svg>
+      </button>
     </div>
     <p class="vc-noresults" id="vcNoResults" hidden>No villas match your filters.</p>
 
@@ -417,6 +427,7 @@
         </div>
       </div>
       <p class="villa-modal-price"></p>
+      <p class="villa-modal-license"></p>
       <p class="villa-modal-desc"></p>
       <div class="villa-modal-actions">
         <a href="contact.html" class="btn btn-primary btn-arrow villa-modal-cta">Request Availability</a>

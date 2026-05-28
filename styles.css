@@ -1383,6 +1383,15 @@ h1, h2, h3, h4, h5 {
   font-style: italic;
 }
 
+.villa-modal-license {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-stone);
+  margin-top: 0.15rem;
+}
+
 .villa-modal-desc {
   font-size: 0.85rem;
   line-height: 1.7;
@@ -2514,14 +2523,61 @@ h1, h2, h3, h4, h5 {
   color: var(--color-gold);
 }
 
+/* Grid nav (arrows + grid) */
+.vc-grid-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.vc-grid-nav[hidden] {
+  display: none;
+}
+
+.vc-nav-btn {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--color-sand-dark);
+  background: var(--color-white);
+  color: var(--color-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-quick);
+}
+
+.vc-nav-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.vc-nav-btn:hover:not(:disabled) {
+  background: var(--color-gold-dark);
+  border-color: var(--color-gold-dark);
+  color: var(--color-white);
+}
+
+.vc-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
 /* Grid */
 .vc-grid {
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
 .vc-grid[hidden] {
+  display: none;
+}
+
+.coll-villa--offpage {
   display: none;
 }
 
@@ -2614,8 +2670,23 @@ h1, h2, h3, h4, h5 {
 }
 
 .vc-popup {
-  min-width: 160px;
+  min-width: 200px;
   cursor: pointer;
+}
+
+.vc-popup-img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+  border-radius: 2px;
+  margin-bottom: 0.6rem;
+}
+
+.vc-popup-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
 }
 
 .vc-popup-name {
@@ -2657,6 +2728,10 @@ h1, h2, h3, h4, h5 {
   .vc-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  .vc-nav-btn {
+    width: 36px;
+    height: 36px;
+  }
 }
 
 @media (max-width: 580px) {
@@ -2670,6 +2745,13 @@ h1, h2, h3, h4, h5 {
   .vc-view-btn {
     flex: 1;
     justify-content: center;
+  }
+  .vc-grid-nav {
+    gap: 0.5rem;
+  }
+  .vc-nav-btn {
+    width: 32px;
+    height: 32px;
   }
   .vc-grid {
     grid-template-columns: 1fr;
