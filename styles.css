@@ -2523,51 +2523,67 @@ h1, h2, h3, h4, h5 {
   color: var(--color-gold);
 }
 
-/* Grid nav (arrows + grid) */
-.vc-grid-nav {
+/* Pagination */
+.vc-pagination {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.1rem;
+  margin-bottom: 1.75rem;
 }
 
-.vc-grid-nav[hidden] {
+.vc-pagination[hidden] {
   display: none;
 }
 
-.vc-nav-btn {
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 1px solid var(--color-sand-dark);
-  background: var(--color-white);
-  color: var(--color-ink);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.vc-page-btn {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-stone);
+  background: none;
+  border: none;
+  padding: 0.5rem 0.75rem 0.45rem;
   cursor: pointer;
-  transition: all var(--transition-quick);
+  position: relative;
+  transition: color var(--transition-quick);
 }
 
-.vc-nav-btn svg {
-  width: 18px;
-  height: 18px;
+.vc-page-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0.75rem;
+  right: 0.75rem;
+  height: 1px;
+  background: var(--color-gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.vc-nav-btn:hover:not(:disabled) {
-  background: var(--color-gold-dark);
-  border-color: var(--color-gold-dark);
-  color: var(--color-white);
+.vc-page-btn:hover {
+  color: var(--color-ink);
 }
 
-.vc-nav-btn:disabled {
-  opacity: 0.35;
-  cursor: default;
+.vc-page-btn.active {
+  color: var(--color-gold-dark);
+}
+
+.vc-page-btn.active::after {
+  transform: scaleX(1);
+}
+
+.vc-page-sep {
+  font-size: 0.6rem;
+  color: var(--color-sand-dark);
+  user-select: none;
+  padding: 0 0.1rem;
 }
 
 /* Grid */
 .vc-grid {
-  flex: 1;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.25rem;
@@ -2728,10 +2744,7 @@ h1, h2, h3, h4, h5 {
   .vc-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-  .vc-nav-btn {
-    width: 36px;
-    height: 36px;
-  }
+
 }
 
 @media (max-width: 580px) {
@@ -2745,13 +2758,6 @@ h1, h2, h3, h4, h5 {
   .vc-view-btn {
     flex: 1;
     justify-content: center;
-  }
-  .vc-grid-nav {
-    gap: 0.5rem;
-  }
-  .vc-nav-btn {
-    width: 32px;
-    height: 32px;
   }
   .vc-grid {
     grid-template-columns: 1fr;

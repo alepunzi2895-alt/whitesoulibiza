@@ -239,16 +239,14 @@ const villaData = {
 // =====================================
 function initVillaCollection() {
   const grid = document.getElementById('vcGrid');
-  const gridNav = document.querySelector('.vc-grid-nav');
   const mapWrap = document.getElementById('vcMapWrap');
   const noResults = document.getElementById('vcNoResults');
+  const paginationEl = document.getElementById('vcPagination');
   const guestsSel = document.getElementById('vcGuests');
   const minNightsSel = document.getElementById('vcMinNights');
   const budgetSel = document.getElementById('vcBudget');
   const flexCheck = document.getElementById('vcFlexible');
   const viewBtns = document.querySelectorAll('.vc-view-btn');
-  const prevBtn = document.getElementById('vcNavPrev');
-  const nextBtn = document.getElementById('vcNavNext');
   if (!grid) return;
 
   const allCards = Array.from(grid.querySelectorAll('.coll-villa'));
@@ -273,15 +271,30 @@ function initVillaCollection() {
     });
 
     if (noResults) noResults.hidden = visible.length > 0;
-    if (prevBtn) prevBtn.disabled = currentPage === 0;
-    if (nextBtn) nextBtn.disabled = currentPage >= totalPages - 1;
-    const showNav = totalPages > 1;
-    if (prevBtn) prevBtn.style.visibility = showNav ? '' : 'hidden';
-    if (nextBtn) nextBtn.style.visibility = showNav ? '' : 'hidden';
-  };
 
-  if (prevBtn) prevBtn.addEventListener('click', () => { currentPage--; renderPage(); });
-  if (nextBtn) nextBtn.addEventListener('click', () => { currentPage++; renderPage(); });
+    // Build page indicators
+    if (paginationEl) {
+      paginationEl.innerHTML = '';
+      if (totalPages > 1) {
+        for (let i = 0; i < totalPages; i++) {
+          const btn = document.createElement('button');
+          btn.className = 'vc-page-btn' + (i === currentPage ? ' active' : '');
+          btn.textContent = String(i + 1).padStart(2, '0');
+          btn.addEventListener('click', () => { currentPage = i; renderPage(); });
+          paginationEl.appendChild(btn);
+          if (i < totalPages - 1) {
+            const sep = document.createElement('span');
+            sep.className = 'vc-page-sep';
+            sep.textContent = '·';
+            paginationEl.appendChild(sep);
+          }
+        }
+        paginationEl.hidden = false;
+      } else {
+        paginationEl.hidden = true;
+      }
+    }
+  };
 
   // --- Filtering ---
   const applyFilters = () => {
@@ -325,12 +338,13 @@ function initVillaCollection() {
       btn.classList.add('active');
       const view = btn.dataset.view;
       if (view === 'map') {
-        if (gridNav) gridNav.hidden = true;
+        grid.hidden = true;
+        if (paginationEl) paginationEl.hidden = true;
         if (noResults) noResults.hidden = true;
         mapWrap.hidden = false;
         initMap();
       } else {
-        if (gridNav) gridNav.hidden = false;
+        grid.hidden = false;
         mapWrap.hidden = true;
         applyFilters();
       }
