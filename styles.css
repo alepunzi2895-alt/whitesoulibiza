@@ -1091,6 +1091,266 @@ h1, h2, h3, h4, h5 {
   .coll-villa { flex: 0 0 80%; }
 }
 
+/* --- Collection Filters --- */
+.coll-filters {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.coll-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.coll-filter-group label {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-stone);
+}
+
+.coll-filter {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--color-ink);
+  background: transparent;
+  border: 1px solid var(--color-sand-dark);
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpolyline points='1,1 6,7 11,1' fill='none' stroke='%236b6b6b' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.6rem center;
+  transition: border-color 0.2s;
+}
+
+.coll-filter:focus { outline: none; border-color: var(--color-gold); }
+
+.coll-filter-reset {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-stone);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  margin-top: 1.1rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+
+.coll-filter-reset:hover { color: var(--color-gold-dark); }
+
+.coll-no-results {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-stone);
+  padding: 2rem 0 1rem;
+  font-style: italic;
+}
+
+.coll-villa--hidden { display: none !important; }
+
+/* --- Villa Modal --- */
+.villa-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.villa-modal.is-open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.villa-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26,26,26,0.72);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+}
+
+.villa-modal-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: min(1000px, 94vw);
+  max-height: 90vh;
+  background: var(--color-cream);
+  overflow: hidden;
+  transform: translateY(24px);
+  transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+
+.villa-modal.is-open .villa-modal-inner {
+  transform: translateY(0);
+}
+
+.villa-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: var(--color-cream);
+  border: 1px solid var(--color-sand);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+
+.villa-modal-close:hover { background: var(--color-ink); color: var(--color-cream); }
+.villa-modal-close svg { width: 1rem; height: 1rem; }
+
+.villa-modal-media {
+  position: relative;
+  overflow: hidden;
+}
+
+.villa-modal-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  min-height: 300px;
+}
+
+.villa-modal-content {
+  padding: 2.5rem 2rem 2rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.villa-modal-tier {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+}
+
+.villa-modal-loc {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-stone);
+  display: block;
+}
+
+.villa-modal-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 300;
+  color: var(--color-ink);
+  line-height: 1.15;
+  margin-top: 0.2rem;
+}
+
+.villa-modal-tagline {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--color-charcoal);
+  margin-top: 0.1rem;
+}
+
+.villa-modal-meta {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--color-sand);
+  border-bottom: 1px solid var(--color-sand);
+  margin: 0.4rem 0;
+}
+
+.villa-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.villa-meta-val {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--color-ink);
+  line-height: 1;
+}
+
+.villa-meta-lbl {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-stone);
+}
+
+.villa-modal-price {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--color-gold-dark);
+  font-style: italic;
+}
+
+.villa-modal-desc {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--color-charcoal);
+  flex: 1;
+}
+
+.villa-modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-sand);
+}
+
+.villa-modal-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--color-stone);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.villa-modal-wa:hover { color: #25D366; }
+.villa-modal-wa svg { width: 1.1rem; height: 1.1rem; fill: currentColor; }
+
+@media (max-width: 700px) {
+  .villa-modal-inner { grid-template-columns: 1fr; max-height: 92vh; }
+  .villa-modal-media { max-height: 45vw; }
+  .villa-modal-content { padding: 1.5rem 1.25rem; }
+  .coll-filters { gap: 1rem; }
+}
+
 /* ============================================
    TESTIMONIALS
    ============================================ */

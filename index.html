@@ -116,15 +116,39 @@
           <button class="coll-btn coll-next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9,18 15,12 9,6"/></svg></button>
         </div>
       </div>
+      <div class="coll-filters">
+        <div class="coll-filter-group">
+          <label>Guests</label>
+          <select class="coll-filter" data-filter="guests">
+            <option value="0">Any</option>
+            <option value="6">6+</option>
+            <option value="8">8+</option>
+            <option value="10">10+</option>
+            <option value="12">12+</option>
+          </select>
+        </div>
+        <div class="coll-filter-group">
+          <label>Max price / week</label>
+          <select class="coll-filter" data-filter="price">
+            <option value="0">Any</option>
+            <option value="5000">up to €5,000</option>
+            <option value="8000">up to €8,000</option>
+            <option value="10000">up to €10,000</option>
+            <option value="13000">up to €13,000</option>
+          </select>
+        </div>
+        <button class="coll-filter-reset" aria-label="Reset filters">Reset</button>
+      </div>
+      <div class="coll-no-results" hidden>No villas match your filters.</div>
       <div class="coll-track-wrap">
         <div class="coll-track">
-          <div class="coll-villa"><div class="coll-villa-img"><img src="assets/villas/villa-eliana.jpg" alt="Villa Eliana"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Agustin</span><span class="coll-villa-name">Villa Eliana</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-          <div class="coll-villa"><div class="coll-villa-img"><img src="assets/villas/villa-larish.jpg" alt="Villa Larish"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Rafael</span><span class="coll-villa-name">Villa Larish</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-          <div class="coll-villa"><div class="coll-villa-img"><img src="assets/villas/casa-yolanda-1.jpg" alt="Casa Yolanda 1"></div><div class="coll-villa-info"><span class="coll-villa-loc">Buscastell</span><span class="coll-villa-name">Casa Yolanda 1</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-          <div class="coll-villa"><div class="coll-villa-img"><img src="assets/villas/can-nora.jpg" alt="Can Nora"></div><div class="coll-villa-info"><span class="coll-villa-loc">Santa Gertrudis</span><span class="coll-villa-name">Can Nora</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-          <div class="coll-villa"><div class="coll-villa-img"><img src="assets/villas/can-octavia.jpg" alt="Can Octavia"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Lorenzo</span><span class="coll-villa-name">Can Octavia</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-          <div class="coll-villa"><div class="coll-villa-img"><img src="assets/villas/villa-amado.jpg" alt="Villa Amado"></div><div class="coll-villa-info"><span class="coll-villa-loc">Jesús</span><span class="coll-villa-name">Villa Amado</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-          <div class="coll-villa"><div class="coll-villa-img"><img src="assets/villas/villa-brielle.jpg" alt="Villa Brielle"></div><div class="coll-villa-info"><span class="coll-villa-loc">Cala Tarida</span><span class="coll-villa-name">Villa Brielle</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+          <div class="coll-villa" data-villa="villa-eliana" data-sleeps="12" data-min="4043"><div class="coll-villa-img"><img src="assets/villas/villa-eliana.jpg" alt="Villa Eliana"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Agustin</span><span class="coll-villa-name">Villa Eliana</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+          <div class="coll-villa" data-villa="villa-larish" data-sleeps="12" data-min="6050"><div class="coll-villa-img"><img src="assets/villas/villa-larish.jpg" alt="Villa Larish"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Rafael</span><span class="coll-villa-name">Villa Larish</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+          <div class="coll-villa" data-villa="casa-yolanda-1" data-sleeps="12" data-min="4070"><div class="coll-villa-img"><img src="assets/villas/casa-yolanda-1.jpg" alt="Casa Yolanda 1"></div><div class="coll-villa-info"><span class="coll-villa-loc">Buscastell</span><span class="coll-villa-name">Casa Yolanda 1</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+          <div class="coll-villa" data-villa="can-nora" data-sleeps="12" data-min="4851"><div class="coll-villa-img"><img src="assets/villas/can-nora.jpg" alt="Can Nora"></div><div class="coll-villa-info"><span class="coll-villa-loc">Santa Gertrudis</span><span class="coll-villa-name">Can Nora</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+          <div class="coll-villa" data-villa="can-octavia" data-sleeps="12" data-min="12980"><div class="coll-villa-img"><img src="assets/villas/can-octavia.jpg" alt="Can Octavia"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Lorenzo</span><span class="coll-villa-name">Can Octavia</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+          <div class="coll-villa" data-villa="villa-amado" data-sleeps="12" data-min="8800"><div class="coll-villa-img"><img src="assets/villas/villa-amado.jpg" alt="Villa Amado"></div><div class="coll-villa-info"><span class="coll-villa-loc">Jesús</span><span class="coll-villa-name">Villa Amado</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+          <div class="coll-villa" data-villa="villa-brielle" data-sleeps="12" data-min="9240"><div class="coll-villa-img"><img src="assets/villas/villa-brielle.jpg" alt="Villa Brielle"></div><div class="coll-villa-info"><span class="coll-villa-loc">Cala Tarida</span><span class="coll-villa-name">Villa Brielle</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
         </div>
       </div>
     </div>
@@ -141,15 +165,38 @@
           <button class="coll-btn coll-next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9,18 15,12 9,6"/></svg></button>
         </div>
       </div>
+      <div class="coll-filters">
+        <div class="coll-filter-group">
+          <label>Guests</label>
+          <select class="coll-filter" data-filter="guests">
+            <option value="0">Any</option>
+            <option value="8">8+</option>
+            <option value="10">10+</option>
+            <option value="12">12+</option>
+          </select>
+        </div>
+        <div class="coll-filter-group">
+          <label>Max price / week</label>
+          <select class="coll-filter" data-filter="price">
+            <option value="0">Any</option>
+            <option value="20000">up to €20,000</option>
+            <option value="30000">up to €30,000</option>
+            <option value="40000">up to €40,000</option>
+            <option value="55000">up to €55,000</option>
+          </select>
+        </div>
+        <button class="coll-filter-reset" aria-label="Reset filters">Reset</button>
+      </div>
+      <div class="coll-no-results" hidden>No villas match your filters.</div>
       <div class="coll-track-wrap">
         <div class="coll-track">
-          <div class="coll-villa"><div class="coll-villa-img"><img src="assets/villas/villa-puma.jpg" alt="Villa Puma"></div><div class="coll-villa-info"><span class="coll-villa-loc">Vista Alegre</span><span class="coll-villa-name">Villa Puma</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-          <div class="coll-villa"><div class="coll-villa-img"><img src="assets/villas/can-josie.jpg" alt="Can Josie"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Jose</span><span class="coll-villa-name">Can Josie</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-          <div class="coll-villa"><div class="coll-villa-img"><img src="assets/villas/villa-margo.jpg" alt="Villa Margo"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Jose</span><span class="coll-villa-name">Villa Margo</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-          <div class="coll-villa"><div class="coll-villa-img"><img src="assets/villas/villa-adalyn.jpg" alt="Villa Adalyn"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Agustin</span><span class="coll-villa-name">Villa Adalyn</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-          <div class="coll-villa"><div class="coll-villa-img"><img src="assets/villas/villa-meghan.jpg" alt="Villa Meghan"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Jose</span><span class="coll-villa-name">Villa Meghan</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-          <div class="coll-villa"><div class="coll-villa-img"><img src="assets/villas/can-danza.jpg" alt="Can Danza"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Jose</span><span class="coll-villa-name">Can Danza</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-          <div class="coll-villa"><div class="coll-villa-img"><img src="assets/villas/can-olivera.jpg" alt="Can Olivera"></div><div class="coll-villa-info"><span class="coll-villa-loc">Roca Llisa</span><span class="coll-villa-name">Can Olivera</span><span class="coll-villa-beds">5 bedrooms · sleeps 10</span></div></div>
+          <div class="coll-villa" data-villa="villa-puma" data-sleeps="12" data-min="16500"><div class="coll-villa-img"><img src="assets/villas/villa-puma.jpg" alt="Villa Puma"></div><div class="coll-villa-info"><span class="coll-villa-loc">Vista Alegre</span><span class="coll-villa-name">Villa Puma</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+          <div class="coll-villa" data-villa="can-josie" data-sleeps="12" data-min="16940"><div class="coll-villa-img"><img src="assets/villas/can-josie.jpg" alt="Can Josie"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Jose</span><span class="coll-villa-name">Can Josie</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+          <div class="coll-villa" data-villa="villa-margo" data-sleeps="12" data-min="16500"><div class="coll-villa-img"><img src="assets/villas/villa-margo.jpg" alt="Villa Margo"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Jose</span><span class="coll-villa-name">Villa Margo</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+          <div class="coll-villa" data-villa="villa-adalyn" data-sleeps="12" data-min="36300"><div class="coll-villa-img"><img src="assets/villas/villa-adalyn.jpg" alt="Villa Adalyn"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Agustin</span><span class="coll-villa-name">Villa Adalyn</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+          <div class="coll-villa" data-villa="villa-meghan" data-sleeps="12" data-min="16830"><div class="coll-villa-img"><img src="assets/villas/villa-meghan.jpg" alt="Villa Meghan"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Jose</span><span class="coll-villa-name">Villa Meghan</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+          <div class="coll-villa" data-villa="can-danza" data-sleeps="12" data-min="17380"><div class="coll-villa-img"><img src="assets/villas/can-danza.jpg" alt="Can Danza"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Jose</span><span class="coll-villa-name">Can Danza</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+          <div class="coll-villa" data-villa="can-olivera" data-sleeps="10" data-min="27499"><div class="coll-villa-img"><img src="assets/villas/can-olivera.jpg" alt="Can Olivera"></div><div class="coll-villa-info"><span class="coll-villa-loc">Roca Llisa</span><span class="coll-villa-name">Can Olivera</span><span class="coll-villa-beds">5 bedrooms · sleeps 10</span></div></div>
         </div>
       </div>
     </div>
@@ -166,15 +213,40 @@
           <button class="coll-btn coll-next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9,18 15,12 9,6"/></svg></button>
         </div>
       </div>
+      <div class="coll-filters">
+        <div class="coll-filter-group">
+          <label>Guests</label>
+          <select class="coll-filter" data-filter="guests">
+            <option value="0">Any</option>
+            <option value="8">8+</option>
+            <option value="10">10+</option>
+            <option value="12">12+</option>
+            <option value="18">18+</option>
+            <option value="20">20+</option>
+          </select>
+        </div>
+        <div class="coll-filter-group">
+          <label>Max price / week</label>
+          <select class="coll-filter" data-filter="price">
+            <option value="0">Any</option>
+            <option value="50000">up to €50,000</option>
+            <option value="65000">up to €65,000</option>
+            <option value="90000">up to €90,000</option>
+            <option value="110000">up to €110,000</option>
+          </select>
+        </div>
+        <button class="coll-filter-reset" aria-label="Reset filters">Reset</button>
+      </div>
+      <div class="coll-no-results" hidden>No villas match your filters.</div>
       <div class="coll-track-wrap">
         <div class="coll-track">
-          <div class="coll-villa"><div class="coll-villa-img"><img src="assets/villas/villa-marielle.jpg" alt="Villa Marielle"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Jose</span><span class="coll-villa-name">Villa Marielle</span><span class="coll-villa-beds">5 bedrooms · sleeps 10</span></div></div>
-          <div class="coll-villa"><div class="coll-villa-img"><img src="assets/villas/villa-bailey.jpg" alt="Villa Bailey"></div><div class="coll-villa-info"><span class="coll-villa-loc">Es Cubells</span><span class="coll-villa-name">Villa Bailey</span><span class="coll-villa-beds">6 bedrooms · sleeps 8</span></div></div>
-          <div class="coll-villa"><div class="coll-villa-img"><img src="assets/villas/can-nemo.jpg" alt="Can Nemo"></div><div class="coll-villa-info"><span class="coll-villa-loc">Cap Martinet</span><span class="coll-villa-name">Can Nemo</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-          <div class="coll-villa"><div class="coll-villa-img"><img src="assets/villas/finca-utopia.jpg" alt="Finca Utopia"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Lorenzo</span><span class="coll-villa-name">Finca Utopia</span><span class="coll-villa-beds">9 bedrooms · sleeps 18</span></div></div>
-          <div class="coll-villa"><div class="coll-villa-img"><img src="assets/villas/villa-puig-redo.jpg" alt="Villa Puig Redo"></div><div class="coll-villa-info"><span class="coll-villa-loc">Es Cubells</span><span class="coll-villa-name">Villa Puig Redo</span><span class="coll-villa-beds">10 bedrooms · sleeps 20</span></div></div>
-          <div class="coll-villa"><div class="coll-villa-img"><img src="assets/villas/can-xarraca.jpg" alt="Can Xarraca"></div><div class="coll-villa-info"><span class="coll-villa-loc">Portinatx</span><span class="coll-villa-name">Can Xarraca</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-          <div class="coll-villa"><div class="coll-villa-img"><img src="assets/villas/can-nuri.jpg" alt="Can Nuri"></div><div class="coll-villa-info"><span class="coll-villa-loc">Sa Caleta</span><span class="coll-villa-name">Can Nuri</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+          <div class="coll-villa" data-villa="villa-marielle" data-sleeps="10" data-min="55000"><div class="coll-villa-img"><img src="assets/villas/villa-marielle.jpg" alt="Villa Marielle"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Jose</span><span class="coll-villa-name">Villa Marielle</span><span class="coll-villa-beds">5 bedrooms · sleeps 10</span></div></div>
+          <div class="coll-villa" data-villa="villa-bailey" data-sleeps="8" data-min="63250"><div class="coll-villa-img"><img src="assets/villas/villa-bailey.jpg" alt="Villa Bailey"></div><div class="coll-villa-info"><span class="coll-villa-loc">Es Cubells</span><span class="coll-villa-name">Villa Bailey</span><span class="coll-villa-beds">6 bedrooms · sleeps 8</span></div></div>
+          <div class="coll-villa" data-villa="can-nemo" data-sleeps="12" data-min="30000"><div class="coll-villa-img"><img src="assets/villas/can-nemo.jpg" alt="Can Nemo"></div><div class="coll-villa-info"><span class="coll-villa-loc">Cap Martinet</span><span class="coll-villa-name">Can Nemo</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+          <div class="coll-villa" data-villa="finca-utopia" data-sleeps="18" data-min="45000"><div class="coll-villa-img"><img src="assets/villas/finca-utopia.jpg" alt="Finca Utopia"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Lorenzo</span><span class="coll-villa-name">Finca Utopia</span><span class="coll-villa-beds">9 bedrooms · sleeps 18</span></div></div>
+          <div class="coll-villa" data-villa="villa-puig-redo" data-sleeps="20" data-min="35000"><div class="coll-villa-img"><img src="assets/villas/villa-puig-redo.jpg" alt="Villa Puig Redo"></div><div class="coll-villa-info"><span class="coll-villa-loc">Es Cubells</span><span class="coll-villa-name">Villa Puig Redo</span><span class="coll-villa-beds">10 bedrooms · sleeps 20</span></div></div>
+          <div class="coll-villa" data-villa="can-xarraca" data-sleeps="12" data-min="15125"><div class="coll-villa-img"><img src="assets/villas/can-xarraca.jpg" alt="Can Xarraca"></div><div class="coll-villa-info"><span class="coll-villa-loc">Portinatx</span><span class="coll-villa-name">Can Xarraca</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+          <div class="coll-villa" data-villa="can-nuri" data-sleeps="12" data-min="27500"><div class="coll-villa-img"><img src="assets/villas/can-nuri.jpg" alt="Can Nuri"></div><div class="coll-villa-info"><span class="coll-villa-loc">Sa Caleta</span><span class="coll-villa-name">Can Nuri</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
         </div>
       </div>
     </div>
@@ -367,6 +439,48 @@
 <a href="https://wa.me/34617010756" class="floating-whatsapp" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-1-.3-.1-.5-.1-.7.2-.2.3-.7 1-.9 1.1-.2.2-.4.2-.7.1-.3-.1-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4 0-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z"/></svg>
 </a>
+
+<!-- =============== VILLA MODAL =============== -->
+<div class="villa-modal" id="villaModal" aria-hidden="true" role="dialog">
+  <div class="villa-modal-overlay"></div>
+  <div class="villa-modal-inner">
+    <button class="villa-modal-close" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="villa-modal-media">
+      <img src="" alt="" class="villa-modal-img">
+    </div>
+    <div class="villa-modal-content">
+      <span class="villa-modal-tier eyebrow"></span>
+      <span class="villa-modal-loc"></span>
+      <h2 class="villa-modal-name"></h2>
+      <p class="villa-modal-tagline italic"></p>
+      <div class="villa-modal-meta">
+        <div class="villa-meta-item">
+          <span class="villa-meta-val villa-modal-beds"></span>
+          <span class="villa-meta-lbl">Bedrooms</span>
+        </div>
+        <div class="villa-meta-item">
+          <span class="villa-meta-val villa-modal-baths"></span>
+          <span class="villa-meta-lbl">Bathrooms</span>
+        </div>
+        <div class="villa-meta-item">
+          <span class="villa-meta-val villa-modal-sleeps"></span>
+          <span class="villa-meta-lbl">Guests</span>
+        </div>
+      </div>
+      <p class="villa-modal-price"></p>
+      <p class="villa-modal-desc"></p>
+      <div class="villa-modal-actions">
+        <a href="contact.html" class="btn btn-primary btn-arrow villa-modal-cta">Request Availability</a>
+        <a href="" class="villa-modal-wa" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-1-.3-.1-.5-.1-.7.2-.2.3-.7 1-.9 1.1-.2.2-.4.2-.7.1-.3-.1-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4 0-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z"/></svg>
+          Ask on WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>
