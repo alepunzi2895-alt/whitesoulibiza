@@ -2379,3 +2379,298 @@ h1, h2, h3, h4, h5 {
   height: 28px;
   fill: currentColor;
 }
+
+/* ============================================
+   VILLA COLLECTION — GRID / MAP VIEW
+   ============================================ */
+
+.vc-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--color-bone);
+  border: 1px solid var(--color-sand);
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+}
+
+.vc-filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.vc-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.vc-label {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-stone);
+}
+
+.vc-select {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--color-ink);
+  background: var(--color-white);
+  border: 1px solid var(--color-sand-dark);
+  border-radius: 3px;
+  padding: 0.45rem 2rem 0.45rem 0.75rem;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6b6b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.6rem center;
+  background-size: 10px;
+  cursor: pointer;
+  transition: border-color var(--transition-quick);
+}
+
+.vc-select:focus {
+  outline: none;
+  border-color: var(--color-gold);
+}
+
+.vc-flex-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--color-charcoal);
+  cursor: pointer;
+  user-select: none;
+  margin-top: 0.85rem;
+}
+
+.vc-check {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-gold);
+  cursor: pointer;
+}
+
+.vc-views {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.vc-view-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-stone);
+  background: transparent;
+  border: 1px solid var(--color-sand-dark);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all var(--transition-quick);
+}
+
+.vc-view-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.vc-view-btn:hover {
+  color: var(--color-ink);
+  border-color: var(--color-gold);
+}
+
+.vc-view-btn.active {
+  color: var(--color-white);
+  background: var(--color-gold-dark);
+  border-color: var(--color-gold-dark);
+}
+
+.vc-note {
+  font-size: 0.82rem;
+  color: var(--color-stone);
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.01em;
+}
+
+.vc-note a {
+  color: var(--color-gold-dark);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+
+.vc-note a:hover {
+  color: var(--color-gold);
+}
+
+/* Grid */
+.vc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.vc-grid .coll-villa {
+  background: var(--color-white);
+  border: 1px solid var(--color-sand);
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow var(--transition-quick), transform var(--transition-quick);
+}
+
+.vc-grid .coll-villa:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+.vc-grid .coll-villa.coll-villa--hidden {
+  display: none;
+}
+
+.vc-grid .coll-villa-img {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.vc-grid .coll-villa-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.vc-grid .coll-villa:hover .coll-villa-img img {
+  transform: scale(1.04);
+}
+
+.vc-grid .coll-villa-info {
+  padding: 1rem 1.1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.coll-villa-loc {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+}
+
+.coll-villa-name {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--color-ink);
+}
+
+.coll-villa-beds {
+  font-size: 0.78rem;
+  color: var(--color-stone);
+}
+
+/* No-results */
+.vc-noresults {
+  text-align: center;
+  padding: 4rem 0;
+  color: var(--color-stone);
+  font-size: 0.95rem;
+}
+
+/* Map */
+.vc-map-wrap {
+  border: 1px solid var(--color-sand);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+#vcMap {
+  height: 520px;
+  width: 100%;
+}
+
+/* Leaflet popup override */
+.leaflet-popup-content-wrapper {
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  font-family: var(--font-body);
+}
+
+.vc-popup {
+  min-width: 160px;
+  cursor: pointer;
+}
+
+.vc-popup-name {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: var(--color-ink);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.vc-popup-loc {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.vc-popup-beds {
+  font-size: 0.78rem;
+  color: var(--color-stone);
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+.vc-popup-btn {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+  border-bottom: 1px solid currentColor;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .vc-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 580px) {
+  .vc-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .vc-views {
+    width: 100%;
+  }
+  .vc-view-btn {
+    flex: 1;
+    justify-content: center;
+  }
+  .vc-grid {
+    grid-template-columns: 1fr;
+  }
+  #vcMap {
+    height: 380px;
+  }
+}
