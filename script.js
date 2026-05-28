@@ -272,23 +272,27 @@ function initVillaCollection() {
 
     if (noResults) noResults.hidden = visible.length > 0;
 
-    // Build page indicators
+    // Build pagination bar
     if (paginationEl) {
-      paginationEl.innerHTML = '';
       if (totalPages > 1) {
-        for (let i = 0; i < totalPages; i++) {
-          const btn = document.createElement('button');
-          btn.className = 'vc-page-btn' + (i === currentPage ? ' active' : '');
-          btn.textContent = String(i + 1).padStart(2, '0');
-          btn.addEventListener('click', () => { currentPage = i; renderPage(); });
-          paginationEl.appendChild(btn);
-          if (i < totalPages - 1) {
-            const sep = document.createElement('span');
-            sep.className = 'vc-page-sep';
-            sep.textContent = '·';
-            paginationEl.appendChild(sep);
-          }
-        }
+        const from = start + 1;
+        const to = Math.min(end, visible.length);
+        const total = visible.length;
+        const pageStr = `${String(currentPage + 1).padStart(2, '0')} / ${String(totalPages).padStart(2, '0')}`;
+
+        paginationEl.innerHTML = `
+          <span class="vc-page-count">Showing ${from}–${to} of ${total} villas</span>
+          <div class="vc-page-nav">
+            <button class="vc-page-arr" id="vcNavPrev" ${currentPage === 0 ? 'disabled' : ''}>&#8249;</button>
+            <span class="vc-page-indicator">${pageStr}</span>
+            <button class="vc-page-arr" id="vcNavNext" ${currentPage >= totalPages - 1 ? 'disabled' : ''}>&#8250;</button>
+          </div>`;
+
+        paginationEl.querySelector('#vcNavPrev')
+          .addEventListener('click', () => { currentPage--; renderPage(); });
+        paginationEl.querySelector('#vcNavNext')
+          .addEventListener('click', () => { currentPage++; renderPage(); });
+
         paginationEl.hidden = false;
       } else {
         paginationEl.hidden = true;
