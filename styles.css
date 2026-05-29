@@ -669,10 +669,12 @@ h1, h2, h3, h4, h5 {
 
 .page-hero .hero-bg img {
   animation: none;
+  object-position: center 68%;
+  filter: brightness(1.08) saturate(1.06);
 }
 
 .page-hero .hero-overlay {
-  background: linear-gradient(180deg, rgba(18,38,51,0.5), rgba(18,38,51,0.3));
+  background: linear-gradient(180deg, rgba(18,38,51,0.38), rgba(18,38,51,0.12));
 }
 
 .page-hero h1 {
