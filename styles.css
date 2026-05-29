@@ -3,17 +3,17 @@
    ============================================ */
 
 :root {
-  --color-bone: #f5f1ea;
-  --color-cream: #faf7f1;
+  --color-bone: #f4ede0;
+  --color-cream: #faf8f4;
   --color-sand: #e8dfd0;
   --color-sand-dark: #c9b896;
   --color-ink: #1a1a1a;
   --color-ink-soft: #2c2c2c;
   --color-charcoal: #3a3a3a;
   --color-stone: #6b6b6b;
-  --color-gold: #b8945f;
-  --color-gold-light: #d4b896;
-  --color-gold-dark: #8b6f3f;
+  --color-gold: #c9a84c;
+  --color-gold-light: #dfc068;
+  --color-gold-dark: #9a7830;
   --color-ocean: #1e3a4f;
   --color-ocean-deep: #122633;
   --color-white: #ffffff;
@@ -257,6 +257,8 @@ h1, h2, h3, h4, h5 {
   width: 44px;
   height: 44px;
   object-fit: contain;
+  border-radius: 50%;
+  filter: drop-shadow(0 1px 6px rgba(0,0,0,0.18));
 }
 
 .brand-text {
