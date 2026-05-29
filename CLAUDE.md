@@ -2,7 +2,7 @@
 
 ## Overview
 
-Static multi-page luxury website for **White Soul Ibiza**, a premium concierge and event planning service based in Ibiza. The site targets high-end clientele (EN/IT/ES/FR) and presents services, events, experiences, testimonials and contact.
+Static multi-page luxury website for **White Soul Ibiza**, a premium concierge and event planning service based in Ibiza. The site targets high-end clientele (EN/IT/ES/FR/DE) and presents services, events, experiences, testimonials and contact.
 
 ---
 
@@ -55,19 +55,21 @@ This order must be maintained in all 5 HTML files in the `.nav-links` `<ul>`. Ev
 
 ### Colour Palette (CSS variables)
 
+Colors sampled directly from the logo PNG (Swift/AppKit pixel sampling).
+
 | Variable | Hex | Usage |
 |---|---|---|
-| `--color-bone` | `#f5f1ea` | Alternate section backgrounds |
-| `--color-cream` | `#faf7f1` | Primary background |
+| `--color-bone` | `#f4ede0` | Alternate section backgrounds |
+| `--color-cream` | `#faf9f6` | Primary background (matches logo bg) |
 | `--color-sand` | `#e8dfd0` | Borders, dividers |
 | `--color-sand-dark` | `#c9b896` | Strong borders |
 | `--color-ink` | `#1a1a1a` | Primary text |
 | `--color-ink-soft` | `#2c2c2c` | Secondary text |
 | `--color-charcoal` | `#3a3a3a` | Body paragraphs |
 | `--color-stone` | `#6b6b6b` | Muted text |
-| `--color-gold` | `#b8945f` | Accent, dots, bullets |
-| `--color-gold-light` | `#d4b896` | Light accent (on dark BG) |
-| `--color-gold-dark` | `#8b6f3f` | Hover states, eyebrows |
+| `--color-gold` | `#bf8838` | Accent, dots, bullets (logo primary gold) |
+| `--color-gold-light` | `#e4a74c` | Light accent on dark BG (logo highlights) |
+| `--color-gold-dark` | `#8a6018` | Hover states, eyebrows (logo text gold) |
 | `--color-ocean` | `#1e3a4f` | Dark section bg |
 | `--color-ocean-deep` | `#122633` | Testimonials section bg |
 | `--color-white` | `#ffffff` | Pure white |
@@ -153,7 +155,7 @@ All nav links point to `services.html#events`. Do not re-add weddings, corporate
 
 ### Supported Languages
 
-`EN` · `IT` · `ES` · `FR`
+`EN` · `IT` · `ES` · `FR` · `DE`
 
 ### How it works (script.js)
 
@@ -165,14 +167,16 @@ All nav links point to `services.html#events`. Do not re-add weddings, corporate
 ### Adding a new translation key
 
 1. Add `data-t="your.key"` to the HTML element.
-2. Insert the row in Turso for all 4 languages:
+2. Insert the row in Turso for all 5 languages:
    ```sql
-   INSERT INTO translations (lang, key, value) VALUES ('EN', 'your.key', 'English text');
-   INSERT INTO translations (lang, key, value) VALUES ('IT', 'your.key', 'Testo italiano');
-   INSERT INTO translations (lang, key, value) VALUES ('ES', 'your.key', 'Texto español');
-   INSERT INTO translations (lang, key, value) VALUES ('FR', 'your.key', 'Texte français');
+   INSERT OR REPLACE INTO translations (lang, key, value) VALUES ('EN', 'your.key', 'English text');
+   INSERT OR REPLACE INTO translations (lang, key, value) VALUES ('IT', 'your.key', 'Testo italiano');
+   INSERT OR REPLACE INTO translations (lang, key, value) VALUES ('ES', 'your.key', 'Texto español');
+   INSERT OR REPLACE INTO translations (lang, key, value) VALUES ('FR', 'your.key', 'Texte français');
+   INSERT OR REPLACE INTO translations (lang, key, value) VALUES ('DE', 'your.key', 'Deutscher Text');
    ```
-3. If you also want a fallback, add it to `fallbackTranslations` in `script.js`.
+3. For values containing HTML (e.g. `<span class="italic">`), the JS automatically uses `innerHTML`.
+4. If you also want a fallback (nav/CTA only), add it to `fallbackTranslations` in `script.js`.
 
 ### Re-seeding the DB
 
@@ -191,7 +195,7 @@ The token in `script.js` is **read-write** and visible client-side (unavoidable 
 `cta.plan` · `cta.discover` · `cta.start` · `cta.create` · `cta.inquire` · `cta.services` · `cta.story` · `cta.plan.event`
 
 ### Homepage (index.html)
-`home.hero.eyebrow` · `home.hero.sub` · `home.intro.eyebrow` · `home.intro.p1` · `home.intro.p2`  
+`home.hero.eyebrow` · `home.hero.sub` · `home.intro.eyebrow` · `home.intro.h2` · `home.intro.p1` · `home.intro.p2`  
 `home.services.eyebrow` · `home.services.p`  
 `home.services.villa.name` · `home.services.villa.desc`  
 `home.services.yacht.name` · `home.services.yacht.desc`  
@@ -199,19 +203,35 @@ The token in `script.js` is **read-write** and visible client-side (unavoidable 
 `home.services.vip.name` · `home.services.vip.desc`  
 `home.services.wellness.name` · `home.services.wellness.desc`  
 `home.services.events.name` · `home.services.events.desc`  
-`home.villas.eyebrow` · `home.villas.p` · `home.testimonials.eyebrow` · `home.insta.eyebrow`  
-`home.cta.eyebrow` · `home.cta.p`
+`home.villas.eyebrow` · `home.villas.h2` · `home.villas.p` · `home.testimonials.eyebrow` · `home.insta.eyebrow`  
+`home.cta.eyebrow` · `home.cta.h2` · `home.cta.p`
 
 ### Services page (services.html)
-`services.hero.eyebrow` · `services.hero.sub`  
+`services.hero.eyebrow` · `services.hero.h1` · `services.hero.sub`  
 `services.villa.*` · `services.chef.*` · `services.yacht.*` · `services.vip.*` · `services.wellness.*` · `services.photo.*`  
-`services.cta.p`
+`services.cta.h2` · `services.cta.p`  
+`events.section.h2` (events subsection heading)
 
 ### Events page (events.html)
-`events.hero.eyebrow` · `events.hero.sub` · `events.intro.eyebrow`  
+`events.hero.eyebrow` · `events.hero.h1` · `events.hero.sub` · `events.intro.eyebrow`  
+`events.section.h2` · `events.process.h2` · `events.gallery.h2` · `events.cta.h2`  
 `events.bachelorette.title` · `events.bachelorette.desc` · `events.bachelorette.arrow`  
 `events.packages.title` · `events.packages.desc` · `events.packages.arrow`  
 `events.process.eyebrow` · `events.gallery.eyebrow` · `events.cta.p`
+
+### About page (about.html)
+`about.hero.h1` · `about.decade.h2` · `about.mission.h2` · `about.philosophy.h2`  
+`about.create.h2` · `about.trust.h2` · `about.cta.h2`
+
+### Experiences page (experiences.html)
+`experiences.hero.h1` · `experiences.intro.h2` · `experiences.packages.h2`  
+`experiences.mood.h2` · `experiences.cta.h2`
+
+### Contact page (contact.html)
+`contact.hero.h1` · `contact.guide.h2`
+
+### Testimonials page (testimonials.html)
+`testimonials.hero.h1` · `testimonials.cta.h2`
 
 ---
 
@@ -236,13 +256,19 @@ Present on every page. Number: `+34 971 000 000`. Update when real number is con
 Four columns: Brand · Explore · Discover · Contact. Present on every page. Keep consistent across all files.
 
 ### Language switcher
-Buttons with `data-lang="EN|IT|ES|FR"`. Active state toggled via JS. Saved to `localStorage('ws_lang')`.
+Buttons with `data-lang="EN|IT|ES|FR|DE"`. Active state toggled via JS. Saved to `localStorage('ws_lang')`.
 
 ---
 
 ## Images
 
-All current images are **Unsplash placeholders**. Replace with real White Soul Ibiza photography before launch. Image format: `width=1200&q=85` for detail images, `width=2000&q=85` for hero backgrounds.
+- `assets/logo.png` — brand logo (1024×1024, RGB, gold WS monogram on near-white background)
+- `assets/SERVICES.jpg` — luxury yacht photo; used as hero background on **services.html**
+- `assets/hero-bg.jpeg` — homepage hero background
+- `assets/villas/` — villa thumbnail JPEGs (900px wide, generated via `sips`)
+- `assets/villas/photos/[slug]/01.jpg` etc. — villa gallery photos
+- All other images are **Unsplash placeholders** — replace with real White Soul Ibiza photography before launch.
+- Image format: `width=1200&q=85` for detail images, `width=2000&q=85` for hero backgrounds.
 
 ---
 
