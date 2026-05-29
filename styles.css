@@ -4,16 +4,16 @@
 
 :root {
   --color-bone: #f4ede0;
-  --color-cream: #faf8f4;
+  --color-cream: #faf9f6;
   --color-sand: #e8dfd0;
   --color-sand-dark: #c9b896;
   --color-ink: #1a1a1a;
   --color-ink-soft: #2c2c2c;
   --color-charcoal: #3a3a3a;
   --color-stone: #6b6b6b;
-  --color-gold: #c9a84c;
-  --color-gold-light: #dfc068;
-  --color-gold-dark: #9a7830;
+  --color-gold: #bf8838;
+  --color-gold-light: #e4a74c;
+  --color-gold-dark: #8a6018;
   --color-ocean: #1e3a4f;
   --color-ocean-deep: #122633;
   --color-white: #ffffff;
@@ -188,16 +188,16 @@ h1, h2, h3, h4, h5 {
 }
 
 .site-header.scrolled {
-  background: rgba(250, 247, 241, 0.95);
+  background: rgba(250, 249, 246, 0.96);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: 1rem 0;
-  box-shadow: 0 1px 0 rgba(184, 148, 95, 0.15);
+  box-shadow: 0 1px 0 rgba(191, 136, 56, 0.15);
 }
 
 .site-header.solid {
   background: var(--color-cream);
-  border-bottom: 1px solid rgba(184, 148, 95, 0.15);
+  border-bottom: 1px solid rgba(191, 136, 56, 0.15);
 }
 
 /* White text when header is transparent (over hero images) */
@@ -254,14 +254,15 @@ h1, h2, h3, h4, h5 {
 }
 
 .brand-mark {
-  width: 44px;
-  height: 44px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
   border-radius: 50%;
-  padding: 3px;
+  padding: 4px;
   background: var(--color-cream);
   box-sizing: border-box;
   filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
+  flex-shrink: 0;
 }
 
 .site-footer .brand-mark {
