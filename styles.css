@@ -2699,7 +2699,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .vc-grid .coll-villa-img {
-  height: 150px;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
 }
 
