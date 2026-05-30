@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Language switcher ---
   const langButtons = document.querySelectorAll('[data-lang]');
-  const savedLang = localStorage.getItem('ws_lang') || 'EN';
+  const savedLang = 'EN';
 
   langButtons.forEach(btn => {
     btn.addEventListener('click', async () => {
