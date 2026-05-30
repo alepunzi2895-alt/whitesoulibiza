@@ -92,7 +92,7 @@ h1, h2, h3, h4, h5 {
   font-weight: 400;
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--color-gold-dark);
+  color: #feb63b;
   display: inline-flex;
   align-items: center;
   gap: 1rem;
@@ -103,7 +103,7 @@ h1, h2, h3, h4, h5 {
   display: inline-block;
   width: 36px;
   height: 1px;
-  background: var(--color-gold);
+  background: #feb63b;
 }
 
 .eyebrow.center {
