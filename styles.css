@@ -270,7 +270,8 @@ h1, h2, h3, h4, h5 {
 
 .brand-mark:hover {
   transform: scale(1.07);
-  filter: drop-shadow(0 4px 16px rgba(196, 144, 64, 0.45));
+  filter: drop-shadow(0 0 14px rgba(196, 144, 64, 0.85))
+          drop-shadow(0 0 28px rgba(196, 144, 64, 0.45));
 }
 
 @keyframes brand-appear {
