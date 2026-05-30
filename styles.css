@@ -254,18 +254,38 @@ h1, h2, h3, h4, h5 {
 }
 
 .brand-mark {
-  width: 60px;
-  height: 60px;
+  width: 72px;
+  height: 72px;
   object-fit: contain;
   border-radius: 50%;
   padding: 4px;
   background: var(--color-cream);
   box-sizing: border-box;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
+  filter: drop-shadow(0 2px 10px rgba(0,0,0,0.18));
   flex-shrink: 0;
+  animation: brand-appear 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.4s ease;
+}
+
+.brand-mark:hover {
+  transform: scale(1.07);
+  filter: drop-shadow(0 4px 16px rgba(196, 144, 64, 0.45));
+}
+
+@keyframes brand-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .site-footer .brand-mark {
+  animation: none;
   filter: drop-shadow(0 2px 14px rgba(0,0,0,0.45)) !important;
 }
 
