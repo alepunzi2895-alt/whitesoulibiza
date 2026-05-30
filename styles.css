@@ -92,7 +92,7 @@ h1, h2, h3, h4, h5 {
   font-weight: 400;
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: #feb63b;
+  color: var(--color-gold-dark);
   display: inline-flex;
   align-items: center;
   gap: 1rem;
@@ -103,7 +103,7 @@ h1, h2, h3, h4, h5 {
   display: inline-block;
   width: 36px;
   height: 1px;
-  background: #feb63b;
+  background: var(--color-gold-dark);
 }
 
 .eyebrow.center {
@@ -611,12 +611,14 @@ h1, h2, h3, h4, h5 {
   animation: heroLineIn 1s cubic-bezier(0.16, 1, 0.3, 1) 2s both;
 }
 
-.hero .eyebrow {
-  color: var(--color-gold-light);
+.hero .eyebrow,
+.page-hero .eyebrow {
+  color: #f5c860;
 }
 
-.hero .eyebrow::before {
-  background: var(--color-gold-light);
+.hero .eyebrow::before,
+.page-hero .eyebrow::before {
+  background: #f5c860;
 }
 
 .hero-sub {
@@ -843,7 +845,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .services-img-section .eyebrow {
-  color: var(--color-gold-light);
+  color: #f5c860;
 }
 
 .services-img-section .services-grid {
@@ -1537,12 +1539,12 @@ h1, h2, h3, h4, h5 {
 }
 
 .testimonials .eyebrow {
-  color: var(--color-gold-light);
+  color: #f5c860;
 }
 
 .testimonials .eyebrow::before,
 .testimonials .eyebrow::after {
-  background: var(--color-gold-light);
+  background: #f5c860;
 }
 
 .testimonial-carousel {
@@ -1721,7 +1723,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .cta-section .eyebrow {
-  color: var(--color-gold-light);
+  color: #f5c860;
 }
 
 .cta-section .eyebrow::before,
