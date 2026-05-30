@@ -3,17 +3,17 @@
    ============================================ */
 
 :root {
-  --color-bone: #f4ede0;
-  --color-cream: #faf9f6;
+  --color-bone: #f1eae0;
+  --color-cream: #faf5ef;
   --color-sand: #e8dfd0;
   --color-sand-dark: #c9b896;
   --color-ink: #1a1a1a;
   --color-ink-soft: #2c2c2c;
   --color-charcoal: #3a3a3a;
   --color-stone: #6b6b6b;
-  --color-gold: #bf8838;
-  --color-gold-light: #e4a74c;
-  --color-gold-dark: #8a6018;
+  --color-gold: #c49040;
+  --color-gold-light: #dba850;
+  --color-gold-dark: #986932;
   --color-ocean: #1e3a4f;
   --color-ocean-deep: #122633;
   --color-white: #ffffff;
@@ -188,16 +188,16 @@ h1, h2, h3, h4, h5 {
 }
 
 .site-header.scrolled {
-  background: rgba(250, 249, 246, 0.96);
+  background: rgba(250, 245, 239, 0.96);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: 1rem 0;
-  box-shadow: 0 1px 0 rgba(191, 136, 56, 0.15);
+  box-shadow: 0 1px 0 rgba(196, 144, 64, 0.15);
 }
 
 .site-header.solid {
   background: var(--color-cream);
-  border-bottom: 1px solid rgba(191, 136, 56, 0.15);
+  border-bottom: 1px solid rgba(196, 144, 64, 0.15);
 }
 
 /* White text when header is transparent (over hero images) */
