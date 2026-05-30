@@ -263,14 +263,18 @@
       </div>
       <div class="service-card reveal">
         <div class="service-icon">
-          <!-- Wellness: lotus 5 petals + head, matching reference -->
-          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="30" cy="11" r="2.5"/>
-            <path d="M30 48 C26 40 26 25 30 13.5 C34 25 34 40 30 48 Z"/>
-            <path d="M29 47 C22 44 12 32 14 23 C20 22 27 36 29 47 Z"/>
-            <path d="M31 47 C38 44 48 32 46 23 C40 22 33 36 31 47 Z"/>
-            <path d="M26 45 C18 47 6 43 4 33 C7 26 20 33 26 45 Z"/>
-            <path d="M34 45 C42 47 54 43 56 33 C53 26 40 33 34 45 Z"/>
+          <!-- Wellness: lotus flower -->
+          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <!-- 2 outer base petals -->
+            <path d="M30 47 C20 48 7 40 8 29 C15 23 25 37 30 47"/>
+            <path d="M30 47 C40 48 53 40 52 29 C45 23 35 37 30 47"/>
+            <!-- 2 middle petals -->
+            <path d="M30 45 C20 40 13 23 20 15 C27 15 29 34 30 45"/>
+            <path d="M30 45 C40 40 47 23 40 15 C33 15 31 34 30 45"/>
+            <!-- Center tall petal -->
+            <path d="M30 47 C26 38 26 22 30 9 C34 22 34 38 30 47"/>
+            <!-- Stamen center -->
+            <circle cx="30" cy="33" r="3.5"/>
           </svg>
         </div>
         <h3 data-t="home.services.wellness.name">Beauty & Wellness</h3>
@@ -278,24 +282,28 @@
       </div>
       <div class="service-card reveal reveal-delay-1">
         <div class="service-icon">
-          <!-- Cars: sports car front silhouette matching reference -->
-          <svg viewBox="0 0 64 44" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
-            <!-- Roof arc -->
-            <path d="M23 24 Q27 16 32 15 Q37 16 41 24"/>
-            <!-- Right mirror bump -->
-            <path d="M41 24 L44 21 L46 23 L43 26"/>
-            <!-- Right body widening to lower -->
-            <path d="M43 26 Q52 30 58 36 L60 40"/>
-            <!-- Right lower fang (claw sweeping inward) -->
-            <path d="M60 40 Q60 44 54 44 Q48 44 44 40 Q40 37 32 37"/>
-            <!-- Left mirror bump -->
-            <path d="M23 24 L20 21 L18 23 L21 26"/>
-            <!-- Left body -->
-            <path d="M21 26 Q12 30 6 36 L4 40"/>
-            <!-- Left lower fang -->
-            <path d="M4 40 Q4 44 10 44 Q16 44 20 40 Q24 37 32 37"/>
-            <!-- Central hood line -->
-            <path d="M23 24 Q27 28 32 28 Q37 28 41 24"/>
+          <!-- Cars: sports car side profile -->
+          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Body upper profile -->
+            <path d="M4 36 L7 28 L18 22 L36 22 L44 27 L54 34 L56 38"/>
+            <!-- Roofline low and swept -->
+            <path d="M18 22 Q28 16 36 22"/>
+            <!-- Windshield steeply raked -->
+            <line x1="18" y1="22" x2="13" y2="30"/>
+            <!-- Rear spoiler -->
+            <path d="M44 27 L48 24 L50 27"/>
+            <!-- Sharp front headlight -->
+            <path d="M52 31 L57 34 L56 38 L52 36"/>
+            <!-- Underbody -->
+            <path d="M4 36 L4 38 L14 38 L22 36 L38 36 L48 38 L56 38"/>
+            <!-- Front wheel arch -->
+            <path d="M14 38 Q13 47 19 47 Q25 47 25 38"/>
+            <circle cx="19" cy="45" r="4.5"/>
+            <circle cx="19" cy="45" r="1.8"/>
+            <!-- Rear wheel arch -->
+            <path d="M38 36 Q37 47 43 47 Q49 47 49 38"/>
+            <circle cx="43" cy="45" r="4.5"/>
+            <circle cx="43" cy="45" r="1.8"/>
           </svg>
         </div>
         <h3 data-t="home.services.cars.name">Luxury Cars & Transfer</h3>
