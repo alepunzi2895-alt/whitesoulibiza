@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>White Soul Ibiza — Exclusive Concierge & Event Planning</title>
+<meta name="description" content="Bespoke concierge & event planning in Ibiza. Private villas, yachts, chefs and unforgettable experiences — perfectly curated for the discerning traveller.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="icon" href="assets/logo.png">
+</head>
+<body>
+
+<!-- =============== HEADER =============== -->
+<header class="site-header">
+  <div class="container">
+    <nav class="nav-inner">
+      <a href="index.html" class="brand">
+        <img src="assets/logo.png" alt="White Soul Ibiza" class="brand-mark">
+        <span class="brand-text">
+          <span class="brand-name">White Soul Ibiza</span>
+        </span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active" data-t="nav.home">Home</a></li>
+        <li><a href="services.html" data-t="nav.services">Services</a></li>
+        <li><a href="experiences.html" data-t="nav.custom">Experiences</a></li>
+        <li><a href="about.html" data-t="nav.about">About</a></li>
+        <li><a href="contact.html" data-t="nav.contact">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="lang-switcher">
+          <button data-lang="EN" class="active">EN</button>
+          <span class="lang-divider">·</span>
+          <button data-lang="IT">IT</button>
+          <span class="lang-divider">·</span>
+          <button data-lang="ES">ES</button>
+          <span class="lang-divider">·</span>
+          <button data-lang="FR">FR</button>
+          <span class="lang-divider">·</span>
+          <button data-lang="DE">DE</button>
+        </div>
+        <button class="menu-toggle" aria-label="Menu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- =============== HERO =============== -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="assets/HOME.png" alt="White Soul Ibiza">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <div class="reveal in-view">
+      <span class="eyebrow" data-t="home.hero.eyebrow">VILLAS · CONCIERGE · EVENT PLANNING</span>
+      <h1 class="display-xl">
+        <span class="hero-word">Your <span style="color:var(--color-white);">Ibiza</span>,</span> <span class="hero-word">designed</span>
+        <span class="hero-line italic" style="color:var(--color-white); font-weight:700;">around you.</span>
+      </h1>
+      <p class="hero-sub" data-t="home.hero.sub">Luxury villas, private yachts and<br>tailor-made experiences,<br>perfectly curated for you.</p>
+      <div class="hero-cta">
+        <a href="contact.html" class="btn btn-gold btn-arrow" data-t="cta.plan">Plan Your Experience</a>
+        <a href="https://wa.me/34617010756" class="btn btn-ghost-light">WhatsApp Us</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-meta">
+    <span>Talamanca · Es Cubells · San José</span>
+    <span class="scroll-hint">Scroll</span>
+  </div>
+</section>
+
+<!-- =============== INTRO =============== -->
+<section class="section">
+  <div class="container">
+    <div class="two-col">
+      <div class="two-col-text reveal">
+        <span class="eyebrow" data-t="home.intro.eyebrow">Welcome to White Soul Ibiza</span>
+        <h2 class="display-md" data-t="home.intro.h2">We create experiences,<br><span class="italic">not just holidays.</span></h2>
+        <p data-t="home.intro.p1">We create tailor-made luxury experiences on the island, combining exclusive villas, private yachts and a full concierge service. Every villa selected for design, privacy and the finest locations on the island.</p>
+        <p data-t="home.intro.p2">From the moment you arrive, every detail is handled for you. You don't just visit Ibiza — you live it.</p>
+        <div style="margin-top:2rem;">
+          <a href="about.html" class="btn-text" data-t="cta.story">Our Story</a>
+        </div>
+      </div>
+      <div class="two-col-image reveal reveal-delay-1">
+        <img src="assets/Experience.png" alt="White Soul Ibiza">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== OUR COLLECTIONS =============== -->
+<section class="section" id="collections">
+  <div class="container">
+    <div class="intro-block reveal">
+      <span class="eyebrow center" data-t="home.eyebrow.collection">Our Collection</span>
+      <h2 class="display-lg" data-t="home.villas.h2">A villa for <span class="italic">every vision.</span></h2>
+    </div>
+
+    <!-- Controls bar -->
+    <div class="vc-bar reveal">
+      <div class="vc-filters">
+        <div class="vc-group">
+          <label class="vc-label">Guests</label>
+          <select class="vc-select" id="vcGuests">
+            <option value="0">Any</option>
+            <option value="8">8+</option>
+            <option value="10">10+</option>
+            <option value="12">12+</option>
+          </select>
+        </div>
+        <div class="vc-group">
+          <label class="vc-label">Min. stay</label>
+          <select class="vc-select" id="vcMinNights">
+            <option value="0">Any</option>
+            <option value="3">Up to 3 nights</option>
+            <option value="4">Up to 4 nights</option>
+            <option value="5">Up to 5 nights</option>
+            <option value="7">7 nights (1 week)</option>
+          </select>
+        </div>
+        <div class="vc-group">
+          <label class="vc-label">Budget / week</label>
+          <select class="vc-select" id="vcBudget">
+            <option value="0">Any</option>
+            <option value="5000">Up to €5,000</option>
+            <option value="10000">Up to €10,000</option>
+            <option value="20000">Up to €20,000</option>
+            <option value="35000">Up to €35,000</option>
+            <option value="60000">Up to €60,000</option>
+            <option value="80000">Up to €80,000</option>
+            <option value="100000">Up to €100,000</option>
+          </select>
+        </div>
+        <label class="vc-flex-label">
+          <input type="checkbox" id="vcFlexible" class="vc-check">
+          <span>Flexible dates</span>
+        </label>
+      </div>
+      <div class="vc-views">
+        <button class="vc-view-btn active" data-view="grid" aria-label="Grid view">
+          <svg viewBox="0 0 20 20" fill="currentColor"><rect x="1" y="1" width="7" height="7" rx="0.5"/><rect x="12" y="1" width="7" height="7" rx="0.5"/><rect x="1" y="12" width="7" height="7" rx="0.5"/><rect x="12" y="12" width="7" height="7" rx="0.5"/></svg>
+          Grid
+        </button>
+        <button class="vc-view-btn" data-view="map" aria-label="Map view">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="1,5 1,18 7,15 13,18 19,15 19,2 13,5 7,2"/><line x1="7" y1="2" x2="7" y2="15"/><line x1="13" y1="5" x2="13" y2="18"/></svg>
+          Map
+        </button>
+      </div>
+    </div>
+
+    <p class="vc-note reveal">Over 50% of our villas require a minimum stay of 7 nights.</p>
+
+    <div class="vc-pagination" id="vcPagination"></div>
+
+    <!-- Grid view -->
+    <div class="vc-grid" id="vcGrid">
+      <div class="coll-villa" data-villa="villa-eliana"  data-sleeps="12" data-min="4043"  data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-eliana.jpg"  alt="Villa Eliana"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Agustín</span><span class="coll-villa-name">Villa Eliana</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="can-nora"      data-sleeps="12" data-min="4851"  data-minnights="3" data-flexible="1"><div class="coll-villa-img"><img src="assets/villas/can-nora.jpg"      alt="Can Nora"></div><div class="coll-villa-info"><span class="coll-villa-loc">Santa Gertrudis</span><span class="coll-villa-name">Can Nora</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="can-octavia"   data-sleeps="12" data-min="12980" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/can-octavia.jpg"   alt="Can Octavia"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Lorenzo</span><span class="coll-villa-name">Can Octavia</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="villa-amado"   data-sleeps="12" data-min="8800"  data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-amado.jpg"   alt="Villa Amado"></div><div class="coll-villa-info"><span class="coll-villa-loc">Jesús</span><span class="coll-villa-name">Villa Amado</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="villa-brielle" data-sleeps="12" data-min="9240"  data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-brielle.jpg" alt="Villa Brielle"></div><div class="coll-villa-info"><span class="coll-villa-loc">Cala Tarida</span><span class="coll-villa-name">Villa Brielle</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="villa-samy"    data-sleeps="10" data-min="4120"  data-minnights="5" data-flexible="1"><div class="coll-villa-img"><img src="assets/villas/villa-samy.jpg"    alt="Villa Samy"></div><div class="coll-villa-info"><span class="coll-villa-loc">Cap Martinet</span><span class="coll-villa-name">Villa Samy</span><span class="coll-villa-beds">5 bedrooms · sleeps 10</span></div></div>
+      <div class="coll-villa" data-villa="can-savasana"  data-sleeps="10" data-min="6600"  data-minnights="3" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/can-savasana.jpg"  alt="Can Savasana"></div><div class="coll-villa-info"><span class="coll-villa-loc">Cala Salada</span><span class="coll-villa-name">Can Savasana</span><span class="coll-villa-beds">5 bedrooms · sleeps 10</span></div></div>
+      <div class="coll-villa" data-villa="villa-trevi"   data-sleeps="8"  data-min="4400"  data-minnights="4" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-trevi.jpg"   alt="Villa Trevi"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Carlos</span><span class="coll-villa-name">Villa Trevi</span><span class="coll-villa-beds">4 bedrooms · sleeps 8</span></div></div>
+      <div class="coll-villa" data-villa="villa-puma"    data-sleeps="12" data-min="16500" data-minnights="1" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-puma.jpg"    alt="Villa Puma"></div><div class="coll-villa-info"><span class="coll-villa-loc">Vista Alegre</span><span class="coll-villa-name">Villa Puma</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="can-josie"     data-sleeps="12" data-min="16940" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/can-josie.jpg"     alt="Can Josie"></div><div class="coll-villa-info"><span class="coll-villa-loc">San José</span><span class="coll-villa-name">Can Josie</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="villa-margo"   data-sleeps="12" data-min="16500" data-minnights="4" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-margo.jpg"   alt="Villa Margo"></div><div class="coll-villa-info"><span class="coll-villa-loc">San José</span><span class="coll-villa-name">Villa Margo</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="villa-adalyn"  data-sleeps="12" data-min="36300" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-adalyn.jpg"  alt="Villa Adalyn"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Agustín</span><span class="coll-villa-name">Villa Adalyn</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="villa-meghan"  data-sleeps="12" data-min="16830" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-meghan.jpg"  alt="Villa Meghan"></div><div class="coll-villa-info"><span class="coll-villa-loc">San José</span><span class="coll-villa-name">Villa Meghan</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="can-danza"     data-sleeps="12" data-min="17380" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/can-danza.jpg"     alt="Can Danza"></div><div class="coll-villa-info"><span class="coll-villa-loc">San José</span><span class="coll-villa-name">Can Danza</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="villa-evelyn"  data-sleeps="8"  data-min="17050" data-minnights="7" data-flexible="1"><div class="coll-villa-img"><img src="assets/villas/villa-evelyn.jpg"  alt="Villa Evelyn"></div><div class="coll-villa-info"><span class="coll-villa-loc">Cala Jondal</span><span class="coll-villa-name">Villa Evelyn</span><span class="coll-villa-beds">4 bedrooms · sleeps 8</span></div></div>
+      <div class="coll-villa" data-villa="villa-marielle" data-sleeps="10" data-min="55000" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-marielle.jpg" alt="Villa Marielle"></div><div class="coll-villa-info"><span class="coll-villa-loc">San José</span><span class="coll-villa-name">Villa Marielle</span><span class="coll-villa-beds">5 bedrooms · sleeps 10</span></div></div>
+      <div class="coll-villa" data-villa="villa-bailey"  data-sleeps="8"  data-min="63250" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-bailey.jpg"  alt="Villa Bailey"></div><div class="coll-villa-info"><span class="coll-villa-loc">Es Cubells</span><span class="coll-villa-name">Villa Bailey</span><span class="coll-villa-beds">6 bedrooms · sleeps 8</span></div></div>
+      <div class="coll-villa" data-villa="can-nemo"      data-sleeps="12" data-min="30000" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/can-nemo.jpg"      alt="Can Nemo"></div><div class="coll-villa-info"><span class="coll-villa-loc">Cap Martinet</span><span class="coll-villa-name">Can Nemo</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="finca-utopia"  data-sleeps="18" data-min="45000" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/finca-utopia.jpg"  alt="Finca Utopia"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Lorenzo</span><span class="coll-villa-name">Finca Utopia</span><span class="coll-villa-beds">9 bedrooms · sleeps 18</span></div></div>
+      <div class="coll-villa" data-villa="villa-judith"  data-sleeps="8"  data-min="47300" data-minnights="7" data-flexible="1"><div class="coll-villa-img"><img src="assets/villas/villa-judith.jpg"  alt="Villa Judith"></div><div class="coll-villa-info"><span class="coll-villa-loc">Cala Llonga</span><span class="coll-villa-name">Villa Judith</span><span class="coll-villa-beds">4 bedrooms · sleeps 8</span></div></div>
+      <div class="coll-villa" data-villa="can-xarraca"   data-sleeps="12" data-min="15125" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/can-xarraca.jpg"   alt="Can Xarraca"></div><div class="coll-villa-info"><span class="coll-villa-loc">Portinatx</span><span class="coll-villa-name">Can Xarraca</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="can-nuri"      data-sleeps="12" data-min="27500" data-minnights="3" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/can-nuri.jpg"      alt="Can Nuri"></div><div class="coll-villa-info"><span class="coll-villa-loc">Sa Caleta</span><span class="coll-villa-name">Can Nuri</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+    </div>
+    <p class="vc-noresults" id="vcNoResults" hidden>No villas match your filters.</p>
+
+    <!-- Map view -->
+    <div class="vc-map-wrap" id="vcMapWrap" hidden>
+      <div id="vcMap"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =============== SERVICES OVERVIEW =============== -->
+<section class="section" style="background:var(--color-bone);">
+  <div class="container">
+    <div class="intro-block reveal">
+      <span class="eyebrow center" data-t="home.services.eyebrow">Our Services</span>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <!-- Villa: neoclassical arch entrance with columns -->
+          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 30 L30 14 L47 30"/>
+            <line x1="18" y1="30" x2="18" y2="50"/>
+            <line x1="42" y1="30" x2="42" y2="50"/>
+            <line x1="15" y1="32" x2="21" y2="32"/>
+            <line x1="39" y1="32" x2="45" y2="32"/>
+            <path d="M24 50 L24 42 Q24 34 30 34 Q36 34 36 42 L36 50"/>
+            <line x1="9" y1="50" x2="51" y2="50"/>
+          </svg>
+        </div>
+        <h3 data-t="home.services.villa.name">Luxury Villas</h3>
+        <p data-t="home.services.villa.desc">A curated selection of exclusive villas chosen for design, privacy and the finest locations on the island.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">
+          <!-- Chef: elegant cloche dome -->
+          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round">
+            <line x1="30" y1="13" x2="30" y2="8"/>
+            <circle cx="30" cy="7" r="2" fill="currentColor" stroke="none"/>
+            <path d="M11 38 Q11 14 30 14 Q49 14 49 38"/>
+            <line x1="7" y1="38" x2="53" y2="38"/>
+            <path d="M14 38 L14 42 Q14 44 30 44 Q46 44 46 42 L46 38"/>
+          </svg>
+        </div>
+        <h3 data-t="home.services.chef.name">Private Chef</h3>
+        <p data-t="home.services.chef.desc">Sushi, Italian, French, paella — private chefs of every cuisine, creating bespoke menus in your villa for any occasion.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">
+          <!-- Yacht: superyacht motor profile 3 decks -->
+          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 42 Q16 48 30 48 Q42 46 54 40 L50 36 L12 36 Z"/>
+            <path d="M14 36 L14 30 L46 30 L48 36"/>
+            <path d="M18 30 L18 25 L42 25 L44 30"/>
+            <path d="M22 25 L22 22 L36 22 L37 25"/>
+            <line x1="30" y1="22" x2="30" y2="17"/>
+            <circle cx="30" cy="16" r="1.2" fill="currentColor" stroke="none"/>
+            <circle cx="26" cy="33" r="1.5"/>
+            <circle cx="34" cy="33" r="1.5"/>
+          </svg>
+        </div>
+        <h3 data-t="home.services.yacht.name">Yacht & Boats</h3>
+        <p data-t="home.services.yacht.desc">Private yachts and boats for day charters, sunset cruises and exclusive events across the Balearics.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-icon">
+          <!-- VIP: elegant 5-pointed star -->
+          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M30 8 L34.5 22 L49 22 L37.5 31 L42 45 L30 37 L18 45 L22.5 31 L11 22 L25.5 22 Z"/>
+          </svg>
+        </div>
+        <h3 data-t="home.services.vip.name">VIP Reservations</h3>
+        <p data-t="home.services.vip.desc">Front-row tables at Ushuaïa, Pacha, Lío, Cipriani, Beso Beach — wherever Ibiza is happening tonight, you are there.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="0.85" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M25 54 C15 56 4 47 7 35 C12 43 18 52 25 54 Z"/>
+            <path d="M35 54 C45 56 56 47 53 35 C48 43 42 52 35 54 Z"/>
+            <path d="M28 54 C19 48 13 36 18 24 C23 33 26 48 28 54 Z"/>
+            <path d="M32 54 C41 48 47 36 42 24 C37 33 34 48 32 54 Z"/>
+            <path d="M30 54 C26 44 26 30 30 20 C34 30 34 44 30 54 Z"/>
+            <rect x="28.5" y="8"  width="3"   height="3"   rx=".4" fill="currentColor" stroke="none"/>
+            <rect x="21"   y="12" width="2.5" height="2.5" rx=".4" fill="currentColor" stroke="none"/>
+            <rect x="36.5" y="12" width="2.5" height="2.5" rx=".4" fill="currentColor" stroke="none"/>
+            <rect x="13.5" y="18" width="2"   height="2"   rx=".4" fill="currentColor" stroke="none"/>
+            <rect x="44.5" y="18" width="2"   height="2"   rx=".4" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <h3 data-t="home.services.wellness.name">Beauty & Wellness</h3>
+        <p data-t="home.services.wellness.desc">Yoga, massage, personal training, hairdresser, barber, beautician and make-up artist — all delivered to your villa.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">
+          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="0.85" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="30" cy="30" r="27"/>
+            <circle cx="30" cy="30" r="22"/>
+            <circle cx="30" cy="30" r="7"/>
+            <circle cx="30" cy="30" r="2.5" fill="currentColor" stroke="none"/>
+            <line x1="30" y1="22" x2="30" y2="9"/>
+            <line x1="37" y1="27" x2="51" y2="23"/>
+            <line x1="34" y1="36" x2="43" y2="48"/>
+            <line x1="26" y1="36" x2="17" y2="48"/>
+            <line x1="23" y1="27" x2="9" y2="23"/>
+          </svg>
+        </div>
+        <h3 data-t="home.services.cars.name">Luxury Cars & Transfer</h3>
+        <p data-t="home.services.cars.desc">Airport transfers, supercars, convertibles and private drivers — every journey on the island, arranged.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">
+          <!-- Security: elegant double-lined shield crest -->
+          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M30 8 L46 14 L46 32 Q46 44 30 52 Q14 44 14 32 L14 14 Z"/>
+            <path d="M30 14 L40 18 L40 32 Q40 40 30 46 Q20 40 20 32 L20 18 Z"/>
+          </svg>
+        </div>
+        <h3 data-t="home.services.security.name">Security & Staff</h3>
+        <p data-t="home.services.security.desc">Private security, professional bartenders, wine curation, cleaning and housekeeping — every detail in hand.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-icon">
+          <!-- Events: presenter's open folder / portfolio -->
+          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Left page -->
+            <path d="M30 12 L10 14 L10 50 L30 48"/>
+            <!-- Right page -->
+            <path d="M30 12 L50 14 L50 50 L30 48"/>
+            <!-- Spine -->
+            <line x1="30" y1="12" x2="30" y2="48"/>
+            <!-- Left text lines -->
+            <line x1="14" y1="22" x2="27" y2="21.5"/>
+            <line x1="14" y1="29" x2="27" y2="28.5"/>
+            <line x1="14" y1="36" x2="27" y2="35.5"/>
+            <line x1="14" y1="43" x2="22" y2="42.8"/>
+            <!-- Right text lines -->
+            <line x1="33" y1="21.5" x2="46" y2="22"/>
+            <line x1="33" y1="28.5" x2="46" y2="29"/>
+            <line x1="33" y1="35.5" x2="46" y2="36"/>
+            <line x1="33" y1="42.8" x2="41" y2="43"/>
+          </svg>
+        </div>
+        <h3 data-t="home.services.events.name">Event Planning</h3>
+        <p data-t="home.services.events.desc">Private villa parties, yacht events, DJ bookings and entertainment — designed from the first conversation to the final guest.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:4rem;">
+      <a href="services.html" class="btn btn-outline btn-arrow">Explore All Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- =============== CTA =============== -->
+<section class="cta-section">
+  <div class="cta-bg">
+    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=2000&q=85" alt="">
+  </div>
+  <div class="cta-overlay"></div>
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow center" data-t="home.cta.eyebrow">Begin</span>
+      <h2 class="display-lg" data-t="home.cta.h2">Ready to experience Ibiza<br><span class="italic">at another level?</span></h2>
+      <p data-t="home.cta.p">Plan your stay now — one conversation is all it takes.</p>
+      <div class="hero-cta" style="justify-content:center;">
+        <a href="contact.html" class="btn btn-gold btn-arrow" data-t="cta.start">Plan Your Stay</a>
+        <a href="https://wa.me/34617010756" class="btn btn-ghost-light">WhatsApp Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== FOOTER =============== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand">
+          <img src="assets/logo.png" alt="" class="brand-mark" style="filter:brightness(0) invert(1) opacity(0.9);">
+          <span class="brand-text">
+            <span class="brand-name" style="color:var(--color-cream);">White Soul Ibiza</span>
+          </span>
+        </a>
+        <p class="footer-tagline">"Live Ibiza the White Soul way."</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+          </a>
+          <a href="#" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-3.5-6.6L20 4l-1.4 3.5A8 8 0 0 1 20 12Z"/><path d="M8 11.5c.5 2 2.5 4 4.5 4.5l1.5-1.5 2 1c-.5 1-2 1.5-3 1.5-3 0-6-3-6-6 0-1 .5-2.5 1.5-3l1 2L8 11.5Z"/></svg>
+          </a>
+          <a href="#" aria-label="Email">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1"/><polyline points="3,7 12,13 21,7"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="experiences.html">Experiences</a></li>
+          <li><a href="services.html#events">Events</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Discover</h4>
+        <ul>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a href="#">Featured Villas</a></li>
+          <li><a href="#">Ibiza Guide</a></li>
+          <li><a href="#">Journal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-contact">
+        <h4>Contact</h4>
+        <p>Carrer del Mar, 12<br>Ibiza Town, 07800<br>Balearic Islands</p>
+        <p>+34 617 010 756<br>concierge@whitesoulibiza.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 White Soul Ibiza · All Rights Reserved</span>
+      <span><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Cookies</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/34617010756" class="floating-whatsapp" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-1-.3-.1-.5-.1-.7.2-.2.3-.7 1-.9 1.1-.2.2-.4.2-.7.1-.3-.1-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4 0-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z"/></svg>
+</a>
+
+<!-- =============== VILLA MODAL =============== -->
+<div class="villa-modal" id="villaModal" aria-hidden="true" role="dialog">
+  <div class="villa-modal-overlay"></div>
+  <div class="villa-modal-inner">
+    <button class="villa-modal-close" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="villa-modal-media">
+      <div class="villa-modal-hero">
+        <img src="" alt="" class="villa-modal-img">
+        <button class="villa-modal-nav villa-modal-prev" aria-label="Previous photo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15,18 9,12 15,6"/></svg>
+        </button>
+        <button class="villa-modal-nav villa-modal-next" aria-label="Next photo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9,18 15,12 9,6"/></svg>
+        </button>
+        <span class="villa-modal-counter"></span>
+      </div>
+      <div class="villa-modal-thumbs" id="villaModalThumbs"></div>
+    </div>
+    <div class="villa-modal-content">
+      <span class="villa-modal-tier eyebrow"></span>
+      <span class="villa-modal-loc"></span>
+      <h2 class="villa-modal-name"></h2>
+      <p class="villa-modal-tagline italic"></p>
+      <div class="villa-modal-meta">
+        <div class="villa-meta-item">
+          <span class="villa-meta-val villa-modal-beds"></span>
+          <span class="villa-meta-lbl">Bedrooms</span>
+        </div>
+        <div class="villa-meta-item">
+          <span class="villa-meta-val villa-modal-baths"></span>
+          <span class="villa-meta-lbl">Bathrooms</span>
+        </div>
+        <div class="villa-meta-item">
+          <span class="villa-meta-val villa-modal-sleeps"></span>
+          <span class="villa-meta-lbl">Guests</span>
+        </div>
+      </div>
+      <p class="villa-modal-price"></p>
+      <p class="villa-modal-license"></p>
+      <p class="villa-modal-desc"></p>
+      <div class="villa-modal-actions">
+        <a href="contact.html" class="btn btn-primary btn-arrow villa-modal-cta">Request Availability</a>
+        <a href="" class="villa-modal-wa" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-1-.3-.1-.5-.1-.7.2-.2.3-.7 1-.9 1.1-.2.2-.4.2-.7.1-.3-.1-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4 0-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z"/></svg>
+          Ask on WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="villa-photos.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
