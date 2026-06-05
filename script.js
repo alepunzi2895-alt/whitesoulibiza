@@ -148,6 +148,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Villa modal ---
   initVillaModal();
 
+  // --- Service modal ---
+  initServiceModal();
+
   // --- Experience builder ---
   initBuilder();
 
@@ -539,6 +542,65 @@ function initVillaModal() {
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeVillaModal();
   });
+}
+
+// =====================================
+// SERVICE MODAL
+// =====================================
+function initServiceModal() {
+  const modal = document.getElementById('svcModal');
+  if (!modal) return;
+
+  document.querySelectorAll('[data-open-svc]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openServiceModal(btn.dataset.openSvc);
+    });
+  });
+
+  modal.querySelector('.svc-modal-overlay').addEventListener('click', closeServiceModal);
+  modal.querySelector('.svc-modal-close').addEventListener('click', closeServiceModal);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeServiceModal();
+  });
+}
+
+function openServiceModal(key) {
+  const modal = document.getElementById('svcModal');
+  const tpl = document.getElementById('svc-tpl-' + key);
+  const body = document.getElementById('svcModalBody');
+  const imgEl = modal.querySelector('.svc-modal-img');
+  if (!modal || !tpl || !body) return;
+
+  const card = document.querySelector('[data-svc="' + key + '"]');
+  if (card) {
+    const cardImg = card.querySelector('img');
+    imgEl.src = cardImg ? cardImg.src : '';
+    imgEl.alt = cardImg ? cardImg.alt : '';
+  }
+
+  body.appendChild(tpl);
+  tpl.style.display = '';
+
+  modal.setAttribute('aria-hidden', 'false');
+  modal.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeServiceModal() {
+  const modal = document.getElementById('svcModal');
+  const body = document.getElementById('svcModalBody');
+  const tplContainer = document.getElementById('spgTemplates');
+  if (!modal) return;
+
+  body.querySelectorAll('.spg-tpl').forEach(tpl => {
+    tpl.style.display = '';
+    tplContainer.appendChild(tpl);
+  });
+
+  modal.classList.remove('is-open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
 }
 
 // =====================================
