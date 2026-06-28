@@ -696,6 +696,11 @@ h1, h2, h3, h4, h5 {
   filter: brightness(1.08) saturate(1.06);
 }
 
+.experiences-hero .hero-bg img {
+  object-position: center 60%;
+  filter: none;
+}
+
 .page-hero .hero-overlay {
   background: linear-gradient(180deg, rgba(18,38,51,0.38), rgba(18,38,51,0.12));
 }
