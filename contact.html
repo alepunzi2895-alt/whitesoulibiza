@@ -246,11 +246,14 @@
   (function() {
     const params = new URLSearchParams(window.location.search);
     const villa = params.get('villa');
+    const experience = params.get('experience');
+    const msg = document.getElementById('message');
     if (villa) {
-      const msg = document.getElementById('message');
       if (msg && !msg.value) msg.value = `I am interested in ${villa}. Could you please check availability and send me a tailored proposal?`;
       const heading = document.querySelector('.intro-block h1');
       if (heading) heading.innerHTML = `Enquire about <span class="italic">${villa}</span>`;
+    } else if (experience) {
+      if (msg && !msg.value) msg.value = experience;
     }
   })();
 </script>

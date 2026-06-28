@@ -616,4 +616,20 @@ function initBuilder() {
       });
     });
   });
+
+  const cta = document.getElementById('builder-cta');
+  if (!cta) return;
+  cta.addEventListener('click', () => {
+    const lines = [];
+    document.querySelectorAll('.builder-step').forEach(step => {
+      const heading = step.querySelector('h4').textContent.trim();
+      const sel = step.querySelector('.builder-option.selected');
+      if (sel) lines.push(heading + ' ' + sel.textContent.trim());
+    });
+    let msg = '';
+    if (lines.length) {
+      msg = 'I would like to plan a custom experience. Here are my preferences:\n\n' + lines.join('\n') + '\n\nCould you please send me a tailored proposal?';
+    }
+    window.location.href = 'contact.html' + (msg ? '?experience=' + encodeURIComponent(msg) : '');
+  });
 }
