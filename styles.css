@@ -701,6 +701,15 @@ h1, h2, h3, h4, h5 {
   filter: none;
 }
 
+.about-hero .hero-bg img {
+  object-position: center 55%;
+  filter: brightness(0.92) saturate(1.1);
+}
+
+.about-hero .hero-overlay {
+  background: linear-gradient(180deg, rgba(12,24,34,0.62) 0%, rgba(12,24,34,0.25) 60%, rgba(12,24,34,0.10) 100%);
+}
+
 .page-hero .hero-overlay {
   background: linear-gradient(180deg, rgba(18,38,51,0.38), rgba(18,38,51,0.12));
 }
