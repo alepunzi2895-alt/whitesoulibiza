@@ -875,7 +875,7 @@ h1, h2, h3, h4, h5 {
 .services-img-section {
   background:
     linear-gradient(rgba(8,8,8,0.60), rgba(8,8,8,0.60)),
-    url('assets/SERVICES.jpg') center/cover no-repeat;
+    url('assets/SERVICES.png') center/cover no-repeat;
 }
 
 .services-img-section .eyebrow {
