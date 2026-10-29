@@ -1515,12 +1515,12 @@ async function saveCurrentProject() {
 // =====================================
 // LANGUAGE DROPDOWN
 // =====================================
-const LANGUAGE_NAMES = { EN: 'English', IT: 'Italiano', ES: 'Español', FR: 'Français', DE: 'Deutsch' };
+const LANGUAGE_LABELS = { EN: '🇬🇧 EN', IT: '🇮🇹 IT', ES: '🇪🇸 ES', FR: '🇫🇷 FR', DE: '🇩🇪 DE' };
 
 function readSavedLanguage() {
   try {
     const saved = localStorage.getItem('ws_lang');
-    return LANGUAGE_NAMES[saved] ? saved : 'EN';
+    return LANGUAGE_LABELS[saved] ? saved : 'EN';
   } catch (err) {
     return 'EN';
   }
@@ -1533,8 +1533,8 @@ function buildLanguageSelect(current) {
   const select = document.createElement('select');
   select.className = 'lang-select';
   select.setAttribute('aria-label', 'Language');
-  select.innerHTML = Object.entries(LANGUAGE_NAMES)
-    .map(([code, name]) => `<option value="${code}"${code === current ? ' selected' : ''}>${name}</option>`)
+  select.innerHTML = Object.entries(LANGUAGE_LABELS)
+    .map(([code, label]) => `<option value="${code}"${code === current ? ' selected' : ''}>${label}</option>`)
     .join('');
   select.addEventListener('change', async () => {
     try { localStorage.setItem('ws_lang', select.value); } catch (err) { /* private mode: keep going */ }
