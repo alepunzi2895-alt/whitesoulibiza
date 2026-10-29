@@ -163,8 +163,8 @@ All nav links point to `services.html#events`. Do not re-add weddings, corporate
 ### Database
 
 - **Provider**: [Turso](https://turso.tech) (libsql / cloud SQLite)
-- **Endpoint**: `https://whitesoulibiza-therealmfkk.aws-eu-west-1.turso.io/v2/pipeline`
-- **Auth token**: stored in `script.js` → `TURSO_TOKEN` constant
+- **Access**: only server-side, through `api/translations.js` (Vercel function). The browser never sees a database token.
+- **Server environment variables**: `TURSO_URL`, `TURSO_READ_TOKEN` (read-only, used for translations), `TURSO_TOKEN` (read-write, used by the account API and `seed-db.js`), `SESSION_SECRET`, `GOOGLE_CLIENT_ID`.
 - **Schema**:
   ```sql
   CREATE TABLE translations (
@@ -206,7 +206,7 @@ Run `seed-db.js` (requires Node.js) **or** re-run the Python3 seed snippet from 
 
 ### Security note
 
-The token in `script.js` is **read-write** and visible client-side (unavoidable in a static site). For production, create a **read-only** token in the Turso dashboard and replace `TURSO_TOKEN`. The read-write token should only be used in server-side or CLI contexts.
+No database token is in the browser code. Tokens live only in server environment variables. A token that was committed earlier must be rotated in the Turso dashboard, because it remains in git history.
 
 ---
 

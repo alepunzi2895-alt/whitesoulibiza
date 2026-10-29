@@ -3,8 +3,6 @@
 // =====================================
 
 // ---- Turso DB (translations) ----
-const TURSO_URL = 'https://whitesoulibiza-therealmfkk.aws-eu-west-1.turso.io/v2/pipeline';
-const TURSO_TOKEN = 'eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOjE3Nzk4NzYzODMsImlkIjoiMDE5ZTY4ZTYtMjYwMS03ZjNjLWI0NzktMTBjMzRmMGFlOWVlIiwicmlkIjoiOTdkNjc2NmQtYmNhOC00YWEwLWE1M2QtYTFmZjkzZWM1NjNhIn0.AYnPaVkNwWAttSV8Hhz6_bub4TipYJRSVd0GMokhTJwFG8_zRxuqyRjL0aBxoNOfjwc_McMjCKry7hbUG2VzCA';
 
 // In-memory cache: { lang -> { key -> value } }
 const translationCache = {};
@@ -33,35 +31,15 @@ const fallbackTranslations = {
 async function fetchTranslations(lang) {
   if (translationCache[lang]) return translationCache[lang];
 
+  // The texts come from our own API, so the database token never reaches the browser
   try {
-    const res = await fetch(TURSO_URL, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${TURSO_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        requests: [
-          {
-            type: 'execute',
-            stmt: {
-              sql: 'SELECT key, value FROM translations WHERE lang = ?',
-              args: [{ type: 'text', value: lang }],
-            },
-          },
-          { type: 'close' },
-        ],
-      }),
-    });
-
+    const res = await fetch(`/api/translations?lang=${encodeURIComponent(lang)}`);
+    if (!res.ok) throw new Error('translations ' + res.status);
     const data = await res.json();
-    const rows = data.results[0].response.result.rows;
-    const dict = {};
-    rows.forEach(row => { dict[row[0].value] = row[1].value; });
-    translationCache[lang] = dict;
-    return dict;
+    translationCache[lang] = data.dict;
+    return data.dict;
   } catch (err) {
-    console.warn('Turso fetch failed, using fallback:', err);
+    console.warn('Translations unavailable, using fallback:', err);
     return fallbackTranslations[lang] || fallbackTranslations.EN;
   }
 }

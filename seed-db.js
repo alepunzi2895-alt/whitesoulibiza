@@ -3,8 +3,8 @@
 // Run: node seed-db.js
 // ============================================================
 
-const TURSO_URL = 'https://whitesoulibiza-therealmfkk.aws-eu-west-1.turso.io/v2/pipeline';
-const TURSO_TOKEN = 'eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOjE3Nzk4NzYzODMsImlkIjoiMDE5ZTY4ZTYtMjYwMS03ZjNjLWI0NzktMTBjMzRmMGFlOWVlIiwicmlkIjoiOTdkNjc2NmQtYmNhOC00YWEwLWE1M2QtYTFmZjkzZWM1NjNhIn0.AYnPaVkNwWAttSV8Hhz6_bub4TipYJRSVd0GMokhTJwFG8_zRxuqyRjL0aBxoNOfjwc_McMjCKry7hbUG2VzCA';
+const TURSO_URL = process.env.TURSO_URL;
+const TURSO_TOKEN = process.env.TURSO_TOKEN; // set in the environment, never commit it
 
 const translations = {
   EN: {
