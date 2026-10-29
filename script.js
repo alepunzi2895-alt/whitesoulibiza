@@ -9,6 +9,18 @@ const TURSO_TOKEN = 'eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOj
 // In-memory cache: { lang -> { key -> value } }
 const translationCache = {};
 
+// Language currently shown; t() reads texts for this language
+let currentLang = 'EN';
+
+// Returns the text for a key in the current language. Values may contain {placeholders}.
+function t(key, vars) {
+  const text = (translationCache[currentLang] || {})[key]
+    || (fallbackTranslations[currentLang] || {})[key]
+    || fallbackTranslations.EN[key]
+    || key;
+  return vars ? text.replace(/\{(\w+)\}/g, (_, name) => (vars[name] ?? '')) : text;
+}
+
 // Fallback translations (used until DB responds or on fetch failure)
 const fallbackTranslations = {
   EN: { 'nav.vacation':'Your Holiday','nav.event':'Your Event','nav.partner':'Partner With Us','nav.contactus':'Contact Us','nav.home':'Home','nav.services':'Services','nav.custom':'Experiences','nav.events':'Events','nav.testimonials':'Testimonials','nav.about':'About','nav.contact':'Contact','cta.plan':'Plan Your Experience','cta.discover':'Discover Services','cta.start':'Start Your Journey','cta.create':'Create Your Experience','cta.inquire':'Begin Concierge Request','cta.services':'Explore All Services','cta.story':'Our Story','cta.plan.event':'Begin Planning' },
@@ -94,8 +106,15 @@ function splitWords(el) {
 }
 
 async function applyLanguage(lang) {
+  currentLang = lang;
   const dict = await fetchTranslations(lang);
+  if (currentLang !== lang) return; // another language was picked while loading
   applyTranslationDict(dict);
+  document.documentElement.lang = lang.toLowerCase();
+  const title = t('site.title');
+  if (title !== 'site.title') document.title = title;
+  // Components that build their text in JavaScript re-render themselves
+  document.dispatchEvent(new Event('ws:lang'));
 }
 
 // =====================================
@@ -187,6 +206,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Partner form (opens the email client) ---
   initPartnerForm();
 
+  // --- Planner: Build your holiday / Plan your event ---
+  initPlanner();
+
   // --- Form (prevent default submission) ---
   document.querySelectorAll('form[data-form]').forEach(form => {
     form.addEventListener('submit', (e) => {
@@ -274,6 +296,13 @@ const villaData = {
 // =====================================
 // VILLA COLLECTION — GRID + MAP
 // =====================================
+// "6 bedrooms · sleeps 12", rewritten in the current language
+function renderVillaBeds() {
+  document.querySelectorAll('.coll-villa-beds[data-beds]').forEach(el => {
+    el.textContent = t('vc.beds', { b: el.dataset.beds, s: el.dataset.sleeps });
+  });
+}
+
 function initVillaCollection() {
   const grid = document.getElementById('vcGrid');
   const mapWrap = document.getElementById('vcMapWrap');
@@ -318,7 +347,7 @@ function initVillaCollection() {
         const pageStr = `${String(currentPage + 1).padStart(2, '0')} / ${String(totalPages).padStart(2, '0')}`;
 
         paginationEl.innerHTML = `
-          <span class="vc-page-count">Showing ${from}–${to} of ${total} villas</span>
+          <span class="vc-page-count">${t('vc.showing', { from, to, total })}</span>
           <div class="vc-page-nav">
             <button class="vc-page-arr" id="vcNavPrev" ${currentPage === 0 ? 'disabled' : ''}>&#8249;</button>
             <span class="vc-page-indicator">${pageStr}</span>
@@ -362,6 +391,8 @@ function initVillaCollection() {
     if (mapWrap && !mapWrap.hidden && window._vcMap) refreshMapMarkers();
   };
 
+  renderVillaBeds();
+  document.addEventListener('ws:lang', () => { renderVillaBeds(); renderPage(); });
   if (guestsSel) guestsSel.addEventListener('change', applyFilters);
   if (minNightsSel) minNightsSel.addEventListener('change', applyFilters);
   if (budgetSel) budgetSel.addEventListener('change', applyFilters);
@@ -487,24 +518,30 @@ function openVillaModal(slug) {
   const modal = document.getElementById('villaModal');
   if (!modal) return;
 
-  modal.querySelector('.villa-modal-tier').textContent = v.tier;
+  const tierKey = 'tier.' + v.tier.toLowerCase();
+  const tier = t(tierKey);
+  modal.dataset.slug = slug;
+  modal.querySelector('.villa-modal-tier').textContent = tier;
   modal.querySelector('.villa-modal-loc').textContent = v.area;
   modal.querySelector('.villa-modal-name').textContent = v.name;
-  modal.querySelector('.villa-modal-tagline').textContent = v.tagline;
+  modal.querySelector('.villa-modal-tagline').textContent = t(`villa.${slug}.tagline`);
   modal.querySelector('.villa-modal-beds').textContent = v.beds;
   modal.querySelector('.villa-modal-baths').textContent = v.baths;
   modal.querySelector('.villa-modal-sleeps').textContent = v.sleeps;
-  modal.querySelector('.villa-modal-desc').textContent = v.desc;
-  modal.querySelector('.villa-modal-price').textContent =
-    `From €${v.min.toLocaleString('it-IT')} — €${v.max.toLocaleString('it-IT')} / week`;
+  modal.querySelector('.villa-modal-desc').textContent = t(`villa.${slug}.desc`);
+  const locale = { EN: 'en-GB', IT: 'it-IT', ES: 'es-ES', FR: 'fr-FR', DE: 'de-DE' }[currentLang] || 'en-GB';
+  modal.querySelector('.villa-modal-price').textContent = t('vc.from', {
+    min: v.min.toLocaleString(locale),
+    max: v.max.toLocaleString(locale),
+  });
   const licEl = modal.querySelector('.villa-modal-license');
-  if (licEl) licEl.textContent = v.license ? `Tourist License: ${v.license}` : '';
+  if (licEl) licEl.textContent = v.license ? t('vc.license', { l: v.license }) : '';
 
   const ctaLink = modal.querySelector('.villa-modal-cta');
   ctaLink.href = `contact.html?villa=${encodeURIComponent(v.name)}`;
 
   const waLink = modal.querySelector('.villa-modal-wa');
-  const waMsg = encodeURIComponent(`Hello, I'm interested in ${v.name} (${v.tier} collection) — could you let me know availability?`);
+  const waMsg = encodeURIComponent(t('vc.hello', { name: v.name, tier }));
   waLink.href = `https://wa.me/34617010756?text=${waMsg}`;
 
   // Build photo gallery
@@ -556,6 +593,12 @@ function openVillaModal(slug) {
   modal.classList.add('is-open');
   document.body.style.overflow = 'hidden';
 }
+
+// Re-render the open villa in the new language
+document.addEventListener('ws:lang', () => {
+  const modal = document.getElementById('villaModal');
+  if (modal && modal.classList.contains('is-open') && modal.dataset.slug) openVillaModal(modal.dataset.slug);
+});
 
 function closeVillaModal() {
   const modal = document.getElementById('villaModal');
@@ -710,4 +753,421 @@ function initPartnerForm() {
     ].join('\n');
     window.location.href = `mailto:concierge@whitesoulibiza.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
+}
+
+// =====================================
+// PLANNER (Build your holiday / Plan your event)
+// =====================================
+const PLANNER_LOCATIONS = [
+  { id: 'Via terra', title: 'Via terra', copy: 'Ville, fincas e location sull’isola', img: 'assets/home/celebration.jpg' },
+  { id: 'Via mare', title: 'Via mare', copy: 'Una festa speciale in barca', img: 'assets/home/real-ibiza-boat-club.jpg' },
+];
+
+const PLANNER_EVENT_TYPES = [
+  { id: 'Eventi privati', copy: 'Una festa costruita intorno ai tuoi desideri', img: 'assets/home/real-amante.jpg' },
+  { id: 'Eventi aziendali', copy: 'Incontri e occasioni da condividere con il tuo team', img: 'assets/home/villa-selected.jpg' },
+  { id: 'Matrimonio', copy: 'Il vostro sì a Ibiza', img: 'assets/home/real-atzaro.jpg' },
+  { id: 'Addio al nubilato e celibato', copy: 'Un’esperienza da vivere insieme prima del sì', img: 'assets/home/real-entertainment.jpg' },
+  { id: 'Ritiri spirituali', copy: 'Benessere, natura e momenti di condivisione', img: 'assets/home/wellness.jpg' },
+  { id: 'Eventi e DJ set', copy: 'Dai DJ set alla musica dal vivo, crea la tua serata', img: 'assets/home/real-pacha.jpg' },
+];
+
+const PLANNER_PARTIES = [
+  { id: 'Amici', title: 'Gruppo di amici', copy: 'Giornate da condividere, ricordi da creare', img: 'assets/home/friends.jpg' },
+  { id: 'Coppia', title: 'In coppia', copy: 'Il vostro tempo, al ritmo dell’isola', img: 'assets/home/couple.jpg' },
+  { id: 'Famiglia', title: 'In famiglia', copy: 'Una vacanza da vivere insieme', img: 'assets/home/family.jpg' },
+];
+
+const PLANNER_HOLIDAY_SERVICES = [
+  { id: 'Villa & soggiorno', copy: 'La tua casa sull’isola', img: 'assets/home/villa.jpg' },
+  { id: 'Barca & mare', copy: 'Una giornata tra calette e mare', img: 'assets/home/boat.jpg' },
+  { id: 'Chef privato', copy: 'Il piacere di una cena in villa', img: 'assets/home/chef.jpg' },
+  { id: 'Drinks & Beverage', copy: 'Cocktail, bartender e bevande', img: 'assets/home/drinks-beverage.svg' },
+  { id: 'Luxury cars & transfer', copy: 'Auto, transfer e autisti privati', img: 'assets/home/real-luxury-car.jpg' },
+  { id: 'Private aviation', copy: 'Jet privati, elicotteri e aerei privati', img: 'assets/home/private-aviation.svg' },
+  { id: 'Beauty & wellness', copy: 'Massaggi, relax e tempo per te', img: 'assets/home/wellness.jpg' },
+  { id: 'Photographer', copy: 'Un ricordo speciale della vacanza', img: 'assets/home/couple.jpg' },
+  { id: 'VIP reservations', copy: 'Tavoli e serate da vivere', img: 'assets/home/real-pacha.jpg' },
+  { id: 'Security staff', copy: 'Personale per la tua occasione', img: 'assets/home/real-security.jpg' },
+  { id: 'Intrattenimento', copy: 'Ballerine, musica e performance', img: 'assets/home/real-entertainment.jpg' },
+];
+
+// Event service categories: each option is stored as "Category: option"
+const PLANNER_EVENT_CATEGORIES = [
+  { name: 'Fiori e allestimenti', copy: 'La scenografia della tua festa', img: 'assets/home/real-amante.jpg', options: ['Fiori e composizioni', 'Archi e fondali floreali', 'Centrotavola e mise in place', 'Luci e decorazioni a tema'] },
+  { name: 'Chef privato', copy: 'Un menu cucinato sul posto', img: 'assets/home/real-private-chef.jpg', options: ['Cucina spagnola', 'Cucina italiana', 'Cucina francese', 'Cucina giapponese', 'Altri tipi di cucina'] },
+  { name: 'Catering', copy: 'Formula e stile del servizio', img: 'assets/home/dinner.jpg', options: ['Aperitivo e finger food', 'Buffet', 'Food station e isole tematiche', 'Food truck', 'Brunch o colazione'] },
+  { name: 'Drinks & Beverage', copy: 'Cocktail e bevande per gli ospiti', img: 'assets/home/drinks-beverage.svg', options: ['Bartender e cocktail bar', 'Open bar', 'Champagne e vini', 'Bevande analcoliche'] },
+  { name: 'Staff evento', copy: 'Il team che segue ogni dettaglio', img: 'assets/home/real-security.jpg', options: ['Coordinatore evento', 'Sicurezza e vigilanza', 'Hostess e accoglienza', 'Camerieri e personale di sala', 'Housekeeping'] },
+  { name: 'Intrattenimento', copy: 'Musica e spettacoli per la festa', img: 'assets/home/real-music-agency.jpg', options: ['DJ', 'Musicisti', 'Cantanti', 'Performers', 'Fuochi d’artificio'] },
+  { name: 'Audio e luci', copy: 'Attrezzature per il tuo evento', img: 'assets/home/real-entertainment.jpg', options: ['Impianto audio', 'Impianto luci', 'Console e attrezzature per DJ'] },
+  { name: 'Transfer', copy: 'Spostamenti per te e i tuoi ospiti', img: 'assets/home/transfer.jpg', options: ['Transfer aeroportuali', 'Auto con autista', 'Minivan per gruppi', 'Transfer tra location e alloggio'] },
+  { name: 'Foto e video', copy: 'I ricordi del tuo evento', img: 'assets/home/couple.jpg', options: ['Fotografo', 'Videomaker', 'Riprese con drone, dove consentito', 'Photo booth'] },
+  { name: 'Pasticceria', copy: 'Dolci pensati per l’occasione', img: 'assets/home/celebration.jpg', options: ['Torta', 'Tavolo dei dessert', 'Pasticceria mignon'] },
+  { name: 'Corpo e benessere', copy: 'Cura di sé, bellezza ed esperienze olistiche', img: 'assets/home/wellness.jpg', options: ['Massaggiatrici', 'Make-up artist', 'Hair stylist', 'Esperienze spirituali e olistiche'] },
+  { name: 'Yachts & Boats', copy: 'Una giornata tra calette e mare', img: 'assets/home/boat.jpg', options: ['Yacht privato', 'Barca a motore', 'Catamarano', 'Barca con skipper'] },
+  { name: 'Luxury cars & transfer', copy: 'Auto, transfer e autisti privati', img: 'assets/home/real-luxury-car.jpg', options: ['Supercar', 'Cabriolet', 'Autisti privati'] },
+  { name: 'Private aviation', copy: 'Jet, elicotteri e aerei privati', img: 'assets/home/private-aviation.svg', options: ['Jet privati', 'Elicotteri', 'Aerei privati'] },
+  { name: 'VIP tables', copy: 'Tavoli e serate da vivere', img: 'assets/home/real-pacha.jpg', options: ['Tavolo VIP', 'Prenotazione VIP'] },
+  { name: 'Security staff', copy: 'Personale per la villa e i tuoi spostamenti', img: 'assets/home/real-security.jpg', options: ['Sicurezza in villa', 'Accompagnamento'] },
+  { name: 'Beauty, Wellness & Fitness', copy: 'Benessere, movimento e cura personale', img: 'assets/home/real-beauty-concierge.jpg', options: ['Yoga', 'Massaggi', 'Personal training', 'Parrucchiere', 'Barbiere', 'Estetista', 'Truccatrice'] },
+];
+
+const PLANNER_FLOWS = {
+  holiday: { steps: ['party', 'services', 'details'], title: 'Progetta la tua vacanza', eyebrow: 'LA TUA VACANZA, INIZIA QUI', max: 60, labels: { party: '01 / CON CHI PARTI?', services: '02 / VILLE ED ESPERIENZE', details: '03 / I DETTAGLI DELLA VACANZA' } },
+  event: { steps: ['location', 'type', 'services', 'details'], title: 'Organizza il tuo evento', eyebrow: 'IL TUO EVENTO, INIZIA QUI', max: 500, labels: { location: '01 / VIA TERRA O VIA MARE', type: '02 / TIPO DI EVENTO', services: '03 / SERVIZI E STAFF', details: '04 / DATA E DETTAGLI' } },
+};
+
+// Translation key part for an Italian id: "Villa & soggiorno" -> "villa-soggiorno"
+function pslug(text) {
+  return text.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
+// Event options are stored as "Category: option"; this returns the translated pair
+function optionLabel(key) {
+  const cut = key.indexOf(': ');
+  return `${t('cat.name.' + pslug(key.slice(0, cut)))}: ${t('opt.' + pslug(key.slice(cut + 2)))}`;
+}
+
+const plannerState = {
+  mode: 'holiday',
+  step: 0,
+  result: false,
+  location: '',
+  type: '',
+  party: 'Amici',
+  services: new Set(),
+  options: new Set(),
+  guests: 2,
+};
+
+// Formats an amount as "€ 5.000", independent of the browser's locale data
+function formatEuro(value) {
+  return '€ ' + String(Math.round(Number(value))).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
+function initPlanner() {
+  const dialog = document.getElementById('planner');
+  if (!dialog) return;
+
+  document.querySelectorAll('[data-start]').forEach(btn => {
+    btn.addEventListener('click', () => openPlanner(btn.dataset.start));
+  });
+
+  document.getElementById('planner-close').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', (e) => {
+    if (e.target !== dialog) return;
+    const r = dialog.getBoundingClientRect();
+    if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) dialog.close();
+  });
+
+  document.getElementById('planner-next').addEventListener('click', plannerNext);
+  document.getElementById('planner-back').addEventListener('click', plannerBack);
+
+  // Single-choice tiles advance to the next step
+  dialog.addEventListener('click', (e) => {
+    const tile = e.target.closest('button[data-pick]');
+    if (tile) {
+      const { pick, value } = tile.dataset;
+      if (pick === 'location') plannerState.location = value;
+      if (pick === 'type') plannerState.type = value;
+      if (pick === 'party') plannerState.party = value;
+      if (pick === 'location' || pick === 'type' || pick === 'party') {
+        plannerState.step += 1;
+        renderPlanner();
+        return;
+      }
+      if (pick === 'service') {
+        toggleSet(plannerState.services, value);
+        tile.classList.toggle('is-on', plannerState.services.has(value));
+        tile.setAttribute('aria-pressed', String(plannerState.services.has(value)));
+        updateSelectedSummary();
+        return;
+      }
+    }
+
+    const guest = e.target.closest('[data-guest]');
+    if (guest) {
+      const max = plannerFlow().max;
+      plannerState.guests = Math.min(max, Math.max(1, plannerState.guests + Number(guest.dataset.guest)));
+      renderDetails();
+      return;
+    }
+
+    const preset = e.target.closest('[data-budget] [data-value]');
+    if (preset) {
+      const input = document.getElementById(preset.parentElement.dataset.budget === 'villa' ? 'planner-budget-villa' : 'planner-budget-services');
+      input.value = preset.dataset.value;
+      highlightPresets();
+    }
+  });
+
+  // Event options: change events leave the accordion open
+  dialog.addEventListener('change', (e) => {
+    const option = e.target.closest('input[data-pick="option"]');
+    if (!option) return;
+    toggleSet(plannerState.options, option.dataset.value);
+    updateSelectedSummary();
+  });
+
+  ['planner-budget-villa', 'planner-budget-services'].forEach(id => {
+    document.getElementById(id).addEventListener('input', highlightPresets);
+  });
+
+  ['planner-arrival', 'planner-departure'].forEach(id => {
+    document.getElementById(id).addEventListener('input', () => {
+      document.getElementById('planner-stay-preview').textContent = stayPreview();
+    });
+  });
+
+  // Re-render the open planner in the new language
+  document.addEventListener('ws:lang', () => {
+    if (dialog.open) renderPlanner();
+  });
+}
+
+function toggleSet(set, value) {
+  if (set.has(value)) set.delete(value);
+  else set.add(value);
+}
+
+function plannerFlow() {
+  return PLANNER_FLOWS[plannerState.mode];
+}
+
+function currentStep() {
+  return plannerFlow().steps[plannerState.step];
+}
+
+function openPlanner(mode) {
+  const dialog = document.getElementById('planner');
+  plannerState.mode = mode === 'event' ? 'event' : 'holiday';
+  plannerState.step = 0;
+  plannerState.result = false;
+  plannerState.guests = 2;
+  plannerState.services = new Set();
+  plannerState.options = new Set();
+  plannerState.location = '';
+  plannerState.type = '';
+  document.getElementById('planner-arrival').value = '';
+  document.getElementById('planner-departure').value = '';
+  document.getElementById('planner-budget-villa').value = '';
+  document.getElementById('planner-budget-services').value = '';
+  document.getElementById('planner-notes').value = '';
+  document.getElementById('planner-error').textContent = '';
+  renderPlanner();
+  if (!dialog.open) dialog.showModal();
+  dialog.scrollTop = 0;
+}
+
+function plannerNext() {
+  document.getElementById('planner-error').textContent = '';
+  const step = currentStep();
+
+  if (step === 'details') {
+    const arrival = document.getElementById('planner-arrival').value;
+    const departure = document.getElementById('planner-departure').value;
+    if (!arrival) return showError(t('pl.error.date'));
+    if (plannerState.mode === 'holiday' && (!departure || departure <= arrival)) {
+      return showError(t('pl.error.departure'));
+    }
+    plannerState.result = true;
+    renderPlanner();
+    return;
+  }
+
+  plannerState.step += 1;
+  renderPlanner();
+}
+
+function showError(text) {
+  document.getElementById('planner-error').textContent = text;
+}
+
+function plannerBack() {
+  if (plannerState.result) {
+    plannerState.result = false;
+  } else if (plannerState.step === 0) {
+    document.getElementById('planner').close();
+    return;
+  } else {
+    plannerState.step -= 1;
+  }
+  renderPlanner();
+}
+
+function stayPreview() {
+  const arrival = document.getElementById('planner-arrival').value;
+  const departure = document.getElementById('planner-departure').value;
+  if (plannerState.mode === 'event') {
+    return arrival ? t('pl.preview.event.yes', { n: plannerState.guests }) : t('pl.preview.event.no');
+  }
+  const nights = arrival && departure ? Math.round((new Date(departure) - new Date(arrival)) / 86400000) : 0;
+  if (nights > 0) return t('pl.preview.nights', { n: nights, p: plannerState.guests });
+  if (arrival && departure) return t('pl.error.departure');
+  return t('pl.preview.none');
+}
+
+function renderPlanner() {
+  const dialog = document.getElementById('planner');
+  const flow = plannerFlow();
+  const step = currentStep();
+  const mode = plannerState.mode;
+
+  document.getElementById('planner-eyebrow').textContent = t(`pl.eyebrow.${mode}`);
+  document.getElementById('planner-title').textContent = t(`pl.title.${mode}`);
+
+  const progress = document.getElementById('planner-progress');
+  progress.max = flow.steps.length;
+  progress.value = plannerState.result ? flow.steps.length : plannerState.step + 1;
+  const stepKey = ['services', 'details'].includes(step) ? `${step}.${mode}` : step;
+  document.getElementById('planner-step-label').textContent = plannerState.result ? t('pl.step.summary') : t(`pl.step.${stepKey}`);
+
+  dialog.querySelectorAll('.planner-step').forEach(section => {
+    section.hidden = plannerState.result || section.dataset.step !== step;
+  });
+  document.getElementById('planner-result').hidden = !plannerState.result;
+
+  if (!plannerState.result) {
+    if (step === 'location') renderTiles('planner-locations', PLANNER_LOCATIONS, 'loc', 'location', plannerState.location);
+    if (step === 'type') renderTiles('planner-types', PLANNER_EVENT_TYPES, 'type', 'type', plannerState.type);
+    if (step === 'party') renderTiles('planner-parties', PLANNER_PARTIES, 'party', 'party', plannerState.party);
+    if (step === 'services') renderServices();
+    if (step === 'details') renderDetails();
+  } else {
+    renderResult();
+  }
+
+  document.getElementById('planner-back').textContent = plannerState.step === 0 && !plannerState.result ? t('pl.btn.close') : t('pl.btn.back');
+  const next = document.getElementById('planner-next');
+  next.hidden = plannerState.result;
+  next.textContent = step === 'details' ? t('pl.btn.submit') : t('pl.btn.next');
+  updateSelectedSummary();
+}
+
+function renderTiles(containerId, items, prefix, pick, selected) {
+  document.getElementById(containerId).innerHTML = items.map(item => `
+    <button type="button" class="planner-tile${selected === item.id ? ' is-on' : ''}" data-pick="${pick}" data-value="${item.id}" aria-pressed="${selected === item.id}">
+      <img src="${item.img}" alt="" loading="lazy">
+      <span class="planner-tile-copy"><strong>${t(`${prefix}.name.${pslug(item.id)}`)}</strong><span>${t(`${prefix}.desc.${pslug(item.id)}`)}</span></span>
+    </button>`).join('');
+}
+
+function renderServices() {
+  const intro = document.getElementById('planner-services-intro');
+  const list = document.getElementById('planner-service-list');
+  const cats = document.getElementById('planner-event-list');
+
+  if (plannerState.mode === 'holiday') {
+    intro.textContent = t('pl.intro.services.holiday');
+    list.hidden = false;
+    cats.hidden = true;
+    list.innerHTML = PLANNER_HOLIDAY_SERVICES.map(item => {
+      const on = plannerState.services.has(item.id);
+      return `
+      <button type="button" class="planner-tile${on ? ' is-on' : ''}" data-pick="service" data-value="${item.id}" aria-pressed="${on}">
+        <img src="${item.img}" alt="" loading="lazy">
+        <span class="planner-tile-copy"><strong>${t('svc.name.' + pslug(item.id))}</strong><span>${t('svc.desc.' + pslug(item.id))}</span></span>
+        <span class="planner-check" aria-hidden="true">✓</span>
+      </button>`;
+    }).join('');
+    return;
+  }
+
+  intro.textContent = t('pl.intro.services.event');
+  list.hidden = true;
+  cats.hidden = false;
+  cats.innerHTML = PLANNER_EVENT_CATEGORIES.map(cat => `
+    <details class="planner-cat">
+      <summary>
+        <img src="${cat.img}" alt="" loading="lazy">
+        <span class="planner-cat-copy"><strong>${t('cat.name.' + pslug(cat.name))}</strong><span>${t('cat.desc.' + pslug(cat.name))}</span></span>
+        <b aria-hidden="true">+</b>
+      </summary>
+      <div class="planner-options">
+        ${cat.options.map(opt => {
+          const key = `${cat.name}: ${opt}`;
+          return `<label><input type="checkbox" data-pick="option" data-value="${key}"${plannerState.options.has(key) ? ' checked' : ''}><span>${t('opt.' + pslug(opt))}</span></label>`;
+        }).join('')}
+      </div>
+    </details>`).join('');
+}
+
+function renderDetails() {
+  const mode = plannerState.mode;
+  document.getElementById('planner-arrival-label').textContent = t(`pl.arrival.${mode}`);
+  document.querySelector('#planner-departure-wrap > span').textContent = t('pl.departure');
+  document.getElementById('planner-departure-wrap').hidden = mode === 'event';
+  document.getElementById('planner-guests-title').textContent = t(`pl.guests.${mode}`);
+  document.querySelector('.planner-guests > div > span').textContent = t(`pl.guests.hint.${mode}`);
+  document.getElementById('planner-guests-out').textContent = plannerState.guests;
+  document.querySelector('[data-guest="-1"]').disabled = plannerState.guests <= 1;
+  document.querySelector('[data-guest="1"]').disabled = plannerState.guests >= plannerFlow().max;
+  document.getElementById('planner-stay-preview').textContent = stayPreview();
+
+  const budgetLabels = document.querySelectorAll('.planner-budget-label');
+  budgetLabels[0].textContent = t(`pl.budget.villa.${mode}`);
+  budgetLabels[1].textContent = t('pl.budget.services');
+  document.querySelectorAll('.planner-budget input').forEach(input => {
+    input.placeholder = t('pl.budget.input');
+  });
+  document.getElementById('planner-notes').placeholder = t('pl.notes.placeholder');
+  highlightPresets();
+}
+
+function highlightPresets() {
+  document.querySelectorAll('[data-budget]').forEach(group => {
+    const input = document.getElementById(group.dataset.budget === 'villa' ? 'planner-budget-villa' : 'planner-budget-services');
+    group.querySelectorAll('[data-value]').forEach(btn => {
+      const on = input.value === btn.dataset.value;
+      btn.classList.toggle('is-on', on);
+      btn.setAttribute('aria-pressed', String(on));
+    });
+  });
+}
+
+function updateSelectedSummary() {
+  const el = document.getElementById('planner-selected');
+  if (plannerState.result || currentStep() !== 'services') {
+    el.textContent = '';
+    return;
+  }
+  const n = plannerState.mode === 'holiday' ? plannerState.services.size : plannerState.options.size;
+  el.textContent = n === 0 ? t('pl.count.none') : n === 1 ? t('pl.count.one') : t('pl.count.many', { n });
+}
+
+function requestSummary() {
+  const isEvent = plannerState.mode === 'event';
+  const arrival = document.getElementById('planner-arrival').value;
+  const departure = document.getElementById('planner-departure').value;
+  const services = isEvent
+    ? [...plannerState.options].map(optionLabel)
+    : [...plannerState.services].map(id => t('svc.name.' + pslug(id)));
+  const villa = document.getElementById('planner-budget-villa').value;
+  const servicesBudget = document.getElementById('planner-budget-services').value;
+  const notes = document.getElementById('planner-notes').value.trim();
+  const amount = value => (value ? formatEuro(value) : t('pl.budget.undefined'));
+
+  const lines = [
+    isEvent
+      ? t('pl.mail.event', { x: t('type.name.' + pslug(plannerState.type)), y: t('loc.name.' + pslug(plannerState.location)) })
+      : t('pl.mail.holiday', { x: t('party.name.' + pslug(plannerState.party)) }),
+    isEvent ? t('pl.mail.date', { a: arrival }) : t('pl.mail.dates', { a: arrival, b: departure }),
+    t('pl.mail.guests', { n: plannerState.guests }),
+    t(isEvent ? 'pl.mail.budget_location' : 'pl.mail.budget_villa', { x: amount(villa) }),
+    t('pl.mail.budget_services', { x: amount(servicesBudget) }),
+    '',
+    t('pl.mail.services'),
+    ...(services.length ? services.map(s => `- ${s}`) : [t('pl.mail.none')]),
+  ];
+  if (notes) lines.push('', t('pl.mail.notes'), notes);
+  return lines.join('\n');
+}
+
+function renderResult() {
+  const isEvent = plannerState.mode === 'event';
+  const subject = isEvent
+    ? t('pl.mail.subject.event', { x: t('type.name.' + pslug(plannerState.type)) })
+    : t('pl.mail.subject.holiday', { x: t('party.name.' + pslug(plannerState.party)) });
+  document.getElementById('planner-mail').href = `mailto:concierge@whitesoulibiza.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(requestSummary())}`;
 }

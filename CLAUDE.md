@@ -63,6 +63,8 @@ Modelled on the reference site (White-Soul-Ibiza/dist), with our palette, fonts 
 8. `#collabora` — partner form (`#partnerForm`, opens a prefilled mailto to concierge@whitesoulibiza.com)
 9. `#contattaci` — CTA section
 
+The "Build your holiday" and "Plan your event" buttons (`data-start="holiday"` / `data-start="event"`) open the planner dialog `#planner` in index.html (logic: `initPlanner` in script.js). Holiday flow: party → services → details. Event flow: via terra/mare → event type → services and staff (accordion) → details. Both end in a summary and a prefilled mailto to concierge@whitesoulibiza.com. Planner copy is Italian only (not in Turso yet); images live in `assets/home/`.
+
 Homepage keys use the `hp.*` prefix. `services.html#svc-<key>` opens that service's modal on load (`svc-tpl-<key>` template).
 
 ---
@@ -203,6 +205,10 @@ Run `seed-db.js` (requires Node.js) **or** re-run the Python3 seed snippet from 
 The token in `script.js` is **read-write** and visible client-side (unavoidable in a static site). For production, create a **read-only** token in the Turso dashboard and replace `TURSO_TOKEN`. The read-write token should only be used in server-side or CLI contexts.
 
 ---
+
+### Texts on the homepage and planner
+
+Every visible text on the homepage, footer, villa collection, villa modal and planner has a key in Turso for all five languages. Static text uses `data-t`. Text built in JavaScript uses `t('key', { placeholders })` from script.js; the current language lives in `currentLang`, and `ws:lang` is dispatched after each language change so components re-render. Villa descriptions use `villa.<id>.tagline` / `villa.<id>.desc`; planner items use `svc.`, `cat.`, `opt.`, `type.`, `loc.`, `party.` keys built from the Italian id with the same slug rule (lowercase, accents removed, non-alphanumerics to `-`). When you add text, add it to Turso in all five languages before publishing.
 
 ## Key Translation Keys (data-t attributes in use)
 

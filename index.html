@@ -60,16 +60,13 @@
   <div class="hero-overlay"></div>
   <div class="container hero-content">
     <div class="reveal in-view">
-      <h1 class="display-xl">
-        <span class="hero-word">Endless</span> <span class="hero-word">experiences,</span>
-        <span class="hero-line italic">just one soul.</span>
-      </h1>
+      <h1 class="display-xl" data-t="hp.hero.title"><span class="hero-word">Endless</span> <span class="hero-word">experiences,</span> <span class="hero-line italic">just one soul.</span></h1>
       <span class="eyebrow hero-signature">White Soul Ibiza</span>
     </div>
   </div>
   <div class="hero-meta">
     <span>Talamanca · Es Cubells · San José</span>
-    <span class="scroll-hint">Scroll</span>
+    <span class="scroll-hint" data-t="hp.hero.scroll">Scroll</span>
   </div>
 </section>
 
@@ -85,13 +82,13 @@
       <span class="path-label" data-t="hp.path1.label">Your way</span>
       <h3 data-t="hp.path1.h3">Design<br>your holiday</h3>
       <p data-t="hp.path1.p">Choose your villa, add the experiences and create a holiday made just for you.</p>
-      <a href="experiences.html" class="path-btn" data-t="hp.path1.cta">Build your holiday</a>
+      <button type="button" class="path-btn" data-start="holiday" data-t="hp.path1.cta">Build your holiday</button>
     </article>
     <article class="path path-dark reveal reveal-delay-1" id="tuo-evento">
       <span class="path-label" data-t="hp.path2.label">A special occasion</span>
       <h3 data-t="hp.path2.h3">Plan<br>your event</h3>
       <p data-t="hp.path2.p">Choose your location, add your services and create an event made just for you.</p>
-      <a href="services.html#svc-events" class="path-btn" data-t="hp.path2.cta">Create your event</a>
+      <button type="button" class="path-btn" data-start="event" data-t="hp.path2.cta">Create your event</button>
     </article>
   </div>
 </section>
@@ -124,16 +121,16 @@
         <img src="assets/home/boat.jpg" alt="Boat on the sea of Ibiza" loading="lazy">
         <span class="exp-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v14M12 4 5 14h7M13 8l6 6h-6M3 18h18l-2 3H5z"/></svg></span>
         <span class="exp-label" data-t="hp.exp.yachts.label">At sea</span>
-        <strong>Yachts &amp; Boats</strong>
+        <strong data-t="hp.exp.yachts.title">Yachts &amp; Boats</strong>
         <span class="exp-open"><span data-t="hp.exp.yachts.open">Ibiza from the sea</span> <b aria-hidden="true">↗</b></span>
       </a>
-      <a class="exp-tile reveal reveal-delay-1" href="services.html#svc-events">
+      <button type="button" class="exp-tile reveal reveal-delay-1" data-start="event">
         <img src="assets/home/celebration.jpg" alt="Private celebration in Ibiza" loading="lazy">
         <span class="exp-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 2 2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5z"/></svg></span>
         <span class="exp-label" data-t="hp.exp.events.label">Celebrate</span>
-        <strong>Event Planning</strong>
+        <strong data-t="hp.exp.events.title">Event Planning</strong>
         <span class="exp-open"><span data-t="hp.exp.events.open">Design your event</span> <b aria-hidden="true">↗</b></span>
-      </a>
+      </button>
     </div>
   </div>
 </section>
@@ -150,84 +147,84 @@
     <div class="vc-bar reveal">
       <div class="vc-filters">
         <div class="vc-group">
-          <label class="vc-label">Guests</label>
+          <label class="vc-label" data-t="vc.guests">Guests</label>
           <select class="vc-select" id="vcGuests">
-            <option value="0">Any</option>
+            <option value="0" data-t="common.any">Any</option>
             <option value="8">8+</option>
             <option value="10">10+</option>
             <option value="12">12+</option>
           </select>
         </div>
         <div class="vc-group">
-          <label class="vc-label">Min. stay</label>
+          <label class="vc-label" data-t="vc.minstay">Min. stay</label>
           <select class="vc-select" id="vcMinNights">
-            <option value="0">Any</option>
-            <option value="3">Up to 3 nights</option>
-            <option value="4">Up to 4 nights</option>
-            <option value="5">Up to 5 nights</option>
-            <option value="7">7 nights (1 week)</option>
+            <option value="0" data-t="common.any">Any</option>
+            <option value="3" data-t="vc.n3">Up to 3 nights</option>
+            <option value="4" data-t="vc.n4">Up to 4 nights</option>
+            <option value="5" data-t="vc.n5">Up to 5 nights</option>
+            <option value="7" data-t="vc.n7">7 nights (1 week)</option>
           </select>
         </div>
         <div class="vc-group">
-          <label class="vc-label">Budget / week</label>
+          <label class="vc-label" data-t="vc.budget">Budget / week</label>
           <select class="vc-select" id="vcBudget">
-            <option value="0">Any</option>
-            <option value="5000">Up to €5,000</option>
-            <option value="10000">Up to €10,000</option>
-            <option value="20000">Up to €20,000</option>
-            <option value="35000">Up to €35,000</option>
-            <option value="60000">Up to €60,000</option>
-            <option value="80000">Up to €80,000</option>
-            <option value="100000">Up to €100,000</option>
+            <option value="0" data-t="common.any">Any</option>
+            <option value="5000" data-t="vc.b5000">Up to €5,000</option>
+            <option value="10000" data-t="vc.b10000">Up to €10,000</option>
+            <option value="20000" data-t="vc.b20000">Up to €20,000</option>
+            <option value="35000" data-t="vc.b35000">Up to €35,000</option>
+            <option value="60000" data-t="vc.b60000">Up to €60,000</option>
+            <option value="80000" data-t="vc.b80000">Up to €80,000</option>
+            <option value="100000" data-t="vc.b100000">Up to €100,000</option>
           </select>
         </div>
         <label class="vc-flex-label">
           <input type="checkbox" id="vcFlexible" class="vc-check">
-          <span>Flexible dates</span>
+          <span data-t="vc.flex">Flexible dates</span>
         </label>
       </div>
       <div class="vc-views">
         <button class="vc-view-btn active" data-view="grid" aria-label="Grid view">
           <svg viewBox="0 0 20 20" fill="currentColor"><rect x="1" y="1" width="7" height="7" rx="0.5"/><rect x="12" y="1" width="7" height="7" rx="0.5"/><rect x="1" y="12" width="7" height="7" rx="0.5"/><rect x="12" y="12" width="7" height="7" rx="0.5"/></svg>
-          Grid
+          <span data-t="vc.grid">Grid</span>
         </button>
         <button class="vc-view-btn" data-view="map" aria-label="Map view">
           <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="1,5 1,18 7,15 13,18 19,15 19,2 13,5 7,2"/><line x1="7" y1="2" x2="7" y2="15"/><line x1="13" y1="5" x2="13" y2="18"/></svg>
-          Map
+          <span data-t="vc.map">Map</span>
         </button>
       </div>
     </div>
 
-    <p class="vc-note reveal">Over 50% of our villas require a minimum stay of 7 nights.</p>
+    <p class="vc-note reveal" data-t="vc.note">Over 50% of our villas require a minimum stay of 7 nights.</p>
 
     <div class="vc-pagination" id="vcPagination"></div>
 
     <!-- Grid view -->
     <div class="vc-grid" id="vcGrid">
-      <div class="coll-villa" data-villa="villa-eliana"  data-sleeps="12" data-min="4043"  data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-eliana.jpg"  alt="Villa Eliana"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Agustín</span><span class="coll-villa-name">Villa Eliana</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-      <div class="coll-villa" data-villa="can-nora"      data-sleeps="12" data-min="4851"  data-minnights="3" data-flexible="1"><div class="coll-villa-img"><img src="assets/villas/can-nora.jpg"      alt="Can Nora"></div><div class="coll-villa-info"><span class="coll-villa-loc">Santa Gertrudis</span><span class="coll-villa-name">Can Nora</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-      <div class="coll-villa" data-villa="can-octavia"   data-sleeps="12" data-min="12980" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/can-octavia.jpg"   alt="Can Octavia"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Lorenzo</span><span class="coll-villa-name">Can Octavia</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-      <div class="coll-villa" data-villa="villa-amado"   data-sleeps="12" data-min="8800"  data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-amado.jpg"   alt="Villa Amado"></div><div class="coll-villa-info"><span class="coll-villa-loc">Jesús</span><span class="coll-villa-name">Villa Amado</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-      <div class="coll-villa" data-villa="villa-brielle" data-sleeps="12" data-min="9240"  data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-brielle.jpg" alt="Villa Brielle"></div><div class="coll-villa-info"><span class="coll-villa-loc">Cala Tarida</span><span class="coll-villa-name">Villa Brielle</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-      <div class="coll-villa" data-villa="villa-samy"    data-sleeps="10" data-min="4120"  data-minnights="5" data-flexible="1"><div class="coll-villa-img"><img src="assets/villas/villa-samy.jpg"    alt="Villa Samy"></div><div class="coll-villa-info"><span class="coll-villa-loc">Cap Martinet</span><span class="coll-villa-name">Villa Samy</span><span class="coll-villa-beds">5 bedrooms · sleeps 10</span></div></div>
-      <div class="coll-villa" data-villa="can-savasana"  data-sleeps="10" data-min="6600"  data-minnights="3" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/can-savasana.jpg"  alt="Can Savasana"></div><div class="coll-villa-info"><span class="coll-villa-loc">Cala Salada</span><span class="coll-villa-name">Can Savasana</span><span class="coll-villa-beds">5 bedrooms · sleeps 10</span></div></div>
-      <div class="coll-villa" data-villa="villa-trevi"   data-sleeps="8"  data-min="4400"  data-minnights="4" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-trevi.jpg"   alt="Villa Trevi"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Carlos</span><span class="coll-villa-name">Villa Trevi</span><span class="coll-villa-beds">4 bedrooms · sleeps 8</span></div></div>
-      <div class="coll-villa" data-villa="villa-puma"    data-sleeps="12" data-min="16500" data-minnights="1" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-puma.jpg"    alt="Villa Puma"></div><div class="coll-villa-info"><span class="coll-villa-loc">Vista Alegre</span><span class="coll-villa-name">Villa Puma</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-      <div class="coll-villa" data-villa="can-josie"     data-sleeps="12" data-min="16940" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/can-josie.jpg"     alt="Can Josie"></div><div class="coll-villa-info"><span class="coll-villa-loc">San José</span><span class="coll-villa-name">Can Josie</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-      <div class="coll-villa" data-villa="villa-margo"   data-sleeps="12" data-min="16500" data-minnights="4" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-margo.jpg"   alt="Villa Margo"></div><div class="coll-villa-info"><span class="coll-villa-loc">San José</span><span class="coll-villa-name">Villa Margo</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-      <div class="coll-villa" data-villa="villa-adalyn"  data-sleeps="12" data-min="36300" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-adalyn.jpg"  alt="Villa Adalyn"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Agustín</span><span class="coll-villa-name">Villa Adalyn</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-      <div class="coll-villa" data-villa="villa-meghan"  data-sleeps="12" data-min="16830" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-meghan.jpg"  alt="Villa Meghan"></div><div class="coll-villa-info"><span class="coll-villa-loc">San José</span><span class="coll-villa-name">Villa Meghan</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-      <div class="coll-villa" data-villa="can-danza"     data-sleeps="12" data-min="17380" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/can-danza.jpg"     alt="Can Danza"></div><div class="coll-villa-info"><span class="coll-villa-loc">San José</span><span class="coll-villa-name">Can Danza</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-      <div class="coll-villa" data-villa="villa-evelyn"  data-sleeps="8"  data-min="17050" data-minnights="7" data-flexible="1"><div class="coll-villa-img"><img src="assets/villas/villa-evelyn.jpg"  alt="Villa Evelyn"></div><div class="coll-villa-info"><span class="coll-villa-loc">Cala Jondal</span><span class="coll-villa-name">Villa Evelyn</span><span class="coll-villa-beds">4 bedrooms · sleeps 8</span></div></div>
-      <div class="coll-villa" data-villa="villa-marielle" data-sleeps="10" data-min="55000" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-marielle.jpg" alt="Villa Marielle"></div><div class="coll-villa-info"><span class="coll-villa-loc">San José</span><span class="coll-villa-name">Villa Marielle</span><span class="coll-villa-beds">5 bedrooms · sleeps 10</span></div></div>
-      <div class="coll-villa" data-villa="villa-bailey"  data-sleeps="8"  data-min="63250" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-bailey.jpg"  alt="Villa Bailey"></div><div class="coll-villa-info"><span class="coll-villa-loc">Es Cubells</span><span class="coll-villa-name">Villa Bailey</span><span class="coll-villa-beds">6 bedrooms · sleeps 8</span></div></div>
-      <div class="coll-villa" data-villa="can-nemo"      data-sleeps="12" data-min="30000" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/can-nemo.jpg"      alt="Can Nemo"></div><div class="coll-villa-info"><span class="coll-villa-loc">Cap Martinet</span><span class="coll-villa-name">Can Nemo</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-      <div class="coll-villa" data-villa="finca-utopia"  data-sleeps="18" data-min="45000" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/finca-utopia.jpg"  alt="Finca Utopia"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Lorenzo</span><span class="coll-villa-name">Finca Utopia</span><span class="coll-villa-beds">9 bedrooms · sleeps 18</span></div></div>
-      <div class="coll-villa" data-villa="villa-judith"  data-sleeps="8"  data-min="47300" data-minnights="7" data-flexible="1"><div class="coll-villa-img"><img src="assets/villas/villa-judith.jpg"  alt="Villa Judith"></div><div class="coll-villa-info"><span class="coll-villa-loc">Cala Llonga</span><span class="coll-villa-name">Villa Judith</span><span class="coll-villa-beds">4 bedrooms · sleeps 8</span></div></div>
-      <div class="coll-villa" data-villa="can-xarraca"   data-sleeps="12" data-min="15125" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/can-xarraca.jpg"   alt="Can Xarraca"></div><div class="coll-villa-info"><span class="coll-villa-loc">Portinatx</span><span class="coll-villa-name">Can Xarraca</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
-      <div class="coll-villa" data-villa="can-nuri"      data-sleeps="12" data-min="27500" data-minnights="3" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/can-nuri.jpg"      alt="Can Nuri"></div><div class="coll-villa-info"><span class="coll-villa-loc">Sa Caleta</span><span class="coll-villa-name">Can Nuri</span><span class="coll-villa-beds">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="villa-eliana"  data-sleeps="12" data-min="4043"  data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-eliana.jpg"  alt="Villa Eliana"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Agustín</span><span class="coll-villa-name">Villa Eliana</span><span class="coll-villa-beds" data-beds="6" data-sleeps="12">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="can-nora"      data-sleeps="12" data-min="4851"  data-minnights="3" data-flexible="1"><div class="coll-villa-img"><img src="assets/villas/can-nora.jpg"      alt="Can Nora"></div><div class="coll-villa-info"><span class="coll-villa-loc">Santa Gertrudis</span><span class="coll-villa-name">Can Nora</span><span class="coll-villa-beds" data-beds="6" data-sleeps="12">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="can-octavia"   data-sleeps="12" data-min="12980" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/can-octavia.jpg"   alt="Can Octavia"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Lorenzo</span><span class="coll-villa-name">Can Octavia</span><span class="coll-villa-beds" data-beds="6" data-sleeps="12">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="villa-amado"   data-sleeps="12" data-min="8800"  data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-amado.jpg"   alt="Villa Amado"></div><div class="coll-villa-info"><span class="coll-villa-loc">Jesús</span><span class="coll-villa-name">Villa Amado</span><span class="coll-villa-beds" data-beds="6" data-sleeps="12">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="villa-brielle" data-sleeps="12" data-min="9240"  data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-brielle.jpg" alt="Villa Brielle"></div><div class="coll-villa-info"><span class="coll-villa-loc">Cala Tarida</span><span class="coll-villa-name">Villa Brielle</span><span class="coll-villa-beds" data-beds="6" data-sleeps="12">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="villa-samy"    data-sleeps="10" data-min="4120"  data-minnights="5" data-flexible="1"><div class="coll-villa-img"><img src="assets/villas/villa-samy.jpg"    alt="Villa Samy"></div><div class="coll-villa-info"><span class="coll-villa-loc">Cap Martinet</span><span class="coll-villa-name">Villa Samy</span><span class="coll-villa-beds" data-beds="5" data-sleeps="10">5 bedrooms · sleeps 10</span></div></div>
+      <div class="coll-villa" data-villa="can-savasana"  data-sleeps="10" data-min="6600"  data-minnights="3" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/can-savasana.jpg"  alt="Can Savasana"></div><div class="coll-villa-info"><span class="coll-villa-loc">Cala Salada</span><span class="coll-villa-name">Can Savasana</span><span class="coll-villa-beds" data-beds="5" data-sleeps="10">5 bedrooms · sleeps 10</span></div></div>
+      <div class="coll-villa" data-villa="villa-trevi"   data-sleeps="8"  data-min="4400"  data-minnights="4" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-trevi.jpg"   alt="Villa Trevi"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Carlos</span><span class="coll-villa-name">Villa Trevi</span><span class="coll-villa-beds" data-beds="4" data-sleeps="8">4 bedrooms · sleeps 8</span></div></div>
+      <div class="coll-villa" data-villa="villa-puma"    data-sleeps="12" data-min="16500" data-minnights="1" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-puma.jpg"    alt="Villa Puma"></div><div class="coll-villa-info"><span class="coll-villa-loc">Vista Alegre</span><span class="coll-villa-name">Villa Puma</span><span class="coll-villa-beds" data-beds="6" data-sleeps="12">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="can-josie"     data-sleeps="12" data-min="16940" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/can-josie.jpg"     alt="Can Josie"></div><div class="coll-villa-info"><span class="coll-villa-loc">San José</span><span class="coll-villa-name">Can Josie</span><span class="coll-villa-beds" data-beds="6" data-sleeps="12">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="villa-margo"   data-sleeps="12" data-min="16500" data-minnights="4" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-margo.jpg"   alt="Villa Margo"></div><div class="coll-villa-info"><span class="coll-villa-loc">San José</span><span class="coll-villa-name">Villa Margo</span><span class="coll-villa-beds" data-beds="6" data-sleeps="12">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="villa-adalyn"  data-sleeps="12" data-min="36300" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-adalyn.jpg"  alt="Villa Adalyn"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Agustín</span><span class="coll-villa-name">Villa Adalyn</span><span class="coll-villa-beds" data-beds="6" data-sleeps="12">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="villa-meghan"  data-sleeps="12" data-min="16830" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-meghan.jpg"  alt="Villa Meghan"></div><div class="coll-villa-info"><span class="coll-villa-loc">San José</span><span class="coll-villa-name">Villa Meghan</span><span class="coll-villa-beds" data-beds="6" data-sleeps="12">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="can-danza"     data-sleeps="12" data-min="17380" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/can-danza.jpg"     alt="Can Danza"></div><div class="coll-villa-info"><span class="coll-villa-loc">San José</span><span class="coll-villa-name">Can Danza</span><span class="coll-villa-beds" data-beds="6" data-sleeps="12">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="villa-evelyn"  data-sleeps="8"  data-min="17050" data-minnights="7" data-flexible="1"><div class="coll-villa-img"><img src="assets/villas/villa-evelyn.jpg"  alt="Villa Evelyn"></div><div class="coll-villa-info"><span class="coll-villa-loc">Cala Jondal</span><span class="coll-villa-name">Villa Evelyn</span><span class="coll-villa-beds" data-beds="4" data-sleeps="8">4 bedrooms · sleeps 8</span></div></div>
+      <div class="coll-villa" data-villa="villa-marielle" data-sleeps="10" data-min="55000" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-marielle.jpg" alt="Villa Marielle"></div><div class="coll-villa-info"><span class="coll-villa-loc">San José</span><span class="coll-villa-name">Villa Marielle</span><span class="coll-villa-beds" data-beds="5" data-sleeps="10">5 bedrooms · sleeps 10</span></div></div>
+      <div class="coll-villa" data-villa="villa-bailey"  data-sleeps="8"  data-min="63250" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/villa-bailey.jpg"  alt="Villa Bailey"></div><div class="coll-villa-info"><span class="coll-villa-loc">Es Cubells</span><span class="coll-villa-name">Villa Bailey</span><span class="coll-villa-beds" data-beds="6" data-sleeps="8">6 bedrooms · sleeps 8</span></div></div>
+      <div class="coll-villa" data-villa="can-nemo"      data-sleeps="12" data-min="30000" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/can-nemo.jpg"      alt="Can Nemo"></div><div class="coll-villa-info"><span class="coll-villa-loc">Cap Martinet</span><span class="coll-villa-name">Can Nemo</span><span class="coll-villa-beds" data-beds="6" data-sleeps="12">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="finca-utopia"  data-sleeps="18" data-min="45000" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/finca-utopia.jpg"  alt="Finca Utopia"></div><div class="coll-villa-info"><span class="coll-villa-loc">San Lorenzo</span><span class="coll-villa-name">Finca Utopia</span><span class="coll-villa-beds" data-beds="9" data-sleeps="18">9 bedrooms · sleeps 18</span></div></div>
+      <div class="coll-villa" data-villa="villa-judith"  data-sleeps="8"  data-min="47300" data-minnights="7" data-flexible="1"><div class="coll-villa-img"><img src="assets/villas/villa-judith.jpg"  alt="Villa Judith"></div><div class="coll-villa-info"><span class="coll-villa-loc">Cala Llonga</span><span class="coll-villa-name">Villa Judith</span><span class="coll-villa-beds" data-beds="4" data-sleeps="8">4 bedrooms · sleeps 8</span></div></div>
+      <div class="coll-villa" data-villa="can-xarraca"   data-sleeps="12" data-min="15125" data-minnights="7" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/can-xarraca.jpg"   alt="Can Xarraca"></div><div class="coll-villa-info"><span class="coll-villa-loc">Portinatx</span><span class="coll-villa-name">Can Xarraca</span><span class="coll-villa-beds" data-beds="6" data-sleeps="12">6 bedrooms · sleeps 12</span></div></div>
+      <div class="coll-villa" data-villa="can-nuri"      data-sleeps="12" data-min="27500" data-minnights="3" data-flexible="0"><div class="coll-villa-img"><img src="assets/villas/can-nuri.jpg"      alt="Can Nuri"></div><div class="coll-villa-info"><span class="coll-villa-loc">Sa Caleta</span><span class="coll-villa-name">Can Nuri</span><span class="coll-villa-beds" data-beds="6" data-sleeps="12">6 bedrooms · sleeps 12</span></div></div>
     </div>
-    <p class="vc-noresults" id="vcNoResults" hidden>No villas match your filters.</p>
+    <p class="vc-noresults" id="vcNoResults" data-t="vc.noresults" hidden>No villas match your filters.</p>
 
     <!-- Map view -->
     <div class="vc-map-wrap" id="vcMapWrap" hidden>
@@ -272,7 +269,7 @@
             <circle cx="41" cy="12.5" r="2.5"/>
           </svg>
         </div>
-        <h3>Drinks &amp; Beverage</h3>
+        <h3 data-t="hp.svc.drinks.name">Drinks &amp; Beverage</h3>
         <p data-t="hp.svc.drinks.desc">Bartenders, cocktails and a selection of drinks designed around your guests, for an evening or an event.</p>
       </div>
       <div class="service-card reveal reveal-delay-2">
@@ -289,7 +286,7 @@
             <line x1="23" y1="27" x2="9" y2="23"/>
           </svg>
         </div>
-        <h3>Luxury Cars &amp; Transfer</h3>
+        <h3 data-t="hp.svc.cars.name">Luxury Cars &amp; Transfer</h3>
         <p data-t="hp.svc.cars.desc">Choose how to move around the island: airport transfers, special cars or a private driver.</p>
       </div>
       <div class="service-card reveal reveal-delay-3">
@@ -299,7 +296,7 @@
             <path d="M30 6 Q33 10 33 18 L33 26 L52 36 L52 40 L33 34 L33 46 L39 51 L39 54 L30 51 L21 54 L21 51 L27 46 L27 34 L8 40 L8 36 L27 26 L27 18 Q27 10 30 6 Z"/>
           </svg>
         </div>
-        <h3>Private Aviation</h3>
+        <h3 data-t="hp.svc.aviation.name">Private Aviation</h3>
         <p data-t="hp.svc.aviation.desc">Jets, helicopters and private planes: air travel arranged for your stay or your event.</p>
       </div>
       <div class="service-card reveal">
@@ -317,7 +314,7 @@
             <rect x="44.5" y="18" width="2"   height="2"   rx=".4" fill="currentColor" stroke="none"/>
           </svg>
         </div>
-        <h3>Beauty, Wellness &amp; Fitness</h3>
+        <h3 data-t="hp.svc.wellness.name">Beauty, Wellness &amp; Fitness</h3>
         <p data-t="hp.svc.wellness.desc">From yoga and training to beauty treatments, in your villa or at a venue of your choice.</p>
       </div>
       <div class="service-card reveal reveal-delay-1">
@@ -373,7 +370,7 @@
         <p data-t="hp.about.p1">White Soul was born from a deep bond with the island and the wish to let everyone experience it in their own way.</p>
         <p data-t="hp.about.p2">From the most exclusive villas to the most rustic Ibizan fincas, from dinners in the comfort of your villa to the most exclusive access and tailor-made experiences, we select the most evocative places and the finest professionals to offer you impeccable service, designed around your needs.</p>
         <p data-t="hp.about.p3">We listen to what you wish for and build every experience around you. Because every trip to Ibiza is different, and always has something new to reveal.</p>
-        <p class="about-signature">White Soul Ibiza <span class="italic">Endless experiences, just one soul.</span></p>
+        <p class="about-signature">White Soul Ibiza <span class="italic" data-t="hp.about.tagline">Endless experiences, just one soul.</span></p>
         <div style="margin-top:2rem;">
           <a href="about.html" class="btn-text" data-t="cta.story">Our Story</a>
         </div>
@@ -407,7 +404,7 @@
         </div>
         <div class="form-row">
           <div class="form-field">
-            <label for="partner-email">Email</label>
+            <label for="partner-email" data-t="hp.partner.email">Email</label>
             <input id="partner-email" name="email" type="email" autocomplete="email" required>
           </div>
           <div class="form-field">
@@ -444,8 +441,8 @@
       <h2 class="display-lg" data-t="hp.contact.h2">Your next Ibiza experience <span class="italic">starts here.</span></h2>
       <p data-t="hp.contact.p">Tell us what you wish for: we will help you shape your holiday or your event.</p>
       <div class="hero-cta" style="justify-content:center;">
-        <a href="experiences.html" class="btn btn-gold btn-arrow" data-t="hp.contact.cta1">Plan your holiday</a>
-        <a href="services.html#svc-events" class="btn btn-ghost-light" data-t="hp.contact.cta2">Plan your event</a>
+        <button type="button" class="btn btn-gold btn-arrow" data-start="holiday" data-t="hp.contact.cta1">Plan your holiday</button>
+        <button type="button" class="btn btn-ghost-light" data-start="event" data-t="hp.contact.cta2">Plan your event</button>
       </div>
     </div>
   </div>
@@ -462,7 +459,7 @@
             <span class="brand-name" style="color:var(--color-cream);">White Soul Ibiza</span>
           </span>
         </a>
-        <p class="footer-tagline">"Live Ibiza the White Soul way."</p>
+        <p class="footer-tagline" data-t="footer.tagline">Live Ibiza the White Soul way.</p>
         <div class="footer-social">
           <a href="#" aria-label="Instagram">
             <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
@@ -476,32 +473,32 @@
         </div>
       </div>
       <div class="footer-col">
-        <h4>Explore</h4>
+        <h4 data-t="footer.explore">Explore</h4>
         <ul>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="experiences.html">Experiences</a></li>
-          <li><a href="services.html#events">Events</a></li>
-          <li><a href="about.html">About</a></li>
+          <li><a href="services.html" data-t="nav.services">Services</a></li>
+          <li><a href="experiences.html" data-t="nav.custom">Experiences</a></li>
+          <li><a href="services.html#events" data-t="footer.events">Events</a></li>
+          <li><a href="about.html" data-t="nav.about">About</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Discover</h4>
+        <h4 data-t="footer.discover">Discover</h4>
         <ul>
-          <li><a href="testimonials.html">Testimonials</a></li>
-          <li><a href="#">Featured Villas</a></li>
-          <li><a href="#">Ibiza Guide</a></li>
-          <li><a href="#">Journal</a></li>
+          <li><a href="testimonials.html" data-t="nav.testimonials">Testimonials</a></li>
+          <li><a href="#" data-t="footer.featured">Featured Villas</a></li>
+          <li><a href="#" data-t="footer.guide">Ibiza Guide</a></li>
+          <li><a href="#" data-t="footer.journal">Journal</a></li>
         </ul>
       </div>
       <div class="footer-col footer-contact">
-        <h4>Contact</h4>
-        <p>Carrer del Mar, 12<br>Ibiza Town, 07800<br>Balearic Islands</p>
+        <h4 data-t="footer.contact">Contact</h4>
+        <p>Carrer del Mar, 12<br>Ibiza Town, 07800<br><span data-t="footer.balearic">Balearic Islands</span></p>
         <p>+34 617 010 756<br>concierge@whitesoulibiza.com</p>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 White Soul Ibiza · All Rights Reserved</span>
-      <span><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Cookies</a></span>
+      <span data-t="footer.rights">© 2026 White Soul Ibiza · All Rights Reserved</span>
+      <span><a href="#" data-t="footer.privacy">Privacy</a> · <a href="#" data-t="footer.terms">Terms</a> · <a href="#" data-t="footer.cookies">Cookies</a></span>
     </div>
   </div>
 </footer>
@@ -539,30 +536,118 @@
       <div class="villa-modal-meta">
         <div class="villa-meta-item">
           <span class="villa-meta-val villa-modal-beds"></span>
-          <span class="villa-meta-lbl">Bedrooms</span>
+          <span class="villa-meta-lbl" data-t="modal.bedrooms">Bedrooms</span>
         </div>
         <div class="villa-meta-item">
           <span class="villa-meta-val villa-modal-baths"></span>
-          <span class="villa-meta-lbl">Bathrooms</span>
+          <span class="villa-meta-lbl" data-t="modal.bathrooms">Bathrooms</span>
         </div>
         <div class="villa-meta-item">
           <span class="villa-meta-val villa-modal-sleeps"></span>
-          <span class="villa-meta-lbl">Guests</span>
+          <span class="villa-meta-lbl" data-t="vc.guests">Guests</span>
         </div>
       </div>
       <p class="villa-modal-price"></p>
       <p class="villa-modal-license"></p>
       <p class="villa-modal-desc"></p>
       <div class="villa-modal-actions">
-        <a href="contact.html" class="btn btn-primary btn-arrow villa-modal-cta">Request Availability</a>
+        <a href="contact.html" class="btn btn-primary btn-arrow villa-modal-cta" data-t="modal.request">Request Availability</a>
         <a href="" class="villa-modal-wa" target="_blank">
           <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-1-.3-.1-.5-.1-.7.2-.2.3-.7 1-.9 1.1-.2.2-.4.2-.7.1-.3-.1-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4 0-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z"/></svg>
-          Ask on WhatsApp
+          <span data-t="modal.whatsapp">Ask on WhatsApp</span>
         </a>
       </div>
     </div>
   </div>
 </div>
+
+<!-- =============== PLANNER (Build your holiday / Plan your event) =============== -->
+<dialog id="planner" aria-labelledby="planner-title">
+  <div class="planner-top">
+    <span class="eyebrow" id="planner-eyebrow">LA TUA VACANZA, INIZIA QUI</span>
+    <button type="button" class="planner-close" id="planner-close" aria-label="Chiudi">×</button>
+  </div>
+  <h2 id="planner-title">Progetta la tua vacanza</h2>
+  <progress id="planner-progress" max="3" value="1" aria-label="Avanzamento"></progress>
+  <p class="planner-step-label" id="planner-step-label"></p>
+
+  <section class="planner-step" data-step="location" hidden>
+    <p class="planner-intro" data-t="pl.intro.location">Prima scegli come vuoi vivere il tuo evento.</p>
+    <div class="planner-grid planner-grid-2" id="planner-locations"></div>
+  </section>
+
+  <section class="planner-step" data-step="type" hidden>
+    <div class="planner-grid planner-grid-3" id="planner-types"></div>
+  </section>
+
+  <section class="planner-step" data-step="party" hidden>
+    <p class="planner-intro" data-t="pl.intro.party">Scegli il tipo di vacanza che hai in mente. Poi scopri le esperienze da aggiungere.</p>
+    <div class="planner-grid planner-grid-3" id="planner-parties"></div>
+  </section>
+
+  <section class="planner-step" data-step="services" hidden>
+    <p class="planner-intro" id="planner-services-intro"></p>
+    <div class="planner-grid planner-grid-3" id="planner-service-list"></div>
+    <div class="planner-cats" id="planner-event-list" hidden></div>
+  </section>
+
+  <section class="planner-step" data-step="details" hidden>
+    <div class="planner-dates">
+      <label><span id="planner-arrival-label">Si parte</span><input type="date" id="planner-arrival"></label>
+      <label id="planner-departure-wrap"><span>Si torna</span><input type="date" id="planner-departure"></label>
+    </div>
+    <p class="planner-hint" id="planner-stay-preview" aria-live="polite"></p>
+
+    <div class="planner-guests">
+      <div><strong id="planner-guests-title">Quanti siete</strong><span>Conta anche te!</span></div>
+      <div class="planner-stepper">
+        <button type="button" data-guest="-1" aria-label="Un ospite in meno">−</button>
+        <output id="planner-guests-out" aria-live="polite">2</output>
+        <button type="button" data-guest="1" aria-label="Un ospite in più">+</button>
+      </div>
+    </div>
+
+    <div class="planner-budgets">
+      <div class="planner-budget">
+        <span class="planner-budget-label">Budget villa</span>
+        <div class="planner-presets" data-budget="villa">
+          <button type="button" data-value="3000">€ 3.000</button>
+          <button type="button" data-value="5000">€ 5.000</button>
+          <button type="button" data-value="8000">€ 8.000</button>
+        </div>
+        <input type="number" min="0" step="100" id="planner-budget-villa" placeholder="Il tuo importo (€)" inputmode="numeric">
+      </div>
+      <div class="planner-budget">
+        <span class="planner-budget-label">Budget servizi</span>
+        <div class="planner-presets" data-budget="services">
+          <button type="button" data-value="500">€ 500</button>
+          <button type="button" data-value="1000">€ 1.000</button>
+          <button type="button" data-value="2000">€ 2.000</button>
+        </div>
+        <input type="number" min="0" step="100" id="planner-budget-services" placeholder="Il tuo importo (€)" inputmode="numeric">
+      </div>
+    </div>
+    <p class="planner-hint" data-t="pl.budget.note">Puoi lasciare i budget vuoti e farti consigliare. Gli importi sono preferenze di spesa, non preventivi.</p>
+
+    <label class="planner-notes">
+      <span data-t="pl.notes.label">Il dettaglio che la rende tua</span>
+      <textarea id="planner-notes" rows="3" maxlength="1200" placeholder="Una ricorrenza, una zona preferita, qualcosa che ami…"></textarea>
+    </label>
+    <p class="planner-error" id="planner-error" role="alert"></p>
+  </section>
+
+  <div class="planner-result" id="planner-result" hidden>
+    <h3 data-t="pl.result.title">La tua richiesta è pronta</h3>
+    <p data-t="pl.result.text">Il tuo programma email si aprirà con il riepilogo già compilato. Il nostro team ti risponderà con le proposte.</p>
+    <a class="btn btn-primary btn-arrow" id="planner-mail" href="#" data-t="pl.result.cta">Invia la richiesta</a>
+  </div>
+
+  <div class="planner-nav" id="planner-nav">
+    <button type="button" class="planner-back" id="planner-back">Indietro</button>
+    <div class="planner-selected" id="planner-selected" aria-live="polite"></div>
+    <button type="button" class="planner-next" id="planner-next">Continua</button>
+  </div>
+</dialog>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="villa-photos.js"></script>

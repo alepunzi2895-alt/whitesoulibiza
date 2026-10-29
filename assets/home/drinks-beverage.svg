@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Drinks &amp; Beverage a Ibiza</title>
+  <desc id="desc">Cocktail e calici su un tavolo al tramonto.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e8cba8"/><stop offset=".53" stop-color="#a97655"/><stop offset="1" stop-color="#24494b"/></linearGradient>
+    <linearGradient id="drink" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f7d792"/><stop offset="1" stop-color="#cf8f46"/></linearGradient>
+  </defs>
+  <rect width="1200" height="720" fill="url(#bg)"/>
+  <circle cx="936" cy="150" r="104" fill="#fff0d6" opacity=".65"/>
+  <path d="M0 430c196-61 359-4 537-42 218-46 422-24 663-77v409H0z" fill="#294b4c" opacity=".82"/>
+  <path d="M0 525c234-40 397-5 585-34 217-33 394-14 615-53" fill="none" stroke="#d7c8af" stroke-opacity=".38" stroke-width="4"/>
+  <ellipse cx="606" cy="602" rx="371" ry="52" fill="#172f31" opacity=".4"/>
+  <path d="M303 213h206l-32 155c-8 39-40 66-80 66s-72-27-80-66z" fill="#f3eee4" fill-opacity=".86" stroke="#fffaf0" stroke-width="7"/>
+  <path d="M325 286h162l-13 69c-6 29-30 49-68 49s-62-20-68-49z" fill="url(#drink)"/>
+  <path d="M396 435v103m-57 7h114" stroke="#f6eddf" stroke-width="9" stroke-linecap="round"/>
+  <path d="M634 253h181l-29 216c-5 38-31 61-61 61s-56-23-61-61z" fill="#f4ead9" fill-opacity=".85" stroke="#fffaf0" stroke-width="7"/>
+  <path d="M652 326h145l-12 118c-4 27-24 43-61 43s-57-16-61-43z" fill="#f0cf91" fill-opacity=".82"/>
+  <path d="M725 535v71m-52 7h104" stroke="#f6eddf" stroke-width="9" stroke-linecap="round"/>
+  <path d="M481 214c27-57 72-77 111-48-17 48-56 76-111 48z" fill="#7b916b"/>
+  <path d="M483 211c34-20 68-33 99-41" fill="none" stroke="#dce4c8" stroke-width="4"/>
+  <circle cx="847" cy="274" r="41" fill="#e6c373"/><circle cx="847" cy="274" r="27" fill="#f6ebcc"/>
+  <path d="M844 231c3-17 12-27 25-30" fill="none" stroke="#71835f" stroke-width="8" stroke-linecap="round"/>
+</svg>
