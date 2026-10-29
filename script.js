@@ -127,20 +127,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Language switcher ---
-  const langButtons = document.querySelectorAll('[data-lang]');
-  const savedLang = 'EN';
-
-  langButtons.forEach(btn => {
-    btn.addEventListener('click', async () => {
-      const lang = btn.dataset.lang;
-      langButtons.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
-      await applyLanguage(lang);
-      localStorage.setItem('ws_lang', lang);
-    });
-  });
-
-  langButtons.forEach(b => b.classList.toggle('active', b.dataset.lang === savedLang));
+  // --- Language switcher: a dropdown in the header, English by default ---
+  const savedLang = readSavedLanguage();
+  buildLanguageSelect(savedLang);
 
   // Apply fallback immediately, then fetch from DB
   applyTranslationDict(fallbackTranslations[savedLang] || fallbackTranslations.EN);
@@ -1206,7 +1195,7 @@ function initAccount() {
   btn.type = 'button';
   btn.id = 'account-btn';
   btn.className = 'account-btn';
-  nav.insertBefore(btn, nav.querySelector('.lang-switcher'));
+  nav.insertBefore(btn, nav.querySelector('.menu-toggle'));
 
   document.body.insertAdjacentHTML('beforeend', `
 <dialog id="account" aria-labelledby="account-title">
@@ -1501,4 +1490,35 @@ async function saveCurrentProject() {
   const { ok, data } = await accountApi('projects', 'POST', { title: projectTitle(), data: projectSnapshot() });
   status.textContent = ok ? t('acc.saved') : t('acc.err.generic');
   if (!document.getElementById('planner').open) document.getElementById('planner').showModal();
+}
+
+// =====================================
+// LANGUAGE DROPDOWN
+// =====================================
+const LANGUAGE_NAMES = { EN: 'English', IT: 'Italiano', ES: 'Español', FR: 'Français', DE: 'Deutsch' };
+
+function readSavedLanguage() {
+  try {
+    const saved = localStorage.getItem('ws_lang');
+    return LANGUAGE_NAMES[saved] ? saved : 'EN';
+  } catch (err) {
+    return 'EN';
+  }
+}
+
+// Replaces the old row of language buttons with a select in the same place
+function buildLanguageSelect(current) {
+  const old = document.querySelector('.lang-switcher');
+  if (!old) return;
+  const select = document.createElement('select');
+  select.className = 'lang-select';
+  select.setAttribute('aria-label', 'Language');
+  select.innerHTML = Object.entries(LANGUAGE_NAMES)
+    .map(([code, name]) => `<option value="${code}"${code === current ? ' selected' : ''}>${name}</option>`)
+    .join('');
+  select.addEventListener('change', async () => {
+    try { localStorage.setItem('ws_lang', select.value); } catch (err) { /* private mode: keep going */ }
+    await applyLanguage(select.value);
+  });
+  old.replaceWith(select);
 }
