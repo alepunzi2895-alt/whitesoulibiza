@@ -209,6 +209,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Planner: Build your holiday / Plan your event ---
   initPlanner();
 
+  // --- Accounts: header button and saving projects ---
+  initAccount();
+
   // --- Form (prevent default submission) ---
   document.querySelectorAll('form[data-form]').forEach(form => {
     form.addEventListener('submit', (e) => {
@@ -864,6 +867,22 @@ function initPlanner() {
   document.getElementById('planner-next').addEventListener('click', plannerNext);
   document.getElementById('planner-back').addEventListener('click', plannerBack);
 
+  // Save button and status line on the summary step
+  const mail = document.getElementById('planner-mail');
+  const save = document.createElement('button');
+  save.type = 'button';
+  save.id = 'planner-save';
+  save.className = 'acc-save';
+  save.setAttribute('data-t', 'acc.save');
+  save.textContent = t('acc.save');
+  save.addEventListener('click', onSaveProject);
+  mail.insertAdjacentElement('afterend', save);
+  const saved = document.createElement('p');
+  saved.id = 'planner-saved';
+  saved.className = 'planner-saved';
+  saved.setAttribute('role', 'status');
+  save.insertAdjacentElement('afterend', saved);
+
   // Single-choice tiles advance to the next step
   dialog.addEventListener('click', (e) => {
     const tile = e.target.closest('button[data-pick]');
@@ -1176,4 +1195,332 @@ function renderResult() {
     ? t('pl.mail.subject.event', { x: t('type.name.' + pslug(plannerState.type)) })
     : t('pl.mail.subject.holiday', { x: t('party.name.' + pslug(plannerState.party)) });
   document.getElementById('planner-mail').href = `mailto:concierge@whitesoulibiza.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(requestSummary())}`;
+}
+
+// =====================================
+// ACCOUNTS (register, log in, save planner projects)
+// =====================================
+// Public Google OAuth client ID. Leave empty and the Google button stays hidden.
+const GOOGLE_CLIENT_ID = '';
+
+const accountState = { user: null, pendingSave: false, googleLoaded: false };
+
+// Calls the account API; returns { ok, status, data }
+async function accountApi(path, method = 'GET', body) {
+  try {
+    const res = await fetch('/api/' + path, {
+      method,
+      headers: body ? { 'Content-Type': 'application/json' } : {},
+      body: body ? JSON.stringify(body) : undefined,
+      credentials: 'same-origin',
+    });
+    return { ok: res.ok, status: res.status, data: await res.json().catch(() => ({})) };
+  } catch (err) {
+    return { ok: false, status: 0, data: { error: 'network' } };
+  }
+}
+
+function initAccount() {
+  const nav = document.querySelector('.nav-right');
+  if (!nav || document.getElementById('account')) return;
+
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.id = 'account-btn';
+  btn.className = 'account-btn';
+  nav.insertBefore(btn, nav.querySelector('.lang-switcher'));
+
+  document.body.insertAdjacentHTML('beforeend', `
+<dialog id="account" aria-labelledby="account-title">
+  <div class="planner-top">
+    <span class="eyebrow" data-t="acc.eyebrow">IL TUO SPAZIO</span>
+    <button type="button" class="planner-close" id="account-close" aria-label="×">×</button>
+  </div>
+  <h2 id="account-title"></h2>
+
+  <div id="account-auth">
+    <div class="acc-tabs" role="tablist">
+      <button type="button" data-tab="login" data-t="acc.login">Accedi</button>
+      <button type="button" data-tab="register" data-t="acc.register">Registrati</button>
+    </div>
+
+    <form class="acc-form" id="acc-login" novalidate>
+      <label><span data-t="acc.identifier">Email o cellulare</span><input name="identifier" autocomplete="username" required></label>
+      <label><span data-t="acc.password">Password</span><input name="password" type="password" autocomplete="current-password" required></label>
+      <button type="submit" class="acc-submit" data-t="acc.submit.login">Accedi</button>
+    </form>
+
+    <form class="acc-form" id="acc-register" novalidate hidden>
+      <label><span data-t="acc.name">Nome</span><input name="name" autocomplete="name" required></label>
+      <label><span data-t="acc.email">Email</span><input name="email" type="email" autocomplete="email" required></label>
+      <label><span data-t="acc.phone">Cellulare</span><input name="phone" type="tel" autocomplete="tel"></label>
+      <label><span data-t="acc.password">Password</span><input name="password" type="password" autocomplete="new-password" minlength="8" required></label>
+      <label class="acc-consent"><input name="consent" type="checkbox" required><span data-t="acc.consent">Acconsento al trattamento dei miei dati per salvare i progetti.</span></label>
+      <button type="submit" class="acc-submit" data-t="acc.submit.register">Crea il tuo spazio</button>
+    </form>
+
+    <div class="acc-google-wrap" id="acc-google-wrap" hidden>
+      <p class="acc-or" data-t="acc.or">oppure</p>
+      <div id="acc-google"></div>
+      <p class="acc-note" data-t="acc.google.note">Accedendo accetti il trattamento dei dati per salvare i tuoi progetti.</p>
+    </div>
+
+    <button type="button" class="acc-switch" id="acc-switch"></button>
+    <p class="acc-error" id="acc-error" role="alert"></p>
+  </div>
+
+  <div id="account-panel" hidden>
+    <p class="acc-hello" id="acc-hello"></p>
+    <h3 class="acc-subtitle" data-t="acc.projects">I tuoi progetti</h3>
+    <ul class="acc-projects" id="acc-projects"></ul>
+    <button type="button" class="acc-switch" id="acc-logout" data-t="acc.logout">Esci</button>
+  </div>
+</dialog>`);
+
+  btn.addEventListener('click', () => openAccount());
+  document.getElementById('account-close').addEventListener('click', () => document.getElementById('account').close());
+  document.querySelectorAll('#account .acc-tabs button').forEach(tab => {
+    tab.addEventListener('click', () => showAccountTab(tab.dataset.tab));
+  });
+  document.getElementById('acc-switch').addEventListener('click', () => {
+    showAccountTab(document.getElementById('acc-register').hidden ? 'register' : 'login');
+  });
+  document.getElementById('acc-login').addEventListener('submit', submitLogin);
+  document.getElementById('acc-register').addEventListener('submit', submitRegister);
+  document.getElementById('acc-logout').addEventListener('click', logoutAccount);
+  document.getElementById('acc-projects').addEventListener('click', onProjectAction);
+  document.addEventListener('ws:lang', renderAccountHeader);
+
+  refreshAccount();
+}
+
+async function refreshAccount() {
+  const { ok, data } = await accountApi('me');
+  accountState.user = ok ? data.account : null;
+  renderAccountHeader();
+}
+
+function renderAccountHeader() {
+  const btn = document.getElementById('account-btn');
+  if (!btn) return;
+  btn.textContent = accountState.user ? accountState.user.name.split(' ')[0] : t('acc.login');
+}
+
+function openAccount(tab = 'login', message = '') {
+  const dialog = document.getElementById('account');
+  dialog.querySelectorAll('.acc-tabs button').forEach(b => b.setAttribute('aria-selected', 'false'));
+  document.getElementById('account-auth').hidden = !!accountState.user;
+  document.getElementById('account-panel').hidden = !accountState.user;
+  if (accountState.user) {
+    renderAccountPanel();
+  } else {
+    showAccountTab(tab);
+    document.getElementById('acc-error').textContent = message;
+  }
+  renderAccountTitle();
+  if (!dialog.open) dialog.showModal();
+}
+
+function renderAccountTitle() {
+  const title = accountState.user
+    ? t('acc.title.panel')
+    : document.getElementById('acc-register').hidden ? t('acc.title.login') : t('acc.title.register');
+  document.getElementById('account-title').textContent = title;
+  document.getElementById('acc-hello').textContent = accountState.user ? t('acc.hello', { name: accountState.user.name }) : '';
+}
+
+function showAccountTab(tab) {
+  const isRegister = tab === 'register';
+  document.getElementById('acc-login').hidden = isRegister;
+  document.getElementById('acc-register').hidden = !isRegister;
+  document.querySelectorAll('#account .acc-tabs button').forEach(b => {
+    b.setAttribute('aria-selected', String(b.dataset.tab === tab));
+  });
+  document.getElementById('acc-switch').textContent = isRegister ? t('acc.switch.login') : t('acc.switch.register');
+  document.getElementById('acc-error').textContent = '';
+  document.getElementById('acc-google-wrap').hidden = !GOOGLE_CLIENT_ID;
+  if (GOOGLE_CLIENT_ID) loadGoogleButton();
+  renderAccountTitle();
+}
+
+function accountError(code) {
+  const keys = { invalid: 'acc.err.invalid', taken: 'acc.err.taken', password: 'acc.err.password', email: 'acc.err.email', name: 'acc.err.name', consent: 'acc.err.consent' };
+  document.getElementById('acc-error').textContent = t(keys[code] || 'acc.err.generic');
+}
+
+async function submitLogin(e) {
+  e.preventDefault();
+  const form = e.target;
+  const body = { identifier: form.identifier.value, password: form.password.value };
+  const { ok, data } = await accountApi('login', 'POST', body);
+  if (!ok) return accountError(data.error);
+  await afterLogin(data.account);
+}
+
+async function submitRegister(e) {
+  e.preventDefault();
+  const form = e.target;
+  const body = {
+    name: form.name.value,
+    email: form.email.value,
+    phone: form.phone.value,
+    password: form.password.value,
+    consent: form.consent.checked,
+  };
+  const { ok, data } = await accountApi('register', 'POST', body);
+  if (!ok) return accountError(data.error);
+  await afterLogin(data.account);
+}
+
+// Google button from Google Identity Services; the browser sends the ID token to /api/google
+function loadGoogleButton() {
+  const render = () => {
+    const holder = document.getElementById('acc-google');
+    if (!holder || !window.google || !window.google.accounts || holder.childElementCount) return;
+    window.google.accounts.id.initialize({
+      client_id: GOOGLE_CLIENT_ID,
+      callback: async (response) => {
+        const { ok, data } = await accountApi('google', 'POST', { credential: response.credential });
+        if (!ok) return accountError(data.error);
+        await afterLogin(data.account);
+      },
+    });
+    window.google.accounts.id.renderButton(holder, { theme: 'outline', size: 'large', text: 'continue_with', shape: 'pill', width: 300 });
+  };
+  if (window.google && window.google.accounts) return render();
+  if (accountState.googleLoaded) return;
+  accountState.googleLoaded = true;
+  const script = document.createElement('script');
+  script.src = 'https://accounts.google.com/gsi/client';
+  script.async = true;
+  script.onload = render;
+  document.head.appendChild(script);
+}
+
+async function afterLogin(account) {
+  accountState.user = account;
+  renderAccountHeader();
+  if (accountState.pendingSave) {
+    accountState.pendingSave = false;
+    document.getElementById('account').close();
+    await saveCurrentProject();
+    return;
+  }
+  openAccount();
+}
+
+async function logoutAccount() {
+  await accountApi('logout', 'POST');
+  accountState.user = null;
+  renderAccountHeader();
+  document.getElementById('account').close();
+}
+
+async function renderAccountPanel() {
+  const list = document.getElementById('acc-projects');
+  list.innerHTML = '';
+  const { ok, data } = await accountApi('projects');
+  if (!ok) {
+    list.innerHTML = `<li class="acc-empty">${t('acc.err.generic')}</li>`;
+    return;
+  }
+  if (!data.projects.length) {
+    list.innerHTML = `<li class="acc-empty">${t('acc.projects.empty')}</li>`;
+    return;
+  }
+  const locale = { EN: 'en-GB', IT: 'it-IT', ES: 'es-ES', FR: 'fr-FR', DE: 'de-DE' }[currentLang] || 'en-GB';
+  list.innerHTML = data.projects.map(p => `
+    <li class="acc-project" data-id="${p.id}">
+      <div><strong>${escapeHtml(p.title)}</strong><span>${new Date(p.created_at).toLocaleDateString(locale)}</span></div>
+      <div class="acc-project-actions">
+        <button type="button" data-action="resume" data-id="${p.id}">${t('acc.resume')}</button>
+        <button type="button" data-action="delete" data-id="${p.id}">${t('acc.delete')}</button>
+      </div>
+    </li>`).join('');
+  list.projects = data.projects; // read back by the resume buttons
+}
+
+function escapeHtml(text) {
+  return String(text).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+async function onProjectAction(e) {
+  const btn = e.target.closest('button[data-action]');
+  if (!btn) return;
+  const list = document.getElementById('acc-projects');
+  if (btn.dataset.action === 'delete') {
+    if (!window.confirm(t('acc.delete.confirm'))) return;
+    await accountApi('projects?id=' + encodeURIComponent(btn.dataset.id), 'DELETE');
+    return renderAccountPanel();
+  }
+  const project = (list.projects || []).find(p => p.id === btn.dataset.id);
+  if (project) {
+    document.getElementById('account').close();
+    restoreProject(project.data);
+  }
+}
+
+// What a saved project stores: the planner state plus the details typed in the form
+function projectSnapshot() {
+  return {
+    mode: plannerState.mode,
+    party: plannerState.party,
+    location: plannerState.location,
+    type: plannerState.type,
+    services: [...plannerState.services],
+    options: [...plannerState.options],
+    guests: plannerState.guests,
+    arrival: document.getElementById('planner-arrival').value,
+    departure: document.getElementById('planner-departure').value,
+    budgetVilla: document.getElementById('planner-budget-villa').value,
+    budgetServices: document.getElementById('planner-budget-services').value,
+    notes: document.getElementById('planner-notes').value,
+  };
+}
+
+function projectTitle() {
+  const d = projectSnapshot();
+  if (d.mode === 'event') return `${t('type.name.' + pslug(d.type))} · ${d.arrival}`;
+  return `${t('party.name.' + pslug(d.party))} · ${d.arrival} → ${d.departure}`;
+}
+
+// Rebuilds the planner on its summary step from a saved project
+function restoreProject(data) {
+  const dialog = document.getElementById('planner');
+  Object.assign(plannerState, {
+    mode: data.mode,
+    party: data.party,
+    location: data.location,
+    type: data.type,
+    services: new Set(data.services || []),
+    options: new Set(data.options || []),
+    guests: data.guests,
+    result: true,
+  });
+  plannerState.step = plannerFlow().steps.length - 1;
+  document.getElementById('planner-arrival').value = data.arrival || '';
+  document.getElementById('planner-departure').value = data.departure || '';
+  document.getElementById('planner-budget-villa').value = data.budgetVilla || '';
+  document.getElementById('planner-budget-services').value = data.budgetServices || '';
+  document.getElementById('planner-notes').value = data.notes || '';
+  document.getElementById('planner-saved').textContent = '';
+  renderPlanner();
+  if (!dialog.open) dialog.showModal();
+}
+
+// Called by the "Salva progetto" button
+async function onSaveProject() {
+  if (!accountState.user) {
+    accountState.pendingSave = true;
+    document.getElementById('planner').close();
+    return openAccount('register', t('acc.need'));
+  }
+  await saveCurrentProject();
+}
+
+async function saveCurrentProject() {
+  const status = document.getElementById('planner-saved');
+  const { ok, data } = await accountApi('projects', 'POST', { title: projectTitle(), data: projectSnapshot() });
+  status.textContent = ok ? t('acc.saved') : t('acc.err.generic');
+  if (!document.getElementById('planner').open) document.getElementById('planner').showModal();
 }

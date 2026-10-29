@@ -4192,3 +4192,273 @@ button.path-btn {
   .yacht-grid { grid-template-columns: 1fr; }
   .yacht-card > img { height: 220px; }
 }
+
+/* ============================================
+   ACCOUNTS (header button, register/login, saved projects)
+   ============================================ */
+
+.account-btn {
+  font-size: 0.7rem;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: inherit;
+  padding: 0.55rem 1rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  white-space: nowrap;
+  margin-right: 0.9rem;
+  transition: background var(--transition-quick), color var(--transition-quick);
+}
+
+.account-btn:hover {
+  background: var(--color-ink);
+  color: var(--color-cream);
+}
+
+.site-header:not(.scrolled):not(.solid) .account-btn:hover {
+  background: var(--color-cream);
+  color: var(--color-ink);
+}
+
+@media (max-width: 980px) {
+  .account-btn { margin-right: 0.5rem; padding: 0.45rem 0.75rem; font-size: 0.62rem; }
+}
+
+#account {
+  margin: auto;
+  width: min(480px, calc(100% - 24px));
+  max-height: 90vh;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border: none;
+  border-radius: 22px;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
+}
+
+#account::backdrop {
+  background: rgba(18, 38, 51, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+#account h2 {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  margin-bottom: 1.25rem;
+}
+
+#account .planner-top .eyebrow {
+  font-size: 0.7rem;
+  margin: 0;
+}
+
+.acc-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.acc-tabs button {
+  flex: 1;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-sand-dark);
+  font-size: 0.72rem;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.acc-tabs button[aria-selected="true"] {
+  background: var(--color-ocean);
+  border-color: var(--color-ocean);
+  color: var(--color-cream);
+}
+
+.acc-form {
+  display: grid;
+  gap: 1rem;
+}
+
+#account [hidden] {
+  display: none !important;
+}
+
+.acc-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.acc-form label > span {
+  font-size: 0.68rem;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+}
+
+.acc-form input:not([type="checkbox"]) {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 0.55rem 0;
+  border: none;
+  border-bottom: 1px solid var(--color-sand-dark);
+  background: transparent;
+  color: var(--color-ink);
+  outline: none;
+}
+
+.acc-form input:focus {
+  border-bottom-color: var(--color-gold);
+}
+
+.acc-consent {
+  flex-direction: row !important;
+  align-items: flex-start;
+  gap: 0.6rem !important;
+}
+
+.acc-consent span {
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  font-size: 0.85rem !important;
+  color: var(--color-charcoal) !important;
+}
+
+.acc-consent input {
+  margin-top: 0.25rem;
+  accent-color: var(--color-ocean);
+}
+
+.acc-submit,
+.acc-save {
+  justify-self: start;
+  padding: 0.9rem 1.8rem;
+  border-radius: 999px;
+  background: var(--color-ocean);
+  color: var(--color-cream);
+  font-size: 0.78rem;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  transition: background var(--transition-quick);
+}
+
+.acc-submit:hover,
+.acc-save:hover {
+  background: var(--color-gold-dark);
+}
+
+.acc-save {
+  margin-top: 0.5rem;
+  background: transparent;
+  color: var(--color-ocean);
+  border: 1px solid var(--color-ocean);
+}
+
+.acc-save:hover {
+  background: var(--color-ocean);
+  color: var(--color-cream);
+}
+
+.planner-saved {
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+  color: var(--color-gold-dark);
+  min-height: 1.2em;
+}
+
+.acc-or {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--color-stone);
+  margin: 1.2rem 0 0.8rem;
+}
+
+.acc-google-wrap {
+  text-align: center;
+}
+
+.acc-note {
+  font-size: 0.78rem;
+  color: var(--color-stone);
+  margin-top: 0.6rem;
+}
+
+.acc-switch {
+  margin-top: 1.2rem;
+  font-size: 0.8rem;
+  color: var(--color-ocean);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.acc-error {
+  color: #9b2e21;
+  font-size: 0.9rem;
+  margin-top: 0.8rem;
+  min-height: 1.2em;
+}
+
+.acc-hello {
+  color: var(--color-charcoal);
+  margin-bottom: 1rem;
+}
+
+.acc-subtitle {
+  font-size: 1.4rem;
+  margin: 1rem 0 0.8rem;
+}
+
+.acc-projects {
+  list-style: none;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.acc-project {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  background: var(--color-bone);
+  border-radius: 14px;
+}
+
+.acc-project strong {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.1rem;
+}
+
+.acc-project span {
+  font-size: 0.78rem;
+  color: var(--color-stone);
+}
+
+.acc-project-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.acc-project-actions button {
+  font-size: 0.7rem;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-sand-dark);
+  color: var(--color-ink);
+}
+
+.acc-project-actions button:first-child {
+  background: var(--color-ocean);
+  border-color: var(--color-ocean);
+  color: var(--color-cream);
+}
+
+.acc-empty {
+  color: var(--color-stone);
+  font-size: 0.9rem;
+}
