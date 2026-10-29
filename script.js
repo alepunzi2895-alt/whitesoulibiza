@@ -11,11 +11,11 @@ const translationCache = {};
 
 // Fallback translations (used until DB responds or on fetch failure)
 const fallbackTranslations = {
-  EN: { 'nav.home':'Home','nav.services':'Services','nav.custom':'Experiences','nav.events':'Events','nav.testimonials':'Testimonials','nav.about':'About','nav.contact':'Contact','cta.plan':'Plan Your Experience','cta.discover':'Discover Services','cta.start':'Start Your Journey','cta.create':'Create Your Experience','cta.inquire':'Begin Concierge Request','cta.services':'Explore All Services','cta.story':'Our Story','cta.plan.event':'Begin Planning' },
-  IT: { 'nav.home':'Home','nav.services':'Servizi','nav.custom':'Esperienze','nav.events':'Eventi','nav.testimonials':'Testimonianze','nav.about':'Chi Siamo','nav.contact':'Contatti','cta.plan':'Pianifica la Tua Esperienza','cta.discover':'Scopri i Servizi','cta.start':'Inizia il Tuo Viaggio','cta.create':'Crea la Tua Esperienza','cta.inquire':'Inizia Richiesta Concierge','cta.services':'Esplora Tutti i Servizi','cta.story':'La Nostra Storia','cta.plan.event':'Inizia a Pianificare' },
-  ES: { 'nav.home':'Inicio','nav.services':'Servicios','nav.custom':'Experiencias','nav.events':'Eventos','nav.testimonials':'Testimonios','nav.about':'Nosotros','nav.contact':'Contacto','cta.plan':'Planea Tu Experiencia','cta.discover':'Descubre Servicios','cta.start':'Comienza Tu Viaje','cta.create':'Crea Tu Experiencia','cta.inquire':'Solicitud de Conserje','cta.services':'Ver Todos los Servicios','cta.story':'Nuestra Historia','cta.plan.event':'Empieza a Planificar' },
-  FR: { 'nav.home':'Accueil','nav.services':'Services','nav.custom':'Expériences','nav.events':'Événements','nav.testimonials':'Témoignages','nav.about':'À Propos','nav.contact':'Contact','cta.plan':'Planifiez Votre Expérience','cta.discover':'Découvrir les Services','cta.start':'Commencez Votre Voyage','cta.create':'Créez Votre Expérience','cta.inquire':'Demande de Conciergerie','cta.services':'Voir Tous les Services','cta.story':'Notre Histoire','cta.plan.event':'Commencer à Planifier' },
-  DE: { 'nav.home':'Startseite','nav.services':'Leistungen','nav.custom':'Erlebnisse','nav.events':'Events','nav.testimonials':'Bewertungen','nav.about':'Über uns','nav.contact':'Kontakt','cta.plan':'Erlebnis planen','cta.discover':'Leistungen entdecken','cta.start':'Aufenthalt planen','cta.create':'Erlebnis gestalten','cta.inquire':'Concierge-Anfrage stellen','cta.services':'Alle Leistungen entdecken','cta.story':'Unsere Geschichte','cta.plan.event':'Planung beginnen' },
+  EN: { 'nav.vacation':'Your Holiday','nav.event':'Your Event','nav.partner':'Partner With Us','nav.contactus':'Contact Us','nav.home':'Home','nav.services':'Services','nav.custom':'Experiences','nav.events':'Events','nav.testimonials':'Testimonials','nav.about':'About','nav.contact':'Contact','cta.plan':'Plan Your Experience','cta.discover':'Discover Services','cta.start':'Start Your Journey','cta.create':'Create Your Experience','cta.inquire':'Begin Concierge Request','cta.services':'Explore All Services','cta.story':'Our Story','cta.plan.event':'Begin Planning' },
+  IT: { 'nav.vacation':'La tua vacanza','nav.event':'Il tuo evento','nav.partner':'Collabora con noi','nav.contactus':'Contattaci','nav.home':'Home','nav.services':'Servizi','nav.custom':'Esperienze','nav.events':'Eventi','nav.testimonials':'Testimonianze','nav.about':'Chi Siamo','nav.contact':'Contatti','cta.plan':'Pianifica la Tua Esperienza','cta.discover':'Scopri i Servizi','cta.start':'Inizia il Tuo Viaggio','cta.create':'Crea la Tua Esperienza','cta.inquire':'Inizia Richiesta Concierge','cta.services':'Esplora Tutti i Servizi','cta.story':'La Nostra Storia','cta.plan.event':'Inizia a Pianificare' },
+  ES: { 'nav.vacation':'Tus vacaciones','nav.event':'Tu evento','nav.partner':'Colabora con nosotros','nav.contactus':'Contáctanos','nav.home':'Inicio','nav.services':'Servicios','nav.custom':'Experiencias','nav.events':'Eventos','nav.testimonials':'Testimonios','nav.about':'Nosotros','nav.contact':'Contacto','cta.plan':'Planea Tu Experiencia','cta.discover':'Descubre Servicios','cta.start':'Comienza Tu Viaje','cta.create':'Crea Tu Experiencia','cta.inquire':'Solicitud de Conserje','cta.services':'Ver Todos los Servicios','cta.story':'Nuestra Historia','cta.plan.event':'Empieza a Planificar' },
+  FR: { 'nav.vacation':'Vos vacances','nav.event':'Votre événement','nav.partner':'Collaborez avec nous','nav.contactus':'Contactez-nous','nav.home':'Accueil','nav.services':'Services','nav.custom':'Expériences','nav.events':'Événements','nav.testimonials':'Témoignages','nav.about':'À Propos','nav.contact':'Contact','cta.plan':'Planifiez Votre Expérience','cta.discover':'Découvrir les Services','cta.start':'Commencez Votre Voyage','cta.create':'Créez Votre Expérience','cta.inquire':'Demande de Conciergerie','cta.services':'Voir Tous les Services','cta.story':'Notre Histoire','cta.plan.event':'Commencer à Planifier' },
+  DE: { 'nav.vacation':'Ihr Urlaub','nav.event':'Ihr Event','nav.partner':'Partner werden','nav.contactus':'Kontaktieren Sie uns','nav.home':'Startseite','nav.services':'Leistungen','nav.custom':'Erlebnisse','nav.events':'Events','nav.testimonials':'Bewertungen','nav.about':'Über uns','nav.contact':'Kontakt','cta.plan':'Erlebnis planen','cta.discover':'Leistungen entdecken','cta.start':'Aufenthalt planen','cta.create':'Erlebnis gestalten','cta.inquire':'Concierge-Anfrage stellen','cta.services':'Alle Leistungen entdecken','cta.story':'Unsere Geschichte','cta.plan.event':'Planung beginnen' },
 };
 
 async function fetchTranslations(lang) {
@@ -65,6 +65,32 @@ function applyTranslationDict(dict) {
       }
     }
   });
+  document.querySelectorAll('.split-reveal').forEach(splitWords);
+}
+
+// Wrap each word in a span so it can be revealed one by one
+function splitWords(el) {
+  let i = 0;
+  const walk = (node) => {
+    Array.from(node.childNodes).forEach(child => {
+      if (child.nodeType === Node.TEXT_NODE) {
+        const frag = document.createDocumentFragment();
+        child.textContent.split(/(\s+)/).forEach(part => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+          const w = document.createElement('span');
+          w.className = 'w';
+          w.style.setProperty('--i', i++);
+          w.textContent = part;
+          frag.appendChild(w);
+        });
+        child.replaceWith(frag);
+      } else if (child.nodeType === Node.ELEMENT_NODE && !child.classList.contains('w')) {
+        walk(child);
+      }
+    });
+  };
+  walk(el);
 }
 
 async function applyLanguage(lang) {
@@ -124,7 +150,8 @@ document.addEventListener('DOMContentLoaded', () => {
   applyLanguage(savedLang);
 
   // --- Reveal on scroll ---
-  const reveals = document.querySelectorAll('.reveal');
+  document.querySelectorAll('.split-reveal').forEach(splitWords);
+  const reveals = document.querySelectorAll('.reveal, .split-reveal');
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -153,6 +180,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Experience builder ---
   initBuilder();
+
+  // --- Homepage: active nav link per section ---
+  initScrollSpy();
+
+  // --- Partner form (opens the email client) ---
+  initPartnerForm();
 
   // --- Form (prevent default submission) ---
   document.querySelectorAll('form[data-form]').forEach(form => {
@@ -563,6 +596,10 @@ function initServiceModal() {
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeServiceModal();
   });
+
+  // Links like services.html#svc-yacht open that service directly
+  const fromHash = location.hash.match(/^#svc-([\w-]+)$/);
+  if (fromHash) openServiceModal(fromHash[1]);
 }
 
 function openServiceModal(key) {
@@ -631,5 +668,46 @@ function initBuilder() {
       msg = 'I would like to plan a custom experience. Here are my preferences:\n\n' + lines.join('\n') + '\n\nCould you please send me a tailored proposal?';
     }
     window.location.href = 'contact.html' + (msg ? '?experience=' + encodeURIComponent(msg) : '');
+  });
+}
+
+// =====================================
+// HOMEPAGE SCROLL SPY
+// =====================================
+function initScrollSpy() {
+  const links = Array.from(document.querySelectorAll('.nav-links a[href^="index.html#"]'));
+  const targets = links
+    .map(a => ({ a, el: document.getElementById(a.hash.slice(1)) }))
+    .filter(t => t.el);
+  if (!targets.length || !('IntersectionObserver' in window)) return;
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      links.forEach(a => a.classList.toggle('active', a.hash === '#' + e.target.id));
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  targets.forEach(t => io.observe(t.el));
+}
+
+// =====================================
+// PARTNER FORM
+// =====================================
+function initPartnerForm() {
+  const form = document.getElementById('partnerForm');
+  if (!form) return;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const d = Object.fromEntries(new FormData(form));
+    const subject = `Partnership proposal — ${d.service}`;
+    const body = [
+      `Name: ${d.firstName} ${d.lastName}`,
+      `Email: ${d.email}`,
+      `Phone: ${d.phone || '-'}`,
+      `Service: ${d.service}`,
+      '',
+      d.message,
+    ].join('\n');
+    window.location.href = `mailto:concierge@whitesoulibiza.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
 }

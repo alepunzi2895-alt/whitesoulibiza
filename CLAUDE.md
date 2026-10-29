@@ -44,10 +44,26 @@ whitesoulibiza/
 ## Navigation Order (strict — do not change)
 
 ```
-Home → Services → Experiences → About → Contact
+Your Holiday → Your Event → Experiences → About → Partner With Us → Contact Us
 ```
 
-This order must be maintained in all 5 HTML files in the `.nav-links` `<ul>`. Events and Testimonials have been removed from navigation (Events is inside services.html#events; Testimonials content moved to about.html).
+All six items are anchors into the homepage (`index.html#vacanza`, `#tuo-evento`, `#esperienze`, `#chi-siamo`, `#collabora`, `#contattaci`). The same `.nav-links` `<ul>` must be in all 7 HTML files. Keys: `nav.vacation` · `nav.event` · `nav.custom` · `nav.about` · `nav.partner` · `nav.contactus`. On the homepage a scroll spy marks the current section's link `.active`.
+
+## Homepage structure (index.html)
+
+Modelled on the reference site (White-Soul-Ibiza/dist), with our palette, fonts and logo:
+
+1. Hero — "Endless experiences, just one soul." (`assets/home/hero-sunset.jpg`)
+2. Intro line (`hp.intro`, word-by-word reveal via `.split-reveal`)
+3. `#vacanza` — two rounded `.path` boxes: holiday (→ experiences.html) and event `#tuo-evento` (→ services.html#svc-events)
+4. `#esperienze` — four photo `.exp-tile`s: Villa Collection (→ #collections), Services (→ #servizi), Yachts & Boats (→ services.html#svc-yacht), Event Planning (→ services.html#svc-events)
+5. `#collections` — villa collection grid + map (unchanged)
+6. `#servizi` — `.services-grid`, 8 cards: Private Chef, Drinks & Beverage, Luxury Cars & Transfer, Private Aviation, Beauty Wellness & Fitness, Photographer, VIP Tables, Security Staff
+7. `#chi-siamo` — about text + photo
+8. `#collabora` — partner form (`#partnerForm`, opens a prefilled mailto to concierge@whitesoulibiza.com)
+9. `#contattaci` — CTA section
+
+Homepage keys use the `hp.*` prefix. `services.html#svc-<key>` opens that service's modal on load (`svc-tpl-<key>` template).
 
 ---
 

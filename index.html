@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>White Soul Ibiza — Exclusive Concierge & Event Planning</title>
+<title>White Soul Ibiza — Endless experiences, just one soul.</title>
 <meta name="description" content="Bespoke concierge & event planning in Ibiza. Private villas, yachts, chefs and unforgettable experiences — perfectly curated for the discerning traveller.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,11 +25,12 @@
         </span>
       </a>
       <ul class="nav-links">
-        <li><a href="index.html" class="active" data-t="nav.home">Home</a></li>
-        <li><a href="services.html" data-t="nav.services">Services</a></li>
-        <li><a href="experiences.html" data-t="nav.custom">Experiences</a></li>
-        <li><a href="about.html" data-t="nav.about">About</a></li>
-        <li><a href="contact.html" data-t="nav.contact">Contact</a></li>
+        <li><a href="index.html#vacanza" data-t="nav.vacation">Your Holiday</a></li>
+        <li><a href="index.html#tuo-evento" data-t="nav.event">Your Event</a></li>
+        <li><a href="index.html#esperienze" data-t="nav.custom">Experiences</a></li>
+        <li><a href="index.html#chi-siamo" data-t="nav.about">About</a></li>
+        <li><a href="index.html#collabora" data-t="nav.partner">Partner With Us</a></li>
+        <li><a href="index.html#contattaci" data-t="nav.contactus">Contact Us</a></li>
       </ul>
       <div class="nav-right">
         <div class="lang-switcher">
@@ -52,23 +53,18 @@
 </header>
 
 <!-- =============== HERO =============== -->
-<section class="hero">
+<section class="hero hero-statement" id="home">
   <div class="hero-bg">
-    <img src="assets/HOME.png" alt="White Soul Ibiza">
+    <img src="assets/home/hero-sunset.jpg" alt="Sunset over the sea of Ibiza" fetchpriority="high">
   </div>
   <div class="hero-overlay"></div>
   <div class="container hero-content">
     <div class="reveal in-view">
-      <span class="eyebrow" data-t="home.hero.eyebrow">VILLAS · CONCIERGE · EVENT PLANNING</span>
       <h1 class="display-xl">
-        <span class="hero-word">Your <span style="color:var(--color-white);">Ibiza</span>,</span> <span class="hero-word">designed</span>
-        <span class="hero-line italic" style="color:var(--color-white); font-weight:700;">around you.</span>
+        <span class="hero-word">Endless</span> <span class="hero-word">experiences,</span>
+        <span class="hero-line italic">just one soul.</span>
       </h1>
-      <p class="hero-sub" data-t="home.hero.sub">Luxury villas, private yachts and<br>tailor-made experiences,<br>perfectly curated for you.</p>
-      <div class="hero-cta">
-        <a href="contact.html" class="btn btn-gold btn-arrow" data-t="cta.plan">Plan Your Experience</a>
-        <a href="https://wa.me/34617010756" class="btn btn-ghost-light">WhatsApp Us</a>
-      </div>
+      <span class="eyebrow hero-signature">White Soul Ibiza</span>
     </div>
   </div>
   <div class="hero-meta">
@@ -77,22 +73,67 @@
   </div>
 </section>
 
-<!-- =============== INTRO =============== -->
-<section class="section">
+<!-- =============== INTRO LINE =============== -->
+<div class="path-intro container">
+  <p class="split-reveal" data-t="hp.intro">Live Ibiza, <span class="italic">with your soul.</span></p>
+</div>
+
+<!-- =============== PATHS: HOLIDAY / EVENT =============== -->
+<section class="paths-section" id="vacanza">
+  <div class="container paths">
+    <article class="path reveal">
+      <span class="path-label" data-t="hp.path1.label">Your way</span>
+      <h3 data-t="hp.path1.h3">Design<br>your holiday</h3>
+      <p data-t="hp.path1.p">Choose your villa, add the experiences and create a holiday made just for you.</p>
+      <a href="experiences.html" class="path-btn" data-t="hp.path1.cta">Build your holiday</a>
+    </article>
+    <article class="path path-dark reveal reveal-delay-1" id="tuo-evento">
+      <span class="path-label" data-t="hp.path2.label">A special occasion</span>
+      <h3 data-t="hp.path2.h3">Plan<br>your event</h3>
+      <p data-t="hp.path2.p">Choose your location, add your services and create an event made just for you.</p>
+      <a href="services.html#svc-events" class="path-btn" data-t="hp.path2.cta">Create your event</a>
+    </article>
+  </div>
+</section>
+
+<!-- =============== EXPERIENCES =============== -->
+<section class="section exp-section" id="esperienze">
   <div class="container">
-    <div class="two-col">
-      <div class="two-col-text reveal">
-        <span class="eyebrow" data-t="home.intro.eyebrow">Welcome to White Soul Ibiza</span>
-        <h2 class="display-md" data-t="home.intro.h2">We create experiences,<br><span class="italic">not just holidays.</span></h2>
-        <p data-t="home.intro.p1">We create tailor-made luxury experiences on the island, combining exclusive villas, private yachts and a full concierge service. Every villa selected for design, privacy and the finest locations on the island.</p>
-        <p data-t="home.intro.p2">From the moment you arrive, every detail is handled for you. You don't just visit Ibiza — you live it.</p>
-        <div style="margin-top:2rem;">
-          <a href="about.html" class="btn-text" data-t="cta.story">Our Story</a>
-        </div>
-      </div>
-      <div class="two-col-image reveal reveal-delay-1">
-        <img src="assets/Experience.png" alt="White Soul Ibiza">
-      </div>
+    <div class="intro-block reveal">
+      <span class="eyebrow center">White Soul Ibiza</span>
+      <h2 class="display-lg" data-t="hp.exp.h2">You desire it, <span class="italic">you live it.</span></h2>
+      <p data-t="hp.exp.p">Explore our proposals and choose your own way of living Ibiza.</p>
+    </div>
+
+    <div class="exp-grid">
+      <a class="exp-tile reveal" href="#collections">
+        <img src="assets/home/villa.jpg" alt="Mediterranean villa with pool" loading="lazy">
+        <span class="exp-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 10 12 3l9 7v10H3zM9 20v-7h6v7"/></svg></span>
+        <span class="exp-label" data-t="hp.exp.villas.label">Stay</span>
+        <strong data-t="hp.exp.villas.title">Villa Collection</strong>
+        <span class="exp-open"><span data-t="hp.exp.villas.open">Explore the villas</span> <b aria-hidden="true">↗</b></span>
+      </a>
+      <a class="exp-tile reveal reveal-delay-1" href="#servizi">
+        <img src="assets/home/chef.jpg" alt="Private chef preparing dinner in a villa" loading="lazy">
+        <span class="exp-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19"/></svg></span>
+        <span class="exp-label" data-t="hp.exp.services.label">Tailored to you</span>
+        <strong data-t="hp.exp.services.title">Services</strong>
+        <span class="exp-open"><span data-t="hp.exp.services.open">Discover the services</span> <b aria-hidden="true">↗</b></span>
+      </a>
+      <a class="exp-tile reveal" href="services.html#svc-yacht">
+        <img src="assets/home/boat.jpg" alt="Boat on the sea of Ibiza" loading="lazy">
+        <span class="exp-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v14M12 4 5 14h7M13 8l6 6h-6M3 18h18l-2 3H5z"/></svg></span>
+        <span class="exp-label" data-t="hp.exp.yachts.label">At sea</span>
+        <strong>Yachts &amp; Boats</strong>
+        <span class="exp-open"><span data-t="hp.exp.yachts.open">Ibiza from the sea</span> <b aria-hidden="true">↗</b></span>
+      </a>
+      <a class="exp-tile reveal reveal-delay-1" href="services.html#svc-events">
+        <img src="assets/home/celebration.jpg" alt="Private celebration in Ibiza" loading="lazy">
+        <span class="exp-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 2 2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5z"/></svg></span>
+        <span class="exp-label" data-t="hp.exp.events.label">Celebrate</span>
+        <strong>Event Planning</strong>
+        <span class="exp-open"><span data-t="hp.exp.events.open">Design your event</span> <b aria-hidden="true">↗</b></span>
+      </a>
     </div>
   </div>
 </section>
@@ -197,30 +238,15 @@
 </section>
 
 <!-- =============== SERVICES OVERVIEW =============== -->
-<section class="section" style="background:var(--color-bone);">
+<section class="section" id="servizi" style="background:var(--color-bone);">
   <div class="container">
     <div class="intro-block reveal">
       <span class="eyebrow center" data-t="home.services.eyebrow">Our Services</span>
+      <h2 class="display-md" data-t="hp.svc.h2">Every day in Ibiza, <span class="italic">more yours.</span></h2>
     </div>
 
     <div class="services-grid">
       <div class="service-card reveal">
-        <div class="service-icon">
-          <!-- Villa: neoclassical arch entrance with columns -->
-          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M13 30 L30 14 L47 30"/>
-            <line x1="18" y1="30" x2="18" y2="50"/>
-            <line x1="42" y1="30" x2="42" y2="50"/>
-            <line x1="15" y1="32" x2="21" y2="32"/>
-            <line x1="39" y1="32" x2="45" y2="32"/>
-            <path d="M24 50 L24 42 Q24 34 30 34 Q36 34 36 42 L36 50"/>
-            <line x1="9" y1="50" x2="51" y2="50"/>
-          </svg>
-        </div>
-        <h3 data-t="home.services.villa.name">Luxury Villas</h3>
-        <p data-t="home.services.villa.desc">A curated selection of exclusive villas chosen for design, privacy and the finest locations on the island.</p>
-      </div>
-      <div class="service-card reveal reveal-delay-1">
         <div class="service-icon">
           <!-- Chef: elegant cloche dome -->
           <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round">
@@ -231,35 +257,50 @@
             <path d="M14 38 L14 42 Q14 44 30 44 Q46 44 46 42 L46 38"/>
           </svg>
         </div>
-        <h3 data-t="home.services.chef.name">Private Chef</h3>
-        <p data-t="home.services.chef.desc">Sushi, Italian, French, paella — private chefs of every cuisine, creating bespoke menus in your villa for any occasion.</p>
+        <h3 data-t="hp.svc.chef.name">Private Chef</h3>
+        <p data-t="hp.svc.chef.desc">Choose your cuisine and the chef you prefer for a private menu in your villa.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">
+          <!-- Drinks: cocktail glass with olive pick -->
+          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 16 L47 16 L30 34 Z"/>
+            <line x1="19" y1="22" x2="41" y2="22"/>
+            <line x1="30" y1="34" x2="30" y2="50"/>
+            <line x1="21" y1="50" x2="39" y2="50"/>
+            <line x1="44" y1="8" x2="35" y2="22"/>
+            <circle cx="41" cy="12.5" r="2.5"/>
+          </svg>
+        </div>
+        <h3>Drinks &amp; Beverage</h3>
+        <p data-t="hp.svc.drinks.desc">Bartenders, cocktails and a selection of drinks designed around your guests, for an evening or an event.</p>
       </div>
       <div class="service-card reveal reveal-delay-2">
         <div class="service-icon">
-          <!-- Yacht: superyacht motor profile 3 decks -->
-          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6 42 Q16 48 30 48 Q42 46 54 40 L50 36 L12 36 Z"/>
-            <path d="M14 36 L14 30 L46 30 L48 36"/>
-            <path d="M18 30 L18 25 L42 25 L44 30"/>
-            <path d="M22 25 L22 22 L36 22 L37 25"/>
-            <line x1="30" y1="22" x2="30" y2="17"/>
-            <circle cx="30" cy="16" r="1.2" fill="currentColor" stroke="none"/>
-            <circle cx="26" cy="33" r="1.5"/>
-            <circle cx="34" cy="33" r="1.5"/>
+          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="0.85" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="30" cy="30" r="27"/>
+            <circle cx="30" cy="30" r="22"/>
+            <circle cx="30" cy="30" r="7"/>
+            <circle cx="30" cy="30" r="2.5" fill="currentColor" stroke="none"/>
+            <line x1="30" y1="22" x2="30" y2="9"/>
+            <line x1="37" y1="27" x2="51" y2="23"/>
+            <line x1="34" y1="36" x2="43" y2="48"/>
+            <line x1="26" y1="36" x2="17" y2="48"/>
+            <line x1="23" y1="27" x2="9" y2="23"/>
           </svg>
         </div>
-        <h3 data-t="home.services.yacht.name">Yacht & Boats</h3>
-        <p data-t="home.services.yacht.desc">Private yachts and boats for day charters, sunset cruises and exclusive events across the Balearics.</p>
+        <h3>Luxury Cars &amp; Transfer</h3>
+        <p data-t="hp.svc.cars.desc">Choose how to move around the island: airport transfers, special cars or a private driver.</p>
       </div>
       <div class="service-card reveal reveal-delay-3">
         <div class="service-icon">
-          <!-- VIP: elegant 5-pointed star -->
+          <!-- Aviation: private jet, top view -->
           <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M30 8 L34.5 22 L49 22 L37.5 31 L42 45 L30 37 L18 45 L22.5 31 L11 22 L25.5 22 Z"/>
+            <path d="M30 6 Q33 10 33 18 L33 26 L52 36 L52 40 L33 34 L33 46 L39 51 L39 54 L30 51 L21 54 L21 51 L27 46 L27 34 L8 40 L8 36 L27 26 L27 18 Q27 10 30 6 Z"/>
           </svg>
         </div>
-        <h3 data-t="home.services.vip.name">VIP Reservations</h3>
-        <p data-t="home.services.vip.desc">Front-row tables at Ushuaïa, Pacha, Lío, Cipriani, Beso Beach — wherever Ibiza is happening tonight, you are there.</p>
+        <h3>Private Aviation</h3>
+        <p data-t="hp.svc.aviation.desc">Jets, helicopters and private planes: air travel arranged for your stay or your event.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-icon">
@@ -276,27 +317,34 @@
             <rect x="44.5" y="18" width="2"   height="2"   rx=".4" fill="currentColor" stroke="none"/>
           </svg>
         </div>
-        <h3 data-t="home.services.wellness.name">Beauty & Wellness</h3>
-        <p data-t="home.services.wellness.desc">Yoga, massage, personal training, hairdresser, barber, beautician and make-up artist — all delivered to your villa.</p>
+        <h3>Beauty, Wellness &amp; Fitness</h3>
+        <p data-t="hp.svc.wellness.desc">From yoga and training to beauty treatments, in your villa or at a venue of your choice.</p>
       </div>
       <div class="service-card reveal reveal-delay-1">
         <div class="service-icon">
-          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="0.85" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="30" cy="30" r="27"/>
-            <circle cx="30" cy="30" r="22"/>
-            <circle cx="30" cy="30" r="7"/>
-            <circle cx="30" cy="30" r="2.5" fill="currentColor" stroke="none"/>
-            <line x1="30" y1="22" x2="30" y2="9"/>
-            <line x1="37" y1="27" x2="51" y2="23"/>
-            <line x1="34" y1="36" x2="43" y2="48"/>
-            <line x1="26" y1="36" x2="17" y2="48"/>
-            <line x1="23" y1="27" x2="9" y2="23"/>
+          <!-- Photographer: camera -->
+          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="8" y="20" width="44" height="28" rx="2"/>
+            <path d="M22 20 L25 14 L35 14 L38 20"/>
+            <circle cx="30" cy="34" r="9"/>
+            <circle cx="30" cy="34" r="4"/>
+            <line x1="44" y1="25" x2="47" y2="25"/>
           </svg>
         </div>
-        <h3 data-t="home.services.cars.name">Luxury Cars & Transfer</h3>
-        <p data-t="home.services.cars.desc">Airport transfers, supercars, convertibles and private drivers — every journey on the island, arranged.</p>
+        <h3 data-t="hp.svc.photo.name">Photographer</h3>
+        <p data-t="hp.svc.photo.desc">A photo shoot for your holiday, a proposal or a special celebration.</p>
       </div>
       <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">
+          <!-- VIP: elegant 5-pointed star -->
+          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M30 8 L34.5 22 L49 22 L37.5 31 L42 45 L30 37 L18 45 L22.5 31 L11 22 L25.5 22 Z"/>
+          </svg>
+        </div>
+        <h3 data-t="hp.svc.vip.name">VIP Tables</h3>
+        <p data-t="hp.svc.vip.desc">Table and night-out requests at the island's clubs, subject to venue availability and conditions.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
         <div class="service-icon">
           <!-- Security: elegant double-lined shield crest -->
           <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">
@@ -304,55 +352,100 @@
             <path d="M30 14 L40 18 L40 32 Q40 40 30 46 Q20 40 20 32 L20 18 Z"/>
           </svg>
         </div>
-        <h3 data-t="home.services.security.name">Security & Staff</h3>
-        <p data-t="home.services.security.desc">Private security, professional bartenders, wine curation, cleaning and housekeeping — every detail in hand.</p>
-      </div>
-      <div class="service-card reveal reveal-delay-3">
-        <div class="service-icon">
-          <!-- Events: presenter's open folder / portfolio -->
-          <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round">
-            <!-- Left page -->
-            <path d="M30 12 L10 14 L10 50 L30 48"/>
-            <!-- Right page -->
-            <path d="M30 12 L50 14 L50 50 L30 48"/>
-            <!-- Spine -->
-            <line x1="30" y1="12" x2="30" y2="48"/>
-            <!-- Left text lines -->
-            <line x1="14" y1="22" x2="27" y2="21.5"/>
-            <line x1="14" y1="29" x2="27" y2="28.5"/>
-            <line x1="14" y1="36" x2="27" y2="35.5"/>
-            <line x1="14" y1="43" x2="22" y2="42.8"/>
-            <!-- Right text lines -->
-            <line x1="33" y1="21.5" x2="46" y2="22"/>
-            <line x1="33" y1="28.5" x2="46" y2="29"/>
-            <line x1="33" y1="35.5" x2="46" y2="36"/>
-            <line x1="33" y1="42.8" x2="41" y2="43"/>
-          </svg>
-        </div>
-        <h3 data-t="home.services.events.name">Event Planning</h3>
-        <p data-t="home.services.events.desc">Private villa parties, yacht events, DJ bookings and entertainment — designed from the first conversation to the final guest.</p>
+        <h3 data-t="hp.svc.security.name">Security Staff</h3>
+        <p data-t="hp.svc.security.desc">Staff for your villa or your event, with hours and coverage defined around your needs.</p>
       </div>
     </div>
 
     <div style="text-align:center; margin-top:4rem;">
-      <a href="services.html" class="btn btn-outline btn-arrow">Explore All Services</a>
+      <a href="services.html" class="btn btn-outline btn-arrow" data-t="cta.services">Explore All Services</a>
     </div>
   </div>
 </section>
 
-<!-- =============== CTA =============== -->
-<section class="cta-section">
+<!-- =============== ABOUT =============== -->
+<section class="section" id="chi-siamo">
+  <div class="container">
+    <div class="two-col">
+      <div class="two-col-text reveal">
+        <span class="eyebrow" data-t="hp.about.eyebrow">About Us</span>
+        <h2 class="display-md">White Soul <span class="italic">Ibiza</span></h2>
+        <p data-t="hp.about.p1">White Soul was born from a deep bond with the island and the wish to let everyone experience it in their own way.</p>
+        <p data-t="hp.about.p2">From the most exclusive villas to the most rustic Ibizan fincas, from dinners in the comfort of your villa to the most exclusive access and tailor-made experiences, we select the most evocative places and the finest professionals to offer you impeccable service, designed around your needs.</p>
+        <p data-t="hp.about.p3">We listen to what you wish for and build every experience around you. Because every trip to Ibiza is different, and always has something new to reveal.</p>
+        <p class="about-signature">White Soul Ibiza <span class="italic">Endless experiences, just one soul.</span></p>
+        <div style="margin-top:2rem;">
+          <a href="about.html" class="btn-text" data-t="cta.story">Our Story</a>
+        </div>
+      </div>
+      <div class="two-col-image reveal reveal-delay-1 img-reveal">
+        <img src="assets/home/coast.jpg" alt="Ibiza coastline with turquoise water" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== PARTNER WITH US =============== -->
+<section class="section" id="collabora" style="background:var(--color-bone);">
+  <div class="container">
+    <div class="two-col partner-grid">
+      <div class="two-col-text reveal">
+        <span class="eyebrow" data-t="hp.partner.eyebrow">Partner With Us</span>
+        <h2 class="display-md" data-t="hp.partner.h2">Bringing the right<br><span class="italic">people together.</span></h2>
+        <p data-t="hp.partner.p">Do you manage a villa or offer a service in Ibiza? We would love to hear about local proposals for stays, the sea, gastronomy, wellness and events.</p>
+      </div>
+      <form class="form partner-form reveal reveal-delay-1" id="partnerForm">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="partner-first-name" data-t="hp.partner.first">First name</label>
+            <input id="partner-first-name" name="firstName" autocomplete="given-name" required>
+          </div>
+          <div class="form-field">
+            <label for="partner-last-name" data-t="hp.partner.last">Last name</label>
+            <input id="partner-last-name" name="lastName" autocomplete="family-name" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="partner-email">Email</label>
+            <input id="partner-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="form-field">
+            <label for="partner-phone" data-t="hp.partner.phone">Phone</label>
+            <input id="partner-phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="partner-service" data-t="hp.partner.service">What do you do?</label>
+          <input id="partner-service" name="service" required>
+        </div>
+        <div class="form-field">
+          <label for="partner-message" data-t="hp.partner.message">Introduce yourself and tell us about your proposal</label>
+          <textarea id="partner-message" name="message" rows="4" required></textarea>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-primary btn-arrow" data-t="hp.partner.submit">Send your proposal</button>
+          <p class="form-note" data-t="hp.partner.note">Your email app will open with the request already filled in.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- =============== CONTACT =============== -->
+<section class="cta-section" id="contattaci">
   <div class="cta-bg">
-    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=2000&q=85" alt="">
+    <img src="assets/home/ibiza-sunset.jpg" alt="" loading="lazy">
   </div>
   <div class="cta-overlay"></div>
   <div class="container">
     <div class="reveal">
-      <span class="eyebrow center" data-t="home.cta.eyebrow">Book</span>
-      <h2 class="display-lg" data-t="home.cta.h2">Ready to experience Ibiza<br><span class="italic">at another level?</span></h2>
+      <span class="eyebrow center" data-t="hp.contact.eyebrow">Contact Us</span>
+      <h2 class="display-lg" data-t="hp.contact.h2">Your next Ibiza experience <span class="italic">starts here.</span></h2>
+      <p data-t="hp.contact.p">Tell us what you wish for: we will help you shape your holiday or your event.</p>
       <div class="hero-cta" style="justify-content:center;">
-        <a href="contact.html" class="btn btn-gold btn-arrow" data-t="cta.start">Plan Your Stay</a>
-        <a href="https://wa.me/34617010756" class="btn btn-ghost-light">WhatsApp Us</a>
+        <a href="experiences.html" class="btn btn-gold btn-arrow" data-t="hp.contact.cta1">Plan your holiday</a>
+        <a href="services.html#svc-events" class="btn btn-ghost-light" data-t="hp.contact.cta2">Plan your event</a>
       </div>
     </div>
   </div>
