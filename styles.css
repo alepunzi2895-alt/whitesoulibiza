@@ -4511,3 +4511,38 @@ button.path-btn {
   background: var(--color-cream);
   color: var(--color-ink);
 }
+
+/* ============================================
+   UNIFORM BUTTONS: square corners, sand on hover
+   ============================================ */
+
+.btn,
+.path-btn,
+.planner-next,
+.planner-presets button,
+.acc-tabs button,
+.acc-submit,
+.acc-save,
+.acc-project-actions button,
+.account-btn,
+.lang-select {
+  border-radius: 0 !important;
+}
+
+.btn-primary:hover,
+.btn-gold:hover,
+.btn-outline:hover,
+.btn-ghost-light:hover,
+.path-btn:hover,
+.planner-next:hover,
+.planner-presets button:hover,
+.acc-tabs button:hover,
+.acc-submit:hover,
+.acc-save:hover,
+.acc-project-actions button:hover,
+.account-btn:hover,
+.lang-select:hover {
+  background: var(--color-sand) !important;
+  border-color: var(--color-sand) !important;
+  color: var(--color-ink) !important;
+}
