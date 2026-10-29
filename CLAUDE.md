@@ -49,6 +49,10 @@ Your Holiday → Your Event → Experiences → About → Partner With Us → Co
 
 All six items are anchors into the homepage (`index.html#vacanza`, `#tuo-evento`, `#esperienze`, `#chi-siamo`, `#collabora`, `#contattaci`). The same `.nav-links` `<ul>` must be in all 7 HTML files. Keys: `nav.vacation` · `nav.event` · `nav.custom` · `nav.about` · `nav.partner` · `nav.contactus`. On the homepage a scroll spy marks the current section's link `.active`.
 
+## Yachts & Boats page (yachts.html)
+
+The Yachts & Boats tile on the homepage opens `yachts.html`: three boat options (Boats, Catamarans, Yacht) with a "Request this" button that opens the holiday planner with the "Barca & mare" service already selected (`data-start="holiday" data-service="..."`). Services.html shows the same two path boxes under its hero, so the planner is reachable from there too.
+
 ## Homepage structure (index.html)
 
 Modelled on the reference site (White-Soul-Ibiza/dist), with our palette, fonts and logo:

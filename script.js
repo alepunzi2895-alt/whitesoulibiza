@@ -851,7 +851,7 @@ function initPlanner() {
   if (!dialog) return;
 
   document.querySelectorAll('[data-start]').forEach(btn => {
-    btn.addEventListener('click', () => openPlanner(btn.dataset.start));
+    btn.addEventListener('click', () => openPlanner(btn.dataset.start, btn.dataset.service));
   });
 
   document.getElementById('planner-close').addEventListener('click', () => dialog.close());
@@ -939,13 +939,19 @@ function currentStep() {
   return plannerFlow().steps[plannerState.step];
 }
 
-function openPlanner(mode) {
+// service (optional): a holiday service to preselect, e.g. from the yachts page.
+// The planner then opens on the services step with that service already chosen.
+function openPlanner(mode, service) {
   const dialog = document.getElementById('planner');
   plannerState.mode = mode === 'event' ? 'event' : 'holiday';
   plannerState.step = 0;
   plannerState.result = false;
   plannerState.guests = 2;
   plannerState.services = new Set();
+  if (service && plannerState.mode === 'holiday') {
+    plannerState.services.add(service);
+    plannerState.step = plannerFlow().steps.indexOf('services');
+  }
   plannerState.options = new Set();
   plannerState.location = '';
   plannerState.type = '';

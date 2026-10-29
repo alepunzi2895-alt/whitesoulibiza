@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yachts &amp; Boats · White Soul Ibiza</title>
+<meta name="description" content="Bespoke concierge & event planning in Ibiza. Private villas, yachts, chefs and unforgettable experiences — perfectly curated for the discerning traveller.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="icon" href="assets/logo.png">
+</head>
+<body>
+<!-- =============== HEADER =============== -->
+<header class="site-header">
+  <div class="container">
+    <nav class="nav-inner">
+      <a href="index.html" class="brand">
+        <img src="assets/logo.png" alt="White Soul Ibiza" class="brand-mark">
+        <span class="brand-text">
+          <span class="brand-name">White Soul Ibiza</span>
+        </span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#vacanza" data-t="nav.vacation">Your Holiday</a></li>
+        <li><a href="index.html#tuo-evento" data-t="nav.event">Your Event</a></li>
+        <li><a href="index.html#esperienze" data-t="nav.custom">Experiences</a></li>
+        <li><a href="index.html#chi-siamo" data-t="nav.about">About</a></li>
+        <li><a href="index.html#collabora" data-t="nav.partner">Partner With Us</a></li>
+        <li><a href="index.html#contattaci" data-t="nav.contactus">Contact Us</a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="lang-switcher">
+          <button data-lang="EN" class="active">EN</button>
+          <span class="lang-divider">·</span>
+          <button data-lang="IT">IT</button>
+          <span class="lang-divider">·</span>
+          <button data-lang="ES">ES</button>
+          <span class="lang-divider">·</span>
+          <button data-lang="FR">FR</button>
+          <span class="lang-divider">·</span>
+          <button data-lang="DE">DE</button>
+        </div>
+        <button class="menu-toggle" aria-label="Menu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- =============== YACHTS & BOATS =============== -->
+<main>
+<section class="page-hero yacht-hero">
+  <div class="hero-bg">
+    <img src="assets/home/real-vanquish.jpg" alt="">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <a href="index.html#esperienze" class="yacht-back" data-t="yt.back">Back to home</a>
+    <div class="reveal in-view">
+      <span class="eyebrow" data-t="yt.eyebrow">03 / AT SEA</span>
+      <h1 data-t="yt.h1">Yachts &amp; Boats</h1>
+      <p class="page-hero-sub" data-t="yt.intro">Enjoy Ibiza from the sea.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section yacht-section">
+  <div class="container yacht-grid">
+    <article class="yacht-card reveal">
+      <img src="assets/home/real-smart-charter.jpg" alt="Barca in navigazione intorno a Ibiza" loading="lazy">
+      <div class="yacht-copy">
+        <h2 data-t="yt.boats.title">Boats</h2>
+        <p data-t="yt.boats.text">Boats to explore the coast and the coves of Ibiza.</p>
+        <button type="button" class="btn btn-primary" data-start="holiday" data-service="Barca &amp; mare" data-t="yt.cta">Request this</button>
+      </div>
+    </article>
+    <article class="yacht-card reveal reveal-delay-1">
+      <img src="assets/home/real-vanquish.jpg" alt="Catamarano sul mare turchese di Ibiza" loading="lazy">
+      <div class="yacht-copy">
+        <h2 data-t="yt.cat.title">Catamarans</h2>
+        <p data-t="yt.cat.text">Catamarans for a day at sea with your group.</p>
+        <button type="button" class="btn btn-primary" data-start="holiday" data-service="Barca &amp; mare" data-t="yt.cta">Request this</button>
+      </div>
+    </article>
+    <article class="yacht-card reveal reveal-delay-2">
+      <img src="assets/home/boat.jpg" alt="Yacht nel mare di Ibiza" loading="lazy">
+      <div class="yacht-copy">
+        <h2 data-t="yt.yacht.title">Yacht</h2>
+        <p data-t="yt.yacht.text">Private yachts for a tailored trip along the coast.</p>
+        <button type="button" class="btn btn-primary" data-start="holiday" data-service="Barca &amp; mare" data-t="yt.cta">Request this</button>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section-tight yacht-offers">
+  <div class="container">
+    <span class="eyebrow" data-t="yt.offers.title">What we take care of</span>
+    <ul>
+      <li data-t="yt.offer1">Search for boats and yachts by date, guests and budget</li>
+      <li data-t="yt.offer2">Coordination of times, itinerary and requests with the supplier</li>
+      <li data-t="yt.offer3">Clear information in advance on capacity, skipper, fuel and equipment, as per the proposal</li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<!-- =============== FOOTER =============== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand">
+          <img src="assets/logo.png" alt="" class="brand-mark" style="filter:brightness(0) invert(1) opacity(0.9);">
+          <span class="brand-text">
+            <span class="brand-name" style="color:var(--color-cream);">White Soul Ibiza</span>
+          </span>
+        </a>
+        <p class="footer-tagline" data-t="footer.tagline">Live Ibiza the White Soul way.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+          </a>
+          <a href="#" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-3.5-6.6L20 4l-1.4 3.5A8 8 0 0 1 20 12Z"/><path d="M8 11.5c.5 2 2.5 4 4.5 4.5l1.5-1.5 2 1c-.5 1-2 1.5-3 1.5-3 0-6-3-6-6 0-1 .5-2.5 1.5-3l1 2L8 11.5Z"/></svg>
+          </a>
+          <a href="#" aria-label="Email">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1"/><polyline points="3,7 12,13 21,7"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 data-t="footer.explore">Explore</h4>
+        <ul>
+          <li><a href="services.html" data-t="nav.services">Services</a></li>
+          <li><a href="experiences.html" data-t="nav.custom">Experiences</a></li>
+          <li><a href="services.html#events" data-t="footer.events">Events</a></li>
+          <li><a href="about.html" data-t="nav.about">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-t="footer.discover">Discover</h4>
+        <ul>
+          <li><a href="testimonials.html" data-t="nav.testimonials">Testimonials</a></li>
+          <li><a href="#" data-t="footer.featured">Featured Villas</a></li>
+          <li><a href="#" data-t="footer.guide">Ibiza Guide</a></li>
+          <li><a href="#" data-t="footer.journal">Journal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-contact">
+        <h4 data-t="footer.contact">Contact</h4>
+        <p>Carrer del Mar, 12<br>Ibiza Town, 07800<br><span data-t="footer.balearic">Balearic Islands</span></p>
+        <p>+34 617 010 756<br>concierge@whitesoulibiza.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-t="footer.rights">© 2026 White Soul Ibiza · All Rights Reserved</span>
+      <span><a href="#" data-t="footer.privacy">Privacy</a> · <a href="#" data-t="footer.terms">Terms</a> · <a href="#" data-t="footer.cookies">Cookies</a></span>
+    </div>
+  </div>
+</footer>
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/34617010756" class="floating-whatsapp" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-1-.3-.1-.5-.1-.7.2-.2.3-.7 1-.9 1.1-.2.2-.4.2-.7.1-.3-.1-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4 0-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z"/></svg>
+</a>
+
+<!-- =============== PLANNER (Build your holiday / Plan your event) =============== -->
+<dialog id="planner" aria-labelledby="planner-title">
+  <div class="planner-top">
+    <span class="eyebrow" id="planner-eyebrow">LA TUA VACANZA, INIZIA QUI</span>
+    <button type="button" class="planner-close" id="planner-close" aria-label="Chiudi">×</button>
+  </div>
+  <h2 id="planner-title">Progetta la tua vacanza</h2>
+  <progress id="planner-progress" max="3" value="1" aria-label="Avanzamento"></progress>
+  <p class="planner-step-label" id="planner-step-label"></p>
+
+  <section class="planner-step" data-step="location" hidden>
+    <p class="planner-intro" data-t="pl.intro.location">Prima scegli come vuoi vivere il tuo evento.</p>
+    <div class="planner-grid planner-grid-2" id="planner-locations"></div>
+  </section>
+
+  <section class="planner-step" data-step="type" hidden>
+    <div class="planner-grid planner-grid-3" id="planner-types"></div>
+  </section>
+
+  <section class="planner-step" data-step="party" hidden>
+    <p class="planner-intro" data-t="pl.intro.party">Scegli il tipo di vacanza che hai in mente. Poi scopri le esperienze da aggiungere.</p>
+    <div class="planner-grid planner-grid-3" id="planner-parties"></div>
+  </section>
+
+  <section class="planner-step" data-step="services" hidden>
+    <p class="planner-intro" id="planner-services-intro"></p>
+    <div class="planner-grid planner-grid-3" id="planner-service-list"></div>
+    <div class="planner-cats" id="planner-event-list" hidden></div>
+  </section>
+
+  <section class="planner-step" data-step="details" hidden>
+    <div class="planner-dates">
+      <label><span id="planner-arrival-label">Si parte</span><input type="date" id="planner-arrival"></label>
+      <label id="planner-departure-wrap"><span>Si torna</span><input type="date" id="planner-departure"></label>
+    </div>
+    <p class="planner-hint" id="planner-stay-preview" aria-live="polite"></p>
+
+    <div class="planner-guests">
+      <div><strong id="planner-guests-title">Quanti siete</strong><span>Conta anche te!</span></div>
+      <div class="planner-stepper">
+        <button type="button" data-guest="-1" aria-label="Un ospite in meno">−</button>
+        <output id="planner-guests-out" aria-live="polite">2</output>
+        <button type="button" data-guest="1" aria-label="Un ospite in più">+</button>
+      </div>
+    </div>
+
+    <div class="planner-budgets">
+      <div class="planner-budget">
+        <span class="planner-budget-label">Budget villa</span>
+        <div class="planner-presets" data-budget="villa">
+          <button type="button" data-value="3000">€ 3.000</button>
+          <button type="button" data-value="5000">€ 5.000</button>
+          <button type="button" data-value="8000">€ 8.000</button>
+        </div>
+        <input type="number" min="0" step="100" id="planner-budget-villa" placeholder="Il tuo importo (€)" inputmode="numeric">
+      </div>
+      <div class="planner-budget">
+        <span class="planner-budget-label">Budget servizi</span>
+        <div class="planner-presets" data-budget="services">
+          <button type="button" data-value="500">€ 500</button>
+          <button type="button" data-value="1000">€ 1.000</button>
+          <button type="button" data-value="2000">€ 2.000</button>
+        </div>
+        <input type="number" min="0" step="100" id="planner-budget-services" placeholder="Il tuo importo (€)" inputmode="numeric">
+      </div>
+    </div>
+    <p class="planner-hint" data-t="pl.budget.note">Puoi lasciare i budget vuoti e farti consigliare. Gli importi sono preferenze di spesa, non preventivi.</p>
+
+    <label class="planner-notes">
+      <span data-t="pl.notes.label">Il dettaglio che la rende tua</span>
+      <textarea id="planner-notes" rows="3" maxlength="1200" placeholder="Una ricorrenza, una zona preferita, qualcosa che ami…"></textarea>
+    </label>
+    <p class="planner-error" id="planner-error" role="alert"></p>
+  </section>
+
+  <div class="planner-result" id="planner-result" hidden>
+    <h3 data-t="pl.result.title">La tua richiesta è pronta</h3>
+    <p data-t="pl.result.text">Il tuo programma email si aprirà con il riepilogo già compilato. Il nostro team ti risponderà con le proposte.</p>
+    <a class="btn btn-primary btn-arrow" id="planner-mail" href="#" data-t="pl.result.cta">Invia la richiesta</a>
+  </div>
+
+  <div class="planner-nav" id="planner-nav">
+    <button type="button" class="planner-back" id="planner-back">Indietro</button>
+    <div class="planner-selected" id="planner-selected" aria-live="polite"></div>
+    <button type="button" class="planner-next" id="planner-next">Continua</button>
+  </div>
+</dialog>
+
+<script src="script.js"></script>
+</body>
+</html>

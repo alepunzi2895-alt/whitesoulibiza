@@ -60,6 +60,28 @@
   </div>
 </section>
 
+<div class="path-intro container">
+  <p class="split-reveal" data-t="hp.intro">Live Ibiza, <span class="italic">with your soul.</span></p>
+</div>
+
+<!-- =============== PATHS: HOLIDAY / EVENT =============== -->
+<section class="paths-section" id="vacanza">
+  <div class="container paths">
+    <article class="path reveal">
+      <span class="path-label" data-t="hp.path1.label">Your way</span>
+      <h3 data-t="hp.path1.h3">Design<br>your holiday</h3>
+      <p data-t="hp.path1.p">Choose your villa, add the experiences and create a holiday made just for you.</p>
+      <button type="button" class="path-btn" data-start="holiday" data-t="hp.path1.cta">Build your holiday</button>
+    </article>
+    <article class="path path-dark reveal reveal-delay-1" id="tuo-evento">
+      <span class="path-label" data-t="hp.path2.label">A special occasion</span>
+      <h3 data-t="hp.path2.h3">Plan<br>your event</h3>
+      <p data-t="hp.path2.p">Choose your location, add your services and create an event made just for you.</p>
+      <button type="button" class="path-btn" data-start="event" data-t="hp.path2.cta">Create your event</button>
+    </article>
+  </div>
+</section>
+
 <!-- =============== DETAILED SERVICES =============== -->
 <section class="section">
   <div class="container">
@@ -438,6 +460,94 @@
 <a href="https://wa.me/34617010756" class="floating-whatsapp" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-1-.3-.1-.5-.1-.7.2-.2.3-.7 1-.9 1.1-.2.2-.4.2-.7.1-.3-.1-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4 0-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z"/></svg>
 </a>
+
+<!-- =============== PLANNER (Build your holiday / Plan your event) =============== -->
+<dialog id="planner" aria-labelledby="planner-title">
+  <div class="planner-top">
+    <span class="eyebrow" id="planner-eyebrow">LA TUA VACANZA, INIZIA QUI</span>
+    <button type="button" class="planner-close" id="planner-close" aria-label="Chiudi">×</button>
+  </div>
+  <h2 id="planner-title">Progetta la tua vacanza</h2>
+  <progress id="planner-progress" max="3" value="1" aria-label="Avanzamento"></progress>
+  <p class="planner-step-label" id="planner-step-label"></p>
+
+  <section class="planner-step" data-step="location" hidden>
+    <p class="planner-intro" data-t="pl.intro.location">Prima scegli come vuoi vivere il tuo evento.</p>
+    <div class="planner-grid planner-grid-2" id="planner-locations"></div>
+  </section>
+
+  <section class="planner-step" data-step="type" hidden>
+    <div class="planner-grid planner-grid-3" id="planner-types"></div>
+  </section>
+
+  <section class="planner-step" data-step="party" hidden>
+    <p class="planner-intro" data-t="pl.intro.party">Scegli il tipo di vacanza che hai in mente. Poi scopri le esperienze da aggiungere.</p>
+    <div class="planner-grid planner-grid-3" id="planner-parties"></div>
+  </section>
+
+  <section class="planner-step" data-step="services" hidden>
+    <p class="planner-intro" id="planner-services-intro"></p>
+    <div class="planner-grid planner-grid-3" id="planner-service-list"></div>
+    <div class="planner-cats" id="planner-event-list" hidden></div>
+  </section>
+
+  <section class="planner-step" data-step="details" hidden>
+    <div class="planner-dates">
+      <label><span id="planner-arrival-label">Si parte</span><input type="date" id="planner-arrival"></label>
+      <label id="planner-departure-wrap"><span>Si torna</span><input type="date" id="planner-departure"></label>
+    </div>
+    <p class="planner-hint" id="planner-stay-preview" aria-live="polite"></p>
+
+    <div class="planner-guests">
+      <div><strong id="planner-guests-title">Quanti siete</strong><span>Conta anche te!</span></div>
+      <div class="planner-stepper">
+        <button type="button" data-guest="-1" aria-label="Un ospite in meno">−</button>
+        <output id="planner-guests-out" aria-live="polite">2</output>
+        <button type="button" data-guest="1" aria-label="Un ospite in più">+</button>
+      </div>
+    </div>
+
+    <div class="planner-budgets">
+      <div class="planner-budget">
+        <span class="planner-budget-label">Budget villa</span>
+        <div class="planner-presets" data-budget="villa">
+          <button type="button" data-value="3000">€ 3.000</button>
+          <button type="button" data-value="5000">€ 5.000</button>
+          <button type="button" data-value="8000">€ 8.000</button>
+        </div>
+        <input type="number" min="0" step="100" id="planner-budget-villa" placeholder="Il tuo importo (€)" inputmode="numeric">
+      </div>
+      <div class="planner-budget">
+        <span class="planner-budget-label">Budget servizi</span>
+        <div class="planner-presets" data-budget="services">
+          <button type="button" data-value="500">€ 500</button>
+          <button type="button" data-value="1000">€ 1.000</button>
+          <button type="button" data-value="2000">€ 2.000</button>
+        </div>
+        <input type="number" min="0" step="100" id="planner-budget-services" placeholder="Il tuo importo (€)" inputmode="numeric">
+      </div>
+    </div>
+    <p class="planner-hint" data-t="pl.budget.note">Puoi lasciare i budget vuoti e farti consigliare. Gli importi sono preferenze di spesa, non preventivi.</p>
+
+    <label class="planner-notes">
+      <span data-t="pl.notes.label">Il dettaglio che la rende tua</span>
+      <textarea id="planner-notes" rows="3" maxlength="1200" placeholder="Una ricorrenza, una zona preferita, qualcosa che ami…"></textarea>
+    </label>
+    <p class="planner-error" id="planner-error" role="alert"></p>
+  </section>
+
+  <div class="planner-result" id="planner-result" hidden>
+    <h3 data-t="pl.result.title">La tua richiesta è pronta</h3>
+    <p data-t="pl.result.text">Il tuo programma email si aprirà con il riepilogo già compilato. Il nostro team ti risponderà con le proposte.</p>
+    <a class="btn btn-primary btn-arrow" id="planner-mail" href="#" data-t="pl.result.cta">Invia la richiesta</a>
+  </div>
+
+  <div class="planner-nav" id="planner-nav">
+    <button type="button" class="planner-back" id="planner-back">Indietro</button>
+    <div class="planner-selected" id="planner-selected" aria-live="polite"></div>
+    <button type="button" class="planner-next" id="planner-next">Continua</button>
+  </div>
+</dialog>
 
 <script src="script.js"></script>
 </body>

@@ -3545,6 +3545,7 @@ section[id], .path[id] {
    ============================================ */
 
 #planner {
+  margin: auto;
   width: min(880px, calc(100% - 24px));
   max-height: 90vh;
   padding: clamp(1.5rem, 3vw, 2.5rem);
@@ -4012,7 +4013,7 @@ section[id], .path[id] {
 /* Entry tiles: buttons styled as the old anchors */
 button.exp-tile {
   font: inherit;
-  color: inherit;
+  color: var(--color-cream);
   text-align: left;
   width: 100%;
   border: none;
@@ -4074,4 +4075,120 @@ button.path-btn {
     padding-top: 1.25rem;
     padding-bottom: 0.5rem;
   }
+}
+
+/* ============================================
+   YACHTS & BOATS PAGE
+   ============================================ */
+
+.yacht-hero {
+  min-height: 72vh;
+}
+
+.yacht-hero .hero-content {
+  padding-top: 8rem;
+  padding-bottom: 4rem;
+}
+
+.yacht-hero h1 {
+  color: var(--color-cream);
+  font-size: clamp(3rem, 7vw, 6rem);
+  margin-bottom: 1.25rem;
+}
+
+.yacht-hero .page-hero-sub {
+  max-width: 56ch;
+}
+
+.yacht-back {
+  display: inline-block;
+  margin-bottom: 2.5rem;
+  font-size: 0.72rem;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-cream);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 0.3rem;
+}
+
+.yacht-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.yacht-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bone);
+  border-radius: 22px;
+  overflow: hidden;
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.yacht-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(18, 38, 51, 0.12);
+}
+
+.yacht-card > img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.yacht-card:hover > img {
+  transform: scale(1.04);
+}
+
+.yacht-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: 1.75rem;
+  flex: 1;
+}
+
+.yacht-copy h2 {
+  font-size: clamp(2rem, 3vw, 2.5rem);
+}
+
+.yacht-copy p {
+  color: var(--color-charcoal);
+  flex: 1;
+}
+
+.yacht-offers {
+  background: var(--color-bone);
+}
+
+.yacht-offers .eyebrow {
+  margin-bottom: 1.5rem;
+}
+
+.yacht-offers ul {
+  list-style: none;
+  display: grid;
+  gap: 0.9rem;
+  max-width: 70ch;
+}
+
+.yacht-offers li {
+  position: relative;
+  padding-left: 1.6rem;
+  color: var(--color-charcoal);
+}
+
+.yacht-offers li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--color-gold-dark);
+}
+
+@media (max-width: 900px) {
+  .yacht-grid { grid-template-columns: 1fr; }
+  .yacht-card > img { height: 220px; }
 }
