@@ -28,20 +28,40 @@ const fallbackTranslations = {
   DE: { 'nav.vacation':'Ihr Urlaub','nav.event':'Ihr Event','nav.partner':'Partner werden','nav.contactus':'Kontaktieren Sie uns','nav.home':'Startseite','nav.services':'Leistungen','nav.custom':'Erlebnisse','nav.events':'Events','nav.testimonials':'Bewertungen','nav.about':'Über uns','nav.contact':'Kontakt','cta.plan':'Erlebnis planen','cta.discover':'Leistungen entdecken','cta.start':'Aufenthalt planen','cta.create':'Erlebnis gestalten','cta.inquire':'Concierge-Anfrage stellen','cta.services':'Alle Leistungen entdecken','cta.story':'Unsere Geschichte','cta.plan.event':'Planung beginnen' },
 };
 
-async function fetchTranslations(lang) {
-  if (translationCache[lang]) return translationCache[lang];
+// Built-in copy of the texts, shipped with the site: used when the API is unavailable
+let staticTranslations = null;
 
-  // The texts come from our own API, so the database token never reaches the browser
+async function loadStaticTranslations() {
+  if (!staticTranslations) {
+    try {
+      const res = await fetch('/i18n/fallback.json');
+      staticTranslations = res.ok ? await res.json() : {};
+    } catch (err) {
+      staticTranslations = {};
+    }
+  }
+  return staticTranslations;
+}
+
+// Texts from our own API (the database token stays on the server); null if unavailable
+async function fetchApiTranslations(lang) {
   try {
     const res = await fetch(`/api/translations?lang=${encodeURIComponent(lang)}`);
     if (!res.ok) throw new Error('translations ' + res.status);
-    const data = await res.json();
-    translationCache[lang] = data.dict;
-    return data.dict;
+    return (await res.json()).dict;
   } catch (err) {
-    console.warn('Translations unavailable, using fallback:', err);
-    return fallbackTranslations[lang] || fallbackTranslations.EN;
+    console.warn('Translations API unavailable, using the built-in copy:', err);
+    return null;
   }
+}
+
+async function fetchTranslations(lang) {
+  if (translationCache[lang]) return translationCache[lang];
+  const [builtIn, fromApi] = await Promise.all([loadStaticTranslations(), fetchApiTranslations(lang)]);
+  // The built-in copy fills any gap, so no key is ever shown instead of a text
+  const dict = { ...(builtIn[lang] || {}), ...(fromApi || {}) };
+  translationCache[lang] = dict;
+  return dict;
 }
 
 function applyTranslationDict(dict) {
