@@ -4546,3 +4546,74 @@ button.path-btn {
   border-color: var(--color-sand) !important;
   color: var(--color-ink) !important;
 }
+
+/* ============================================
+   MOBILE OPTIMISATION (phones, up to 760px)
+   Later rules win over the desktop values above.
+   ============================================ */
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (max-width: 760px) {
+  /* Mobile browsers: 100vh is taller than the visible area, so use the small viewport unit */
+  .hero {
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+
+  .hero-sub {
+    margin-top: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-cta .btn {
+    flex: 1 1 100%;
+  }
+
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .section-tight {
+    padding: 2.5rem 0;
+  }
+
+  .btn {
+    padding: 1rem 1.6rem;
+  }
+
+  /* Prevent iOS from zooming in on form fields */
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+
+  /* Touch targets: at least 44px */
+  .menu-toggle {
+    width: 44px;
+    height: 44px;
+  }
+
+  .lang-switcher button,
+  .lang-select {
+    min-height: 44px;
+  }
+
+  .lang-switcher button {
+    padding: 0.6rem 0.35rem;
+  }
+
+  .planner-close {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  #planner,
+  #account {
+    max-height: 92vh;
+    max-height: 92svh;
+  }
+}
